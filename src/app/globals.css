@@ -21,30 +21,55 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
-  --font-sans: var(--font-geist-sans);
+
+  /* Brand-specific colors for motifs/gradients */
+  --color-teal: hsl(var(--brand-teal));
+  --color-sky: hsl(var(--brand-sky));
+  --color-slate: hsl(var(--brand-slate));
+
+  --font-sans: var(--font-sora);
+  --font-brand: var(--font-michroma);
+  --font-arabic: var(--font-plex-arabic);
   --font-mono: var(--font-geist-mono);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-glow: glow 4s ease-in-out infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-draw: draw 2.2s ease-out both;
+  --animate-drift: drift 30s linear infinite;
 }
 
+/*
+ * GYR brand theme — dark-mode-first.
+ * Teal #0F766E (175 77% 26%) · Sky Blue #38BDF8 (198 93% 60%) · Slate #334155 (215 25% 27%)
+ */
 :root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  --primary: 240 5.9% 10%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
+  color-scheme: dark;
+
+  /* Raw brand tokens for motifs/gradients/accents outside the shadcn scale */
+  --brand-teal: 175 77% 30%;
+  --brand-sky: 198 93% 60%;
+  --brand-slate: 215 25% 27%;
+
+  --background: 215 36% 6%;
+  --foreground: 210 20% 96%;
+  --card: 215 30% 9%;
+  --card-foreground: 210 20% 96%;
+  --popover: 215 32% 8%;
+  --popover-foreground: 210 20% 96%;
+  --primary: 175 77% 32%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 215 25% 16%;
+  --secondary-foreground: 210 20% 96%;
+  --muted: 215 25% 13%;
+  --muted-foreground: 210 14% 64%;
+  --accent: 215 25% 16%;
+  --accent-foreground: 198 93% 60%;
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 240 5.9% 10%;
+  --border: 215 25% 17%;
+  --input: 215 25% 17%;
+  --ring: 198 93% 60%;
 }
 
 @layer base {
@@ -54,5 +79,200 @@
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    font-family: var(--font-sans), system-ui, sans-serif;
   }
+  ::selection {
+    background-color: hsl(var(--brand-sky) / 0.25);
+    color: hsl(var(--foreground));
+  }
+  /* Brand scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--brand-teal) / 0.6) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      hsl(var(--brand-teal)),
+      hsl(var(--brand-sky) / 0.7)
+    );
+    border-radius: 999px;
+    border: 2px solid hsl(var(--background));
+  }
+}
+
+@layer components {
+  /* Teal -> sky gradient text */
+  .text-gradient {
+    background-image: linear-gradient(
+      100deg,
+      hsl(var(--brand-teal)),
+      hsl(var(--brand-sky))
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Ambient circuit-grid background (UAE/tech motif) */
+  .bg-grid {
+    background-image:
+      linear-gradient(hsl(var(--brand-sky) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--brand-sky) / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    background-position: center;
+  }
+
+  /* Radial teal/sky aura */
+  .bg-aura {
+    background:
+      radial-gradient(
+        60% 60% at 80% 15%,
+        hsl(var(--brand-teal) / 0.22),
+        transparent 70%
+      ),
+      radial-gradient(
+        50% 50% at 10% 90%,
+        hsl(var(--brand-sky) / 0.12),
+        transparent 70%
+      );
+  }
+
+  /* Hairline brand divider with a node accent */
+  .rule-glow {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--brand-teal) / 0.6),
+      hsl(var(--brand-sky) / 0.8),
+      transparent
+    );
+  }
+
+  /* Glassy bordered surface that lifts on hover */
+  .brand-card {
+    position: relative;
+    border: 1px solid hsl(var(--border));
+    background: linear-gradient(
+      180deg,
+      hsl(var(--card) / 0.7),
+      hsl(var(--card) / 0.35)
+    );
+    backdrop-filter: blur(8px);
+    transition:
+      border-color 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  .brand-card:hover {
+    border-color: hsl(var(--brand-sky) / 0.5);
+    transform: translateY(-3px);
+    box-shadow:
+      0 0 0 1px hsl(var(--brand-sky) / 0.15),
+      0 18px 40px -20px hsl(var(--brand-teal) / 0.6);
+  }
+
+  /* Diamond bullet used throughout the brand sheet */
+  .diamond::before {
+    content: "";
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    margin-inline-end: 0.6rem;
+    transform: rotate(45deg);
+    background: hsl(var(--brand-sky));
+    box-shadow: 0 0 8px hsl(var(--brand-sky) / 0.8);
+  }
+}
+
+/* ---------- Animations ---------- */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.55;
+    filter: drop-shadow(0 0 18px hsl(var(--brand-sky) / 0.35));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 34px hsl(var(--brand-sky) / 0.7));
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes draw {
+  from {
+    stroke-dashoffset: var(--draw-len, 1200);
+    opacity: 0.2;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+@keyframes drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 56px 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- Dark-tuned prose (Tiptap content) ---------- */
+.prose {
+  --tw-prose-body: hsl(var(--muted-foreground));
+  --tw-prose-headings: hsl(var(--foreground));
+  --tw-prose-lead: hsl(var(--muted-foreground));
+  --tw-prose-links: hsl(var(--brand-sky));
+  --tw-prose-bold: hsl(var(--foreground));
+  --tw-prose-counters: hsl(var(--brand-sky));
+  --tw-prose-bullets: hsl(var(--brand-teal));
+  --tw-prose-hr: hsl(var(--border));
+  --tw-prose-quotes: hsl(var(--foreground));
+  --tw-prose-quote-borders: hsl(var(--brand-teal));
+  --tw-prose-captions: hsl(var(--muted-foreground));
+  --tw-prose-code: hsl(var(--brand-sky));
+  --tw-prose-pre-code: hsl(var(--foreground));
+  --tw-prose-pre-bg: hsl(var(--card));
+  --tw-prose-th-borders: hsl(var(--border));
+  --tw-prose-td-borders: hsl(var(--border));
+}
+.prose a {
+  text-decoration-color: hsl(var(--brand-sky) / 0.4);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+}
+.prose a:hover {
+  text-decoration-color: hsl(var(--brand-sky));
 }

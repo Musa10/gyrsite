@@ -46,3 +46,6 @@ next-env.d.ts
 
 # vendored prisma client tarball (local network workaround — see README)
 /vendor/
+
+# Superpowers visual brainstorm scratch
+.superpowers/

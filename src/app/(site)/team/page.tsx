@@ -1,33 +1,63 @@
 import Image from "next/image";
 import { getPublishedTeam } from "@/server/public-content";
+import { PageHeader } from "@/components/site/page-header";
+
+export const metadata = { title: "Team" };
 
 export default async function TeamPage() {
   const team = await getPublishedTeam();
 
   return (
-    <div className="space-y-8">
-      <h1 className="text-3xl font-bold">Team</h1>
-      {team.length === 0 && (
-        <p className="text-muted-foreground">No team members yet.</p>
+    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <PageHeader eyebrow="THE PEOPLE" title="Team" arabic="الفريق">
+        Engineers, designers, and builders behind GYR — connecting, innovating,
+        and elevating from the UAE.
+      </PageHeader>
+
+      {team.length === 0 ? (
+        <div className="brand-card rounded-xl p-12 text-center text-muted-foreground">
+          No team members published yet.
+        </div>
+      ) : (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {team.map((m, i) => (
+            <article
+              key={m.id}
+              className="brand-card group flex flex-col items-center rounded-xl p-8 text-center"
+              style={{ animation: `fade-up 0.5s ${Math.min(i * 0.06, 0.4)}s both` }}
+            >
+              <div className="relative mb-5">
+                <div
+                  aria-hidden
+                  className="absolute -inset-1 rounded-full bg-gradient-to-br from-teal to-sky opacity-0 blur transition-opacity duration-300 group-hover:opacity-70"
+                />
+                {m.photo ? (
+                  <Image
+                    src={m.photo.url}
+                    alt={m.photo.alt ?? m.name}
+                    width={144}
+                    height={144}
+                    className="relative h-36 w-36 rounded-full border border-border/60 object-cover"
+                  />
+                ) : (
+                  <div className="bg-grid relative flex h-36 w-36 items-center justify-center rounded-full border border-border/60 bg-secondary/40 font-brand text-2xl tracking-widest text-sky">
+                    {m.name.charAt(0)}
+                  </div>
+                )}
+              </div>
+              <h2 className="text-lg font-semibold">{m.name}</h2>
+              <p className="font-brand mt-1 text-[0.7rem] tracking-[0.2em] text-sky">
+                {m.role.toUpperCase()}
+              </p>
+              {m.bio && (
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {m.bio}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
       )}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-        {team.map((m) => (
-          <div key={m.id} className="space-y-2 text-center">
-            {m.photo && (
-              <Image
-                src={m.photo.url}
-                alt={m.photo.alt ?? m.name}
-                width={160}
-                height={160}
-                className="mx-auto h-40 w-40 rounded-full object-cover"
-              />
-            )}
-            <h2 className="text-lg font-semibold">{m.name}</h2>
-            <p className="text-sm text-muted-foreground">{m.role}</p>
-            {m.bio && <p className="text-sm">{m.bio}</p>}
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
