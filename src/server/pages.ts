@@ -30,6 +30,7 @@ export async function savePage(id: string | null, formData: FormData) {
     publishedAt: status === "PUBLISHED" ? new Date() : null,
     showInNav: d.showInNav === "on",
     navOrder: d.navOrder ? parseInt(d.navOrder, 10) || 0 : 0,
+    customLayout: d.customLayout === "on",
   };
 
   if (id) {
