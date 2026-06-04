@@ -30,6 +30,7 @@ export default async function EditPage({
           status: page.status,
           showInNav: page.showInNav,
           navOrder: page.navOrder,
+          customLayout: page.customLayout,
         }}
       />
     </div>
