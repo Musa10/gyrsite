@@ -53,6 +53,7 @@ model Page {
   publishedAt DateTime?
   showInNav   Boolean   @default(false)
   navOrder    Int       @default(0)
+  customLayout Boolean  @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
