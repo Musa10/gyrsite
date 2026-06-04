@@ -8,6 +8,7 @@ export const pageSchema = z.object({
   status: z.enum(STATUSES),
   showInNav: z.union([z.literal("on"), z.literal("")]).optional(),
   navOrder: z.string().optional(),
+  customLayout: z.union([z.literal("on"), z.literal("")]).optional(),
 });
 
 export type PageInput = z.infer<typeof pageSchema>;
