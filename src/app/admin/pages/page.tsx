@@ -38,7 +38,14 @@ export default async function PagesPage() {
         <TableBody>
           {pages.map((p) => (
             <TableRow key={p.id}>
-              <TableCell>{p.title}</TableCell>
+              <TableCell>
+                {p.title}
+                {p.customLayout && (
+                  <Badge variant="secondary" className="ml-2">
+                    Coded
+                  </Badge>
+                )}
+              </TableCell>
               <TableCell className="text-muted-foreground">/{p.slug}</TableCell>
               <TableCell>
                 <Badge
