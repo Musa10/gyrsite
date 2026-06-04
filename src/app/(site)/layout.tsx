@@ -1,5 +1,9 @@
 import { SiteHeader } from "@/components/site/site-header";
 
+// Public pages render from the CMS database per request (dynamic publishing),
+// so they are not statically prerendered at build time.
+export const dynamic = "force-dynamic";
+
 export default function SiteLayout({
   children,
 }: {

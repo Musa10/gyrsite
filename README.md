@@ -33,6 +33,15 @@ GYR's main marketing site **and** its built-in CMS, in one Next.js app.
 - Media storage is abstracted in `src/server/storage.ts` — swap the body for S3/R2 in production; nothing else changes.
 - Server logic lives in `src/server/`, pure helpers in `src/lib/`, so a test harness (deferred for v1) can be added without refactoring.
 
+## Setup notes
+
+- **Prisma 7 driver adapter.** This project uses Prisma 7, where the datasource URL lives in `prisma.config.ts` (not the schema) and `PrismaClient` is constructed with a `@prisma/adapter-pg` adapter over the `pg` driver (see `src/db/prisma.ts`). No separate query-engine binary is downloaded.
+- **Database password required.** The `DATABASE_URL` in `.env` must point at your running Postgres with valid credentials. Once set, run `pnpm prisma migrate dev --name init` (creates the `gyrsite` database + schema) then `pnpm db:seed`.
+- **Vendored `@prisma/client` (temporary).** Due to a constrained network during setup, `@prisma/client@7.8.0` was installed from a locally-downloaded tarball under `vendor/` (gitignored), and `package.json` references it via a `file:` path. When you have reliable network access, normalize it with:
+  ```
+  pnpm remove @prisma/client && pnpm add @prisma/client@7.8.0
+  ```
+
 ## Scripts
 
 - `pnpm dev` / `pnpm build` / `pnpm start`
