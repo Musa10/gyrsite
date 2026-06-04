@@ -3,6 +3,16 @@ import { getPageBySlug } from "@/server/public-content";
 import { RESERVED_SLUGS } from "@/lib/slugify";
 import { Prose } from "@/components/site/prose";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>;
+}) {
+  const { slug } = await params;
+  const page = await getPageBySlug(slug.join("/"));
+  return { title: page?.title ?? "Page" };
+}
+
 export default async function DynamicPage({
   params,
 }: {
@@ -16,11 +26,19 @@ export default async function DynamicPage({
 
   const page = await getPageBySlug(joined);
   if (!page) notFound();
+  // Coded pages own their path via an explicit React route; never render their
+  // (empty) body through the document renderer. 404 until the coded route exists.
+  if (page.customLayout) notFound();
 
   return (
-    <article className="space-y-6">
-      <h1 className="text-4xl font-bold">{page.title}</h1>
-      <Prose doc={page.body} />
+    <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 [animation:fade-up_0.6s_both]">
+      <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+        {page.title}
+      </h1>
+      <div className="mt-8 rule-glow" />
+      <div className="mt-10">
+        <Prose doc={page.body} />
+      </div>
     </article>
   );
 }
