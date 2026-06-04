@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+enum Status {
+  DRAFT
+  PUBLISHED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role     @default(EDITOR)
+  posts        Post[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Post {
+  id           String    @id @default(cuid())
+  title        String
+  slug         String    @unique
+  excerpt      String?
+  body         Json
+  coverImage   Media?    @relation("PostCover", fields: [coverImageId], references: [id])
+  coverImageId String?
+  author       User?     @relation(fields: [authorId], references: [id])
+  authorId     String?
+  tags         String[]
+  status       Status    @default(DRAFT)
+  publishedAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Page {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  body        Json
+  status      Status    @default(DRAFT)
+  publishedAt DateTime?
+  showInNav   Boolean   @default(false)
+  navOrder    Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  bio       String?
+  photo     Media?   @relation("TeamPhoto", fields: [photoId], references: [id])
+  photoId   String?
+  socials   Json?
+  order     Int      @default(0)
+  status    Status   @default(DRAFT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  filename  String
+  url       String
+  mimeType  String
+  width     Int?
+  height    Int?
+  alt       String?
+  size      Int
+  createdAt DateTime @default(now())
+
+  postCovers Post[]       @relation("PostCover")
+  teamPhotos TeamMember[] @relation("TeamPhoto")
+}
