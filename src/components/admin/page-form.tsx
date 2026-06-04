@@ -1,4 +1,4 @@
-import { RichTextEditor } from "@/components/editor/rich-text-editor";
+import { PageBodyField } from "@/components/admin/page-body-field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,7 @@ export function PageForm({
     status: "DRAFT" | "PUBLISHED";
     showInNav: boolean;
     navOrder: number;
+    customLayout: boolean;
   };
 }) {
   return (
@@ -28,10 +29,10 @@ export function PageForm({
         <Label htmlFor="slug">Slug (optional — derived from title)</Label>
         <Input id="slug" name="slug" defaultValue={initial?.slug} />
       </div>
-      <div className="space-y-2">
-        <Label>Body</Label>
-        <RichTextEditor name="body" initialContent={initial?.body} />
-      </div>
+      <PageBodyField
+        initialContent={initial?.body}
+        initialCustomLayout={initial?.customLayout}
+      />
       <div className="flex items-center gap-2">
         <input
           id="showInNav"
