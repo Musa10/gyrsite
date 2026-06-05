@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, dir } from "@/i18n/routing";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const sora = Sora({ variable: "--font-sora", subsets: ["latin"], display: "swap" });
 const michroma = Michroma({
@@ -78,12 +79,15 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={dir(locale)}
+      suppressHydrationWarning
       className={`${sora.variable} ${michroma.variable} ${plexArabic.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className={`min-h-full flex flex-col bg-background text-foreground ${bodyFont}`}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
