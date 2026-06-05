@@ -72,6 +72,39 @@
   --ring: 198 93% 60%;
 }
 
+/*
+ * Light theme — bank-grade. Applied when next-themes sets class="light" on
+ * <html>. Values are tuned for AA contrast on a cool near-white canvas; teal
+ * stays the primary accent, sky is darkened so it reads on white.
+ */
+.light {
+  color-scheme: light;
+
+  --brand-teal: 175 72% 32%;
+  --brand-sky: 198 90% 42%;
+  --brand-slate: 215 20% 45%;
+
+  --background: 210 40% 98%;
+  --foreground: 210 45% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 210 45% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 210 45% 12%;
+  --primary: 175 77% 30%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 30% 92%;
+  --secondary-foreground: 210 45% 16%;
+  --muted: 210 30% 94%;
+  --muted-foreground: 215 16% 40%;
+  --accent: 210 30% 92%;
+  --accent-foreground: 198 80% 34%;
+  --destructive: 0 72% 48%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 20% 85%;
+  --input: 214 20% 85%;
+  --ring: 198 85% 45%;
+}
+
 @layer base {
   * {
     border-color: hsl(var(--border));
@@ -139,6 +172,42 @@
         hsl(var(--brand-sky) / 0.06),
         transparent 70%
       );
+  }
+
+  /* Ambient motifs need stronger ink on a light canvas. */
+  .light .bg-grid {
+    background-image:
+      linear-gradient(hsl(var(--brand-slate) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--brand-slate) / 0.1) 1px, transparent 1px);
+  }
+  .light .bg-aura {
+    background:
+      radial-gradient(
+        60% 60% at 80% 15%,
+        hsl(var(--brand-teal) / 0.1),
+        transparent 70%
+      ),
+      radial-gradient(
+        50% 50% at 10% 90%,
+        hsl(var(--brand-sky) / 0.08),
+        transparent 70%
+      );
+  }
+
+  /* Decorative brand plates — only the active theme's image downloads, because
+     a CSS background-image is fetched only when its rule matches. Pair with
+     Tailwind `bg-cover` + a position utility on the element. */
+  .plate-hero {
+    background-image: url("/backgrounddark.png");
+  }
+  .light .plate-hero {
+    background-image: url("/backgroundlight.png");
+  }
+  .plate-circuit {
+    background-image: url("/circuitsdark.png");
+  }
+  .light .plate-circuit {
+    background-image: url("/circuitslight.png");
   }
 
   /* Hairline brand divider with a node accent */
