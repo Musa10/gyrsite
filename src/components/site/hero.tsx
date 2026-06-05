@@ -78,12 +78,17 @@ export function Hero({
 
         <div className="relative flex min-h-[18rem] items-center justify-center [animation:fade-up_0.9s_0.2s_both]">
           {isFull ? (
-            // Plate supplies the falcon; just add a breathing glow over it.
-            <div
-              aria-hidden
-              className="h-72 w-72 rounded-full [animation:breathe_5s_ease-in-out_infinite]"
-              style={GLOW}
-            />
+            // Plate supplies the falcon; CircuitPulse animates the wing's
+            // circuitry (no foreground falcon → no doubling). Mirror it on RTL
+            // so the traces fan the same way as the mirrored plate.
+            <>
+              <CircuitPulse className="rtl:-scale-x-100" />
+              <div
+                aria-hidden
+                className="absolute h-72 w-72 rounded-full [animation:breathe_5s_ease-in-out_infinite]"
+                style={GLOW}
+              />
+            </>
           ) : (
             <>
               <CircuitPulse />
