@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 export function RichTextEditor({
   name,
   initialContent,
+  dir = "ltr",
 }: {
   name: string;
   initialContent?: JSONContent;
+  dir?: "ltr" | "rtl";
 }) {
   const [json, setJson] = useState<JSONContent>(initialContent ?? EMPTY_DOC);
 
@@ -22,6 +24,7 @@ export function RichTextEditor({
       attributes: {
         class:
           "prose max-w-none min-h-[240px] rounded-md border p-3 focus:outline-none",
+        dir,
       },
     },
     onUpdate: ({ editor }) => setJson(editor.getJSON()),

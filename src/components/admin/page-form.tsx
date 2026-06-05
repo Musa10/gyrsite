@@ -1,10 +1,11 @@
+import { getTranslations } from "next-intl/server";
 import { PageBodyField } from "@/components/admin/page-body-field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import type { JSONContent } from "@tiptap/react";
 
-export function PageForm({
+export async function PageForm({
   action,
   initial,
 }: {
@@ -13,17 +14,29 @@ export function PageForm({
     title: string;
     slug: string;
     body: JSONContent;
+    titleAr: string | null;
+    bodyAr: JSONContent | null;
     status: "DRAFT" | "PUBLISHED";
     showInNav: boolean;
     navOrder: number;
     customLayout: boolean;
   };
 }) {
+  const t = await getTranslations("admin");
   return (
     <form action={action} className="max-w-2xl space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="title">Title</Label>
+        <Label htmlFor="title">{t("titleEn")}</Label>
         <Input id="title" name="title" defaultValue={initial?.title} required />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="titleAr">{t("titleAr")}</Label>
+        <Input
+          id="titleAr"
+          name="titleAr"
+          dir="rtl"
+          defaultValue={initial?.titleAr ?? ""}
+        />
       </div>
       <div className="space-y-2">
         <Label htmlFor="slug">Slug (optional — derived from title)</Label>
@@ -31,6 +44,7 @@ export function PageForm({
       </div>
       <PageBodyField
         initialContent={initial?.body}
+        initialContentAr={initial?.bodyAr ?? undefined}
         initialCustomLayout={initial?.customLayout}
       />
       <div className="flex items-center gap-2">
@@ -64,7 +78,7 @@ export function PageForm({
           <option value="PUBLISHED">Published</option>
         </select>
       </div>
-      <Button type="submit">Save</Button>
+      <Button type="submit">{t("save")}</Button>
     </form>
   );
 }

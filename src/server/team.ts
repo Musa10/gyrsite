@@ -19,6 +19,8 @@ export async function saveTeamMember(id: string | null, formData: FormData) {
     name: d.name,
     role: d.role,
     bio: d.bio || null,
+    roleAr: d.roleAr || null,
+    bioAr: d.bioAr || null,
     photoId: d.photoId || null,
     socials: {
       twitter: d.twitter || null,

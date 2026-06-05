@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { MediaPicker } from "@/components/admin/media-picker";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 type MediaItem = { id: string; url: string; filename: string };
 
-export function TeamForm({
+export async function TeamForm({
   action,
   media,
   initial,
@@ -17,6 +18,8 @@ export function TeamForm({
     name: string;
     role: string;
     bio: string | null;
+    roleAr: string | null;
+    bioAr: string | null;
     photoId: string | null;
     socials: {
       twitter?: string | null;
@@ -27,6 +30,7 @@ export function TeamForm({
     status: "DRAFT" | "PUBLISHED";
   };
 }) {
+  const t = await getTranslations("admin");
   return (
     <form action={action} className="max-w-2xl space-y-4">
       <div className="space-y-2">
@@ -34,12 +38,30 @@ export function TeamForm({
         <Input id="name" name="name" defaultValue={initial?.name} required />
       </div>
       <div className="space-y-2">
-        <Label htmlFor="role">Role</Label>
+        <Label htmlFor="role">{t("roleEn")}</Label>
         <Input id="role" name="role" defaultValue={initial?.role} required />
       </div>
       <div className="space-y-2">
-        <Label htmlFor="bio">Bio</Label>
+        <Label htmlFor="roleAr">{t("roleAr")}</Label>
+        <Input
+          id="roleAr"
+          name="roleAr"
+          dir="rtl"
+          defaultValue={initial?.roleAr ?? ""}
+        />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="bio">{t("bioEn")}</Label>
         <Textarea id="bio" name="bio" defaultValue={initial?.bio ?? ""} />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="bioAr">{t("bioAr")}</Label>
+        <Textarea
+          id="bioAr"
+          name="bioAr"
+          dir="rtl"
+          defaultValue={initial?.bioAr ?? ""}
+        />
       </div>
       <div className="grid grid-cols-3 gap-2">
         <div className="space-y-2">
@@ -93,7 +115,7 @@ export function TeamForm({
           <option value="PUBLISHED">Published</option>
         </select>
       </div>
-      <Button type="submit">Save</Button>
+      <Button type="submit">{t("save")}</Button>
     </form>
   );
 }

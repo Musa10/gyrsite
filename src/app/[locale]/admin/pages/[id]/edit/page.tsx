@@ -27,6 +27,8 @@ export default async function EditPage({
           title: page.title,
           slug: page.slug,
           body: (page.body as JSONContent) ?? EMPTY_DOC,
+          titleAr: page.titleAr,
+          bodyAr: (page.bodyAr as JSONContent) ?? null,
           status: page.status,
           showInNav: page.showInNav,
           navOrder: page.navOrder,

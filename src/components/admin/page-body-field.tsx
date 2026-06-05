@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import type { JSONContent } from "@tiptap/react";
 import { RichTextEditor } from "@/components/editor/rich-text-editor";
 import { EMPTY_DOC } from "@/lib/tiptap";
@@ -8,11 +9,14 @@ import { Label } from "@/components/ui/label";
 
 export function PageBodyField({
   initialContent,
+  initialContentAr,
   initialCustomLayout,
 }: {
   initialContent?: JSONContent;
+  initialContentAr?: JSONContent;
   initialCustomLayout?: boolean;
 }) {
+  const t = useTranslations("admin");
   const [customLayout, setCustomLayout] = useState(
     initialCustomLayout ?? false
   );
@@ -42,10 +46,20 @@ export function PageBodyField({
           <input type="hidden" name="body" value={JSON.stringify(EMPTY_DOC)} />
         </>
       ) : (
-        <div className="space-y-2">
-          <Label>Body</Label>
-          <RichTextEditor name="body" initialContent={initialContent} />
-        </div>
+        <>
+          <div className="space-y-2">
+            <Label>{t("bodyEn")}</Label>
+            <RichTextEditor name="body" initialContent={initialContent} />
+          </div>
+          <div className="space-y-2">
+            <Label>{t("bodyAr")}</Label>
+            <RichTextEditor
+              name="bodyAr"
+              initialContent={initialContentAr}
+              dir="rtl"
+            />
+          </div>
+        </>
       )}
     </div>
   );

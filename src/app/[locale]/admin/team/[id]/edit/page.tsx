@@ -36,6 +36,8 @@ export default async function EditTeamMemberPage({
           name: member.name,
           role: member.role,
           bio: member.bio,
+          roleAr: member.roleAr,
+          bioAr: member.bioAr,
           photoId: member.photoId,
           socials,
           order: member.order,

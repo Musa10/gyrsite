@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { RichTextEditor } from "@/components/editor/rich-text-editor";
 import { MediaPicker } from "@/components/admin/media-picker";
 import { Input } from "@/components/ui/input";
@@ -8,7 +9,7 @@ import type { JSONContent } from "@tiptap/react";
 
 type MediaItem = { id: string; url: string; filename: string };
 
-export function PostForm({
+export async function PostForm({
   action,
   media,
   initial,
@@ -20,23 +21,36 @@ export function PostForm({
     slug: string;
     excerpt: string | null;
     body: JSONContent;
+    titleAr: string | null;
+    excerptAr: string | null;
+    bodyAr: JSONContent | null;
     coverImageId: string | null;
     tags: string[];
     status: "DRAFT" | "PUBLISHED";
   };
 }) {
+  const t = await getTranslations("admin");
   return (
     <form action={action} className="max-w-2xl space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="title">Title</Label>
+        <Label htmlFor="title">{t("titleEn")}</Label>
         <Input id="title" name="title" defaultValue={initial?.title} required />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="titleAr">{t("titleAr")}</Label>
+        <Input
+          id="titleAr"
+          name="titleAr"
+          dir="rtl"
+          defaultValue={initial?.titleAr ?? ""}
+        />
       </div>
       <div className="space-y-2">
         <Label htmlFor="slug">Slug (optional — derived from title)</Label>
         <Input id="slug" name="slug" defaultValue={initial?.slug} />
       </div>
       <div className="space-y-2">
-        <Label htmlFor="excerpt">Excerpt</Label>
+        <Label htmlFor="excerpt">{t("excerptEn")}</Label>
         <Textarea
           id="excerpt"
           name="excerpt"
@@ -44,8 +58,25 @@ export function PostForm({
         />
       </div>
       <div className="space-y-2">
-        <Label>Body</Label>
+        <Label htmlFor="excerptAr">{t("excerptAr")}</Label>
+        <Textarea
+          id="excerptAr"
+          name="excerptAr"
+          dir="rtl"
+          defaultValue={initial?.excerptAr ?? ""}
+        />
+      </div>
+      <div className="space-y-2">
+        <Label>{t("bodyEn")}</Label>
         <RichTextEditor name="body" initialContent={initial?.body} />
+      </div>
+      <div className="space-y-2">
+        <Label>{t("bodyAr")}</Label>
+        <RichTextEditor
+          name="bodyAr"
+          initialContent={initial?.bodyAr ?? undefined}
+          dir="rtl"
+        />
       </div>
       <div className="space-y-2">
         <Label htmlFor="tags">Tags (comma-separated)</Label>
@@ -71,7 +102,7 @@ export function PostForm({
           <option value="PUBLISHED">Published</option>
         </select>
       </div>
-      <Button type="submit">Save</Button>
+      <Button type="submit">{t("save")}</Button>
     </form>
   );
 }

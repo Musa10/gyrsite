@@ -2,9 +2,11 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { Prisma } from "@prisma/client";
 import { prisma } from "@/db/prisma";
 import { requireUser } from "@/server/session";
 import { slugify, RESERVED_SLUGS } from "@/lib/slugify";
+import { isEmptyDoc } from "@/lib/tiptap";
 import { pageSchema } from "@/lib/schemas/page";
 
 export async function savePage(id: string | null, formData: FormData) {
@@ -22,10 +24,16 @@ export async function savePage(id: string | null, formData: FormData) {
   }
 
   const status = d.status;
+
+  const bodyArParsed = d.bodyAr ? JSON.parse(d.bodyAr) : null;
+  const bodyAr = bodyArParsed && !isEmptyDoc(bodyArParsed) ? bodyArParsed : null;
+
   const data = {
     title: d.title,
     slug,
     body: JSON.parse(d.body),
+    titleAr: d.titleAr || null,
+    bodyAr: bodyAr ?? Prisma.DbNull,
     status,
     publishedAt: status === "PUBLISHED" ? new Date() : null,
     showInNav: d.showInNav === "on",

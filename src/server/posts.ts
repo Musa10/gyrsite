@@ -2,9 +2,11 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { Prisma } from "@prisma/client";
 import { prisma } from "@/db/prisma";
 import { requireUser } from "@/server/session";
 import { slugify } from "@/lib/slugify";
+import { isEmptyDoc } from "@/lib/tiptap";
 import { postSchema } from "@/lib/schemas/post";
 
 function parseTags(raw?: string): string[] {
@@ -26,11 +28,17 @@ export async function savePost(id: string | null, formData: FormData) {
   const slug = slugify(d.slug || d.title);
   const status = d.status;
 
+  const bodyArParsed = d.bodyAr ? JSON.parse(d.bodyAr) : null;
+  const bodyAr = bodyArParsed && !isEmptyDoc(bodyArParsed) ? bodyArParsed : null;
+
   const data = {
     title: d.title,
     slug,
     excerpt: d.excerpt || null,
     body: JSON.parse(d.body),
+    titleAr: d.titleAr || null,
+    excerptAr: d.excerptAr || null,
+    bodyAr: bodyAr ?? Prisma.DbNull,
     coverImageId: d.coverImageId || null,
     tags: parseTags(d.tags),
     status,
