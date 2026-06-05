@@ -117,7 +117,7 @@
     color: transparent;
   }
 
-  /* Ambient circuit-grid background (UAE/tech motif) */
+  /* Ambient circuit-grid background (brand tech motif) */
   .bg-grid {
     background-image:
       linear-gradient(hsl(var(--brand-sky) / 0.05) 1px, transparent 1px),
