@@ -1,16 +1,17 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getLocale, getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { getPostBySlug } from "@/server/public-content";
 import { Prose } from "@/components/site/prose";
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }) {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const { slug, locale } = await params;
+  const post = await getPostBySlug(slug, locale);
   return {
     title: post?.title ?? "Insight",
     description: post?.excerpt ?? undefined,
@@ -20,10 +21,11 @@ export async function generateMetadata({
 export default async function PostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }) {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const { slug, locale } = await params;
+  const t = await getTranslations("blog");
+  const post = await getPostBySlug(slug, locale);
   if (!post) notFound();
 
   return (
@@ -32,7 +34,7 @@ export default async function PostPage({
         href="/blog"
         className="font-brand mb-8 inline-block text-[0.7rem] tracking-[0.2em] text-muted-foreground transition-colors hover:text-sky"
       >
-        ← ALL INSIGHTS
+        {t("all")}
       </Link>
 
       <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
@@ -40,12 +42,12 @@ export default async function PostPage({
       </h1>
 
       <div className="mt-4 flex items-center gap-3 text-sm text-muted-foreground">
-        {post.author && <span>By {post.author.name}</span>}
+        {post.author && <span>{t("by")} {post.author.name}</span>}
         {post.publishedAt && (
           <>
             <span className="text-border">·</span>
             <time dateTime={post.publishedAt.toISOString()}>
-              {post.publishedAt.toLocaleDateString("en-US", {
+              {post.publishedAt.toLocaleDateString(locale === "ar" ? "ar" : "en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -67,7 +69,7 @@ export default async function PostPage({
         />
       )}
 
-      <div className="mt-10">
+      <div className="mt-10" dir={locale === "ar" ? "rtl" : "ltr"}>
         <Prose doc={post.body} />
       </div>
     </article>

@@ -1,22 +1,36 @@
 import Image from "next/image";
+import { getLocale, getTranslations } from "next-intl/server";
 import { getPublishedTeam } from "@/server/public-content";
 import { PageHeader } from "@/components/site/page-header";
 
-export const metadata = { title: "Team" };
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "team" });
+  return { title: t("heading") };
+}
 
 export default async function TeamPage() {
-  const team = await getPublishedTeam();
+  const locale = await getLocale();
+  const t = await getTranslations("team");
+  const team = await getPublishedTeam(locale);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <PageHeader eyebrow="THE PEOPLE" title="Team" arabic="الفريق">
-        Engineers, designers, and builders behind GYR — connecting, innovating,
-        and elevating from the UAE.
+      <PageHeader
+        eyebrow={t("eyebrow")}
+        title={t("heading")}
+        arabic={locale === "en" ? "الفريق" : undefined}
+      >
+        {t("lead")}
       </PageHeader>
 
       {team.length === 0 ? (
         <div className="brand-card rounded-xl p-12 text-center text-muted-foreground">
-          No team members published yet.
+          {t("empty")}
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -47,10 +61,13 @@ export default async function TeamPage() {
               </div>
               <h2 className="text-lg font-semibold">{m.name}</h2>
               <p className="font-brand mt-1 text-[0.7rem] tracking-[0.2em] text-sky">
-                {m.role.toUpperCase()}
+                {locale === "ar" ? m.role : m.role.toUpperCase()}
               </p>
               {m.bio && (
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                <p
+                  dir={locale === "ar" ? "rtl" : "ltr"}
+                  className="mt-3 text-sm leading-relaxed text-muted-foreground"
+                >
                   {m.bio}
                 </p>
               )}

@@ -1,23 +1,38 @@
-import Link from "next/link";
 import Image from "next/image";
+import { getLocale, getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { getPublishedPosts } from "@/server/public-content";
 import { PageHeader } from "@/components/site/page-header";
 import { Falcon } from "@/components/site/brand/falcon";
 
-export const metadata = { title: "Insights" };
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "blog" });
+  return { title: t("heading") };
+}
 
 export default async function BlogIndex() {
-  const posts = await getPublishedPosts();
+  const locale = await getLocale();
+  const t = await getTranslations("blog");
+  const posts = await getPublishedPosts(locale);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <PageHeader eyebrow="FROM THE TEAM" title="Insights" arabic="رؤى">
-        Engineering notes, product thinking, and field reports from the GYR team.
+      <PageHeader
+        eyebrow={t("eyebrow")}
+        title={t("heading")}
+        arabic={locale === "en" ? "رؤى" : undefined}
+      >
+        {t("lead")}
       </PageHeader>
 
       {posts.length === 0 ? (
         <div className="brand-card rounded-xl p-12 text-center text-muted-foreground">
-          No insights published yet.
+          {t("empty")}
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

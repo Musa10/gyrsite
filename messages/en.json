@@ -49,11 +49,17 @@
   },
   "blog": {
     "heading": "Insights",
-    "empty": "No insights published yet."
+    "empty": "No insights published yet.",
+    "eyebrow": "FROM THE TEAM",
+    "lead": "Engineering notes, product thinking, and field reports from the GYR team.",
+    "all": "← ALL INSIGHTS",
+    "by": "By"
   },
   "team": {
     "heading": "Team",
-    "empty": "No team members published yet."
+    "empty": "No team members published yet.",
+    "eyebrow": "THE PEOPLE",
+    "lead": "Engineers, designers, and builders behind GYR — connecting, innovating, and elevating from the UAE."
   },
   "notFound": {
     "heading": "Page not found",
