@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getNavPages } from "@/server/public-content";
 import { LocaleSwitcher } from "@/components/site/locale-switcher";
+import { ThemeToggle } from "@/components/site/theme-toggle";
 
 export async function SiteHeader() {
   const locale = await getLocale();
@@ -26,16 +27,12 @@ export async function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 overflow-hidden border-b border-border/60 bg-background/70 backdrop-blur-xl">
-      {/* Circuit-trace texture, faded so it never competes with the content. */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <Image
-          src="/circuitsdark.png"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-right opacity-[0.55] mix-blend-screen [mask-image:linear-gradient(to_left,black,transparent_60%)]"
-        />
-      </div>
+      {/* Circuit-trace texture, faded so it never competes with the content.
+          background-image swaps by theme; only the active plate downloads. */}
+      <div
+        aria-hidden
+        className="plate-circuit pointer-events-none absolute inset-0 bg-cover bg-right opacity-[0.55] mix-blend-screen [.light_&]:mix-blend-multiply [mask-image:linear-gradient(to_left,black,transparent_60%)]"
+      />
 
       <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
@@ -49,7 +46,15 @@ export async function SiteHeader() {
             width={1387}
             height={402}
             priority
-            className="h-8 w-auto sm:h-9"
+            className="h-8 w-auto sm:h-9 [.light_&]:hidden"
+          />
+          <Image
+            src="/logo-horizontal-light.png"
+            alt="GYR"
+            width={1387}
+            height={388}
+            priority
+            className="hidden h-8 w-auto sm:h-9 [.light_&]:block"
           />
         </Link>
 
@@ -66,7 +71,10 @@ export async function SiteHeader() {
           ))}
         </nav>
 
-        <LocaleSwitcher />
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <LocaleSwitcher />
+        </div>
       </div>
     </header>
   );
