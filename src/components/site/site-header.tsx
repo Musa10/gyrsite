@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getNavPages } from "@/server/public-content";
 import { Logo } from "@/components/site/brand/logo";
+import { LocaleSwitcher } from "@/components/site/locale-switcher";
 
 export async function SiteHeader() {
   const navPages = await getNavPages();
@@ -29,12 +30,15 @@ export async function SiteHeader() {
           ))}
         </nav>
 
-        <Link
-          href="/admin"
-          className="font-brand rounded-md border border-border/80 px-3 py-1.5 text-[0.7rem] tracking-[0.2em] text-muted-foreground transition-colors hover:border-sky/60 hover:text-foreground"
-        >
-          CMS
-        </Link>
+        <div className="flex items-center gap-2">
+          <LocaleSwitcher />
+          <Link
+            href="/admin"
+            className="font-brand rounded-md border border-border/80 px-3 py-1.5 text-[0.7rem] tracking-[0.2em] text-muted-foreground transition-colors hover:border-sky/60 hover:text-foreground"
+          >
+            CMS
+          </Link>
+        </div>
       </div>
     </header>
   );
