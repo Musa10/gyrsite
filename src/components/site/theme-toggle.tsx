@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme-provider";
 import { useTranslations } from "next-intl";
 
 /**
  * Sun/moon theme toggle. Styled to match LocaleSwitcher. A `mounted` guard
  * renders a neutral placeholder until hydration so the icon never flashes the
- * wrong state (resolvedTheme is undefined on the server).
+ * wrong state (the server always renders the light default; the real theme is
+ * known only after mount).
  */
 export function ThemeToggle() {
   const t = useTranslations("theme");

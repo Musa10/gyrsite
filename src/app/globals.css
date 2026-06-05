@@ -65,7 +65,7 @@
   --ring: 240 10% 4%;
 }
 
-/* Dark theme — pure inversion of the same ramp. next-themes adds class="dark". */
+/* Dark theme — pure inversion of the same ramp. ThemeProvider / init script adds class="dark". */
 .dark {
   color-scheme: dark;
 

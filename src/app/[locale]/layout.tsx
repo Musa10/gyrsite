@@ -87,6 +87,15 @@ export default async function LocaleLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} ${plexArabic.variable} h-full antialiased`}
     >
       <body className={`min-h-full flex flex-col bg-background text-foreground ${bodyFont}`}>
+        {/* Pre-paint theme class (no flash). Rendered by this Server Component,
+            so it is part of the server HTML and never client-rendered — which
+            keeps React 19 from warning about scripts inside client components. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var e=document.documentElement;e.classList.toggle('dark',d);e.style.colorScheme=d?'dark':'light';}catch(e){}})();",
+          }}
+        />
         <ThemeProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>
             {children}
