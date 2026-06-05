@@ -59,6 +59,16 @@
     "insightsAll": "ALL INSIGHTS →",
     "insightsEmpty": "No insights published yet."
   },
+  "about": {
+    "heroEyebrow": "OUR STORY",
+    "heroTitle": "The software layer beneath modern <accent>finance.</accent>",
+    "heroSub": "GYR is a technology company building AI-driven products for banks and the institutions that demand mission-critical reliability.",
+    "missionP1": "We build software banks run on — AI products that move regulated, high-stakes operations forward without compromising trust.",
+    "missionP2": "Our work sits where intelligence meets assurance: models that decide, automation that executes, and the auditability institutions require.",
+    "valuesEyebrow": "WHAT WE STAND FOR",
+    "valuesTitle": "Values",
+    "values": "Vision,Innovation,Trust,Precision,Leadership"
+  },
   "blog": {
     "heading": "Insights",
     "empty": "No insights published yet.",

@@ -8,4 +8,4 @@ export function slugify(input: string): string {
 }
 
 // Slugs the public catch-all must never claim.
-export const RESERVED_SLUGS = new Set(["admin", "api", "blog", "team", ""]);
+export const RESERVED_SLUGS = new Set(["admin", "api", "blog", "team", "about", ""]);
