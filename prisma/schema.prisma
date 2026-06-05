@@ -32,6 +32,9 @@ model Post {
   title        String
   slug         String    @unique
   excerpt      String?
+  titleAr      String?
+  excerptAr    String?
+  bodyAr       Json?
   body         Json
   coverImage   Media?    @relation("PostCover", fields: [coverImageId], references: [id])
   coverImageId String?
@@ -49,6 +52,8 @@ model Page {
   title       String
   slug        String    @unique
   body        Json
+  titleAr     String?
+  bodyAr      Json?
   status      Status    @default(DRAFT)
   publishedAt DateTime?
   showInNav   Boolean   @default(false)
@@ -63,6 +68,8 @@ model TeamMember {
   name      String
   role      String
   bio       String?
+  roleAr    String?
+  bioAr     String?
   photo     Media?   @relation("TeamPhoto", fields: [photoId], references: [id])
   photoId   String?
   socials   Json?
