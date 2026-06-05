@@ -28,7 +28,7 @@ export function LoginForm() {
           autoComplete="current-password"
         />
       </div>
-      {errorMessage && <p className="text-sm text-red-600">{errorMessage}</p>}
+      {errorMessage && <p className="text-sm text-destructive">{errorMessage}</p>}
       <Button type="submit" className="w-full" disabled={isPending}>
         {isPending ? "Signing in…" : "Sign in"}
       </Button>

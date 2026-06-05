@@ -31,7 +31,7 @@ export function MediaUploader() {
     <div className="space-y-2">
       <Input type="file" accept="image/*" disabled={busy} onChange={onChange} />
       {busy && <p className="text-sm text-muted-foreground">Uploading…</p>}
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-destructive">{error}</p>}
     </div>
   );
 }

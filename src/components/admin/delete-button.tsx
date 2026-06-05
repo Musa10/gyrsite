@@ -11,7 +11,7 @@ export async function DeleteButton({
   const t = await getTranslations("admin");
   return (
     <form action={action.bind(null, id)}>
-      <Button type="submit" variant="ghost" size="sm" className="text-red-600">
+      <Button type="submit" variant="ghost" size="sm" className="text-destructive">
         {t("delete")}
       </Button>
     </form>
