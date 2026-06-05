@@ -51,9 +51,9 @@
   --brand-sky: 198 93% 60%;
   --brand-slate: 215 25% 27%;
 
-  --background: 215 36% 6%;
-  --foreground: 210 20% 96%;
-  --card: 215 30% 9%;
+  --background: 210 45% 4%; /* deeper near-black navy — institutional gravitas */
+  --foreground: 210 30% 97%; /* platinum headings/body */
+  --card: 210 34% 7%;
   --card-foreground: 210 20% 96%;
   --popover: 215 32% 8%;
   --popover-foreground: 210 20% 96%;
@@ -62,7 +62,7 @@
   --secondary: 215 25% 16%;
   --secondary-foreground: 210 20% 96%;
   --muted: 215 25% 13%;
-  --muted-foreground: 210 14% 64%;
+  --muted-foreground: 210 14% 62%; /* cool steel for secondary text */
   --accent: 215 25% 16%;
   --accent-foreground: 198 93% 60%;
   --destructive: 0 72% 51%;
@@ -126,17 +126,17 @@
     background-position: center;
   }
 
-  /* Radial teal/sky aura */
+  /* Radial teal/sky aura — calmed for bank-grade restraint */
   .bg-aura {
     background:
       radial-gradient(
         60% 60% at 80% 15%,
-        hsl(var(--brand-teal) / 0.22),
+        hsl(var(--brand-teal) / 0.12),
         transparent 70%
       ),
       radial-gradient(
         50% 50% at 10% 90%,
-        hsl(var(--brand-sky) / 0.12),
+        hsl(var(--brand-sky) / 0.06),
         transparent 70%
       );
   }
@@ -236,6 +236,35 @@
   }
   to {
     background-position: 56px 56px;
+  }
+}
+/* Circuit-pulse motion — traveling trace, blinking nodes, breathing glow */
+@keyframes pulse-trace {
+  from {
+    stroke-dashoffset: var(--trace-len, 600);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes node-blink {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
   }
 }
 

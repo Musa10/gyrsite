@@ -15,7 +15,7 @@ export default function SiteLayout({
       {/* Ambient brand atmosphere */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 bg-grid [animation:drift_30s_linear_infinite]"
+        className="pointer-events-none fixed inset-0 -z-10 bg-grid opacity-60 [animation:drift_30s_linear_infinite]"
       />
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-aura" />
       <div
