@@ -12,15 +12,10 @@ export default function SiteLayout({
 }) {
   return (
     <div className="relative flex min-h-screen flex-col">
-      {/* Ambient brand atmosphere */}
+      {/* Ambient grid */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 bg-grid opacity-60 [animation:drift_30s_linear_infinite]"
-      />
-      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-aura" />
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-sky/40 to-transparent"
+        className="pointer-events-none fixed inset-0 -z-10 bg-grid opacity-60"
       />
 
       <SiteHeader />

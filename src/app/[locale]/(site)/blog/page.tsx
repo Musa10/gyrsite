@@ -3,7 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getPublishedPosts } from "@/server/public-content";
 import { PageHeader } from "@/components/site/page-header";
-import { Falcon } from "@/components/site/brand/falcon";
+import { FalconMark } from "@/components/site/brand/falcon";
 
 export async function generateMetadata({
   params,
@@ -54,16 +54,16 @@ export default async function BlogIndex() {
                 </div>
               ) : (
                 <div className="bg-grid flex aspect-[16/10] items-center justify-center bg-secondary/40">
-                  <Falcon className="h-14 w-auto opacity-40" />
+                  <FalconMark className="h-14 w-auto opacity-40" />
                 </div>
               )}
               <div className="flex flex-1 flex-col p-6">
                 {p.author && (
-                  <p className="font-brand mb-2 text-[0.65rem] tracking-[0.2em] text-sky/80">
+                  <p className="font-display mb-2 text-[0.65rem] tracking-[0.16em] text-muted-foreground">
                     {p.author.name.toUpperCase()}
                   </p>
                 )}
-                <h2 className="mb-2 text-lg font-medium transition-colors group-hover:text-sky">
+                <h2 className="mb-2 text-lg font-medium transition-colors group-hover:text-foreground/70">
                   {p.title}
                 </h2>
                 {p.excerpt && (

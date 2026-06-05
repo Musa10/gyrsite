@@ -2,7 +2,6 @@ import { getTranslations } from "next-intl/server";
 import { getPageBySlug } from "@/server/public-content";
 import { Hero } from "@/components/site/hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { CircuitDivider } from "@/components/site/brand/circuit-background";
 import { Prose } from "@/components/site/prose";
 import { ContactCta } from "@/components/site/contact-cta";
 
@@ -40,21 +39,21 @@ export default async function AboutPage({
         eyebrow={t("heroEyebrow")}
         title={t.rich("heroTitle", {
           accent: (chunks) => (
-            <span className="font-medium text-gradient">{chunks}</span>
+            <span className="font-medium text-foreground">{chunks}</span>
           ),
         })}
         sub={t("heroSub")}
       />
 
       <section className="mx-auto max-w-3xl px-4 sm:px-6">
-        <CircuitDivider />
+        <div className="rule mx-auto max-w-3xl my-8" />
         <div className="py-14">
           {page?.body ? (
             <div dir={locale === "ar" ? "rtl" : "ltr"}>
               <Prose doc={page.body} />
             </div>
           ) : (
-            <div className="space-y-5 text-lg font-light leading-relaxed text-muted-foreground">
+            <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
               <p>{t("missionP1")}</p>
               <p>{t("missionP2")}</p>
             </div>
@@ -76,7 +75,7 @@ export default async function AboutPage({
               style={{ animation: `fade-up 0.6s ${i * 0.1}s both` }}
             >
               {locale === "en" && (
-                <p dir="rtl" className="font-arabic mb-1 text-sm text-teal">
+                <p dir="rtl" className="font-arabic mb-1 text-sm text-muted-foreground">
                   {p.ar}
                 </p>
               )}
@@ -99,7 +98,7 @@ export default async function AboutPage({
           {values.map((v) => (
             <span
               key={v}
-              className="font-brand text-[0.7rem] tracking-[0.28em] text-muted-foreground"
+              className="font-display text-[0.7rem] tracking-[0.16em] text-muted-foreground"
             >
               {locale === "ar" ? v : v.toUpperCase()}
             </span>

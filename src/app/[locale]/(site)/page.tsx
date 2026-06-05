@@ -5,17 +5,16 @@ import { getPublishedPosts } from "@/server/public-content";
 import { Hero } from "@/components/site/hero";
 import { TrustStrip } from "@/components/site/trust-strip";
 import { SectionHeading } from "@/components/site/section-heading";
-import { CircuitBackground } from "@/components/site/brand/circuit-background";
 import { ContactCta } from "@/components/site/contact-cta";
-import { Falcon } from "@/components/site/brand/falcon";
+import { FalconMark } from "@/components/site/brand/falcon";
 
 export default async function HomePage() {
   const locale = await getLocale();
   const t = await getTranslations("home");
   const posts = (await getPublishedPosts(locale)).slice(0, 3);
 
-  // Arabic brand words shown as a teal flourish on the EN locale only (on AR the
-  // card title is already Arabic, so the flourish would be redundant).
+  // Arabic brand words shown as a muted accent on the EN locale only (on AR the
+  // card title is already Arabic, so the accent would be redundant).
   const capabilities = [
     { ar: "ذكاء", title: t("cap1Title"), desc: t("cap1Desc") },
     { ar: "أتمتة", title: t("cap2Title"), desc: t("cap2Desc") },
@@ -33,7 +32,7 @@ export default async function HomePage() {
         eyebrow={t("eyebrow")}
         title={t.rich("heroTitle", {
           accent: (chunks) => (
-            <span className="font-medium text-gradient">{chunks}</span>
+            <span className="font-medium text-foreground">{chunks}</span>
           ),
         })}
         sub={t("heroSub")}
@@ -41,13 +40,13 @@ export default async function HomePage() {
           <>
             <a
               href="#capabilities"
-              className="font-brand rounded-md bg-gradient-to-r from-teal to-sky px-6 py-3 text-xs tracking-[0.18em] text-white shadow-lg shadow-teal/30 transition-transform hover:-translate-y-0.5"
+              className="font-display rounded-md bg-foreground px-6 py-3 text-xs tracking-[0.16em] text-background transition-opacity hover:opacity-80"
             >
               {t("ctaBuild")}
             </a>
             <Link
               href="/about"
-              className="font-brand rounded-md border border-border px-6 py-3 text-xs tracking-[0.18em] text-foreground transition-colors hover:border-sky/60 hover:text-sky"
+              className="font-display rounded-md border border-border px-6 py-3 text-xs tracking-[0.16em] text-foreground transition-colors hover:border-foreground/60"
             >
               {t("ctaStory")}
             </Link>
@@ -62,7 +61,6 @@ export default async function HomePage() {
         id="capabilities"
         className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6"
       >
-        <CircuitBackground />
         <SectionHeading
           eyebrow={t("capEyebrow")}
           title={t("capHeading")}
@@ -77,7 +75,7 @@ export default async function HomePage() {
               style={{ animation: `fade-up 0.6s ${i * 0.1}s both` }}
             >
               {locale === "en" && (
-                <p dir="rtl" className="font-arabic mb-1 text-sm text-teal">
+                <p dir="rtl" className="font-arabic mb-1 text-sm text-muted-foreground">
                   {c.ar}
                 </p>
               )}
@@ -106,7 +104,7 @@ export default async function HomePage() {
               style={{ animation: `fade-up 0.6s ${i * 0.1}s both` }}
             >
               {locale === "en" && (
-                <p dir="rtl" className="font-arabic mb-1 text-sm text-teal">
+                <p dir="rtl" className="font-arabic mb-1 text-sm text-muted-foreground">
                   {p.ar}
                 </p>
               )}
@@ -128,7 +126,7 @@ export default async function HomePage() {
           />
           <Link
             href="/blog"
-            className="font-brand hidden text-xs tracking-[0.18em] text-muted-foreground transition-colors hover:text-sky sm:block"
+            className="font-display hidden text-xs tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground sm:block"
           >
             {t("insightsAll")}
           </Link>
@@ -156,11 +154,11 @@ export default async function HomePage() {
                   </div>
                 ) : (
                   <div className="bg-grid flex aspect-[16/10] items-center justify-center bg-secondary/40">
-                    <Falcon className="h-14 w-auto opacity-40" />
+                    <FalconMark className="h-14 w-auto opacity-40" />
                   </div>
                 )}
                 <div className="flex flex-1 flex-col p-6">
-                  <h3 className="mb-2 text-lg font-medium transition-colors group-hover:text-sky">
+                  <h3 className="mb-2 text-lg font-medium transition-colors group-hover:text-foreground/70">
                     {p.title}
                   </h3>
                   {p.excerpt && (

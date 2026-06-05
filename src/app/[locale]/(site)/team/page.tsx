@@ -43,7 +43,7 @@ export default async function TeamPage() {
               <div className="relative mb-5">
                 <div
                   aria-hidden
-                  className="absolute -inset-1 rounded-full bg-gradient-to-br from-teal to-sky opacity-0 blur transition-opacity duration-300 group-hover:opacity-70"
+                  className="absolute -inset-1 rounded-full bg-foreground opacity-0 blur transition-opacity duration-300 group-hover:opacity-10"
                 />
                 {m.photo ? (
                   <Image
@@ -54,13 +54,13 @@ export default async function TeamPage() {
                     className="relative h-36 w-36 rounded-full border border-border/60 object-cover"
                   />
                 ) : (
-                  <div className="bg-grid relative flex h-36 w-36 items-center justify-center rounded-full border border-border/60 bg-secondary/40 font-brand text-2xl tracking-widest text-sky">
+                  <div className="bg-grid relative flex h-36 w-36 items-center justify-center rounded-full border border-border/60 bg-secondary/40 font-display text-2xl tracking-widest text-foreground">
                     {m.name.charAt(0)}
                   </div>
                 )}
               </div>
               <h2 className="text-lg font-semibold">{m.name}</h2>
-              <p className="font-brand mt-1 text-[0.7rem] tracking-[0.2em] text-sky">
+              <p className="font-display mt-1 text-[0.7rem] tracking-[0.16em] text-muted-foreground">
                 {locale === "ar" ? m.role : m.role.toUpperCase()}
               </p>
               {m.bio && (

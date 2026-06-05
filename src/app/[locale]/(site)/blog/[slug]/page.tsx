@@ -4,8 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getPostBySlug } from "@/server/public-content";
 import { Prose } from "@/components/site/prose";
-import { Falcon } from "@/components/site/brand/falcon";
-import { CircuitDivider } from "@/components/site/brand/circuit-background";
+import { FalconMark } from "@/components/site/brand/falcon";
 
 export async function generateMetadata({
   params,
@@ -34,12 +33,12 @@ export default async function PostPage({
     <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 [animation:fade-up_0.6s_both]">
       <Link
         href="/blog"
-        className="font-brand mb-8 inline-block text-[0.7rem] tracking-[0.2em] text-muted-foreground transition-colors hover:text-sky"
+        className="font-display mb-8 inline-block text-[0.7rem] tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground"
       >
         {t("all")}
       </Link>
 
-      <h1 className="text-4xl font-light tracking-tight sm:text-5xl">
+      <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
         {post.title}
       </h1>
 
@@ -59,7 +58,7 @@ export default async function PostPage({
         )}
       </div>
 
-      <div className="mt-8 rule-glow" />
+      <div className="mt-8 rule" />
 
       {post.coverImage && (
         <Image
@@ -75,9 +74,9 @@ export default async function PostPage({
         <Prose doc={post.body} />
       </div>
 
-      <CircuitDivider className="mt-16" />
+      <div className="rule mx-auto max-w-3xl mt-16" />
       <div className="flex justify-center py-10">
-        <Falcon className="h-10 w-auto opacity-50" />
+        <FalconMark className="h-10 w-auto text-foreground/20" />
       </div>
     </article>
   );

@@ -35,7 +35,7 @@ export default async function DynamicPage({
       <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
         {page.title}
       </h1>
-      <div className="mt-8 rule-glow" />
+      <div className="mt-8 rule" />
       <div className="mt-10" dir={locale === "ar" ? "rtl" : "ltr"}>
         <Prose doc={page.body} />
       </div>
