@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import { Falcon } from "@/components/site/brand/falcon";
 import { CircuitPulse } from "@/components/site/brand/circuit-pulse";
 
@@ -42,14 +41,8 @@ export function Hero({
     <section className="relative overflow-hidden">
       {isFull && (
         <div aria-hidden className="absolute inset-0 -z-10">
-          <Image
-            src="/backgrounddark.png"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-right opacity-90 rtl:-scale-x-100"
-          />
+          {/* background-image swaps by theme; RTL mirror preserved via transform. */}
+          <div className="plate-hero absolute inset-0 bg-cover bg-right opacity-90 rtl:-scale-x-100" />
           {/* Darken the text side; keep the falcon side clear. Flip on RTL. */}
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent rtl:bg-gradient-to-l" />
         </div>
