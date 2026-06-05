@@ -8,8 +8,10 @@ export const authConfig = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isOnAdmin = nextUrl.pathname.startsWith("/admin");
-      const isOnLogin = nextUrl.pathname === "/admin/login";
+      // Strip a leading /en or /ar so checks work under locale prefixes.
+      const path = nextUrl.pathname.replace(/^\/(en|ar)(?=\/|$)/, "") || "/";
+      const isOnAdmin = path.startsWith("/admin");
+      const isOnLogin = path === "/admin/login";
 
       if (isOnLogin) return true; // login page always reachable
       if (isOnAdmin) return isLoggedIn; // gate the rest of /admin
