@@ -32,7 +32,7 @@ export default async function DynamicPage({
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 [animation:fade-up_0.6s_both]">
-      <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+      <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
         {page.title}
       </h1>
       <div className="mt-8 rule" />

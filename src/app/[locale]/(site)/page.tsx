@@ -154,11 +154,11 @@ export default async function HomePage() {
                   </div>
                 ) : (
                   <div className="bg-grid flex aspect-[16/10] items-center justify-center bg-secondary/40">
-                    <FalconMark className="h-14 w-auto opacity-40" />
+                    <FalconMark className="h-14 w-auto text-foreground/40" />
                   </div>
                 )}
                 <div className="flex flex-1 flex-col p-6">
-                  <h3 className="mb-2 text-lg font-medium transition-colors group-hover:text-foreground/70">
+                  <h3 className="mb-2 text-lg font-medium text-foreground/80 transition-colors group-hover:text-foreground">
                     {p.title}
                   </h3>
                   {p.excerpt && (

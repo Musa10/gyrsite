@@ -74,7 +74,7 @@ export default async function PostPage({
         <Prose doc={post.body} />
       </div>
 
-      <div className="rule mx-auto max-w-3xl mt-16" />
+      <div className="rule mt-16" />
       <div className="flex justify-center py-10">
         <FalconMark className="h-10 w-auto text-foreground/20" />
       </div>

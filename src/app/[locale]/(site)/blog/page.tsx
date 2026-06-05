@@ -54,7 +54,7 @@ export default async function BlogIndex() {
                 </div>
               ) : (
                 <div className="bg-grid flex aspect-[16/10] items-center justify-center bg-secondary/40">
-                  <FalconMark className="h-14 w-auto opacity-40" />
+                  <FalconMark className="h-14 w-auto text-foreground/40" />
                 </div>
               )}
               <div className="flex flex-1 flex-col p-6">
@@ -63,7 +63,7 @@ export default async function BlogIndex() {
                     {p.author.name.toUpperCase()}
                   </p>
                 )}
-                <h2 className="mb-2 text-lg font-medium transition-colors group-hover:text-foreground/70">
+                <h2 className="mb-2 text-lg font-medium text-foreground/80 transition-colors group-hover:text-foreground">
                   {p.title}
                 </h2>
                 {p.excerpt && (

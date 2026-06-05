@@ -46,7 +46,7 @@ export default async function AboutPage({
       />
 
       <section className="mx-auto max-w-3xl px-4 sm:px-6">
-        <div className="rule mx-auto max-w-3xl my-8" />
+        <div className="rule my-8" />
         <div className="py-14">
           {page?.body ? (
             <div dir={locale === "ar" ? "rtl" : "ltr"}>
