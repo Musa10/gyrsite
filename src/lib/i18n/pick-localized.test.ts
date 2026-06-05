@@ -19,8 +19,8 @@ describe("pickLocalized", () => {
   });
 
   it("handles JSON body values (objects) for ar", () => {
-    const en = { type: "doc", en: true };
-    const ar = { type: "doc", ar: true };
+    const en: Record<string, unknown> = { type: "doc", en: true };
+    const ar: Record<string, unknown> = { type: "doc", ar: true };
     expect(pickLocalized(en, ar, "ar")).toBe(ar);
   });
 
