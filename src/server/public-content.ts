@@ -1,5 +1,6 @@
 import { prisma } from "@/db/prisma";
 import { pickLocalized } from "@/lib/i18n/pick-localized";
+import { RESERVED_SLUGS } from "@/lib/slugify";
 
 type LocaleArg = string;
 
@@ -49,10 +50,14 @@ export async function getNavPages(locale: LocaleArg = "en") {
     orderBy: { navOrder: "asc" },
     select: { title: true, titleAr: true, slug: true },
   });
-  return pages.map((p) => ({
-    slug: p.slug,
-    title: pickLocalized(p.title, p.titleAr, locale),
-  }));
+  return pages
+    // Drop slugs owned by coded routes (about, blog, team, …) so a CMS page
+    // can't duplicate a hard-coded nav link or 404 on click.
+    .filter((p) => !RESERVED_SLUGS.has(p.slug))
+    .map((p) => ({
+      slug: p.slug,
+      title: pickLocalized(p.title, p.titleAr, locale),
+    }));
 }
 
 export async function getPublishedTeam(locale: LocaleArg = "en") {

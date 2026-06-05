@@ -3,12 +3,25 @@ import Image from "next/image";
 import { Falcon } from "@/components/site/brand/falcon";
 import { CircuitPulse } from "@/components/site/brand/circuit-pulse";
 
+const GLOW = {
+  background:
+    "radial-gradient(circle, hsl(var(--brand-sky)/0.16), transparent 65%)",
+};
+
 /**
- * Above-the-fold hero. `variant="full"` (Home) uses the background plate +
- * emblem + circuit pulse. `variant="lite"` (About) drops the plate for calm.
+ * Above-the-fold hero.
+ *
+ * `variant="full"` (Home) uses the real `backgrounddark.png` plate — which
+ * already contains the falcon + circuit wing — as the single emblem source, so
+ * we do NOT add a second foreground falcon (that would double the mark). The
+ * plate is mirrored on RTL so its falcon sits opposite the text, never under it.
+ *
+ * `variant="lite"` (About) has no plate, so it renders the transparent falcon +
+ * animated CircuitPulse in the visual cell (which flips sides automatically with
+ * the grid under `dir="rtl"`).
  *
  * Content is passed in (title/sub/actions), so callers own localization and
- * locale-aware links — this component stays i18n-agnostic.
+ * locale-aware links.
  */
 export function Hero({
   eyebrow,
@@ -23,9 +36,11 @@ export function Hero({
   actions?: ReactNode;
   variant?: "full" | "lite";
 }) {
+  const isFull = variant === "full";
+
   return (
     <section className="relative overflow-hidden">
-      {variant === "full" && (
+      {isFull && (
         <div aria-hidden className="absolute inset-0 -z-10">
           <Image
             src="/backgrounddark.png"
@@ -33,11 +48,13 @@ export function Hero({
             fill
             priority
             sizes="100vw"
-            className="object-cover object-right opacity-60"
+            className="object-cover object-right opacity-90 rtl:-scale-x-100"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
+          {/* Darken the text side; keep the falcon side clear. Flip on RTL. */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent rtl:bg-gradient-to-l" />
         </div>
       )}
+
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-24 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:py-32">
         <div className="space-y-8">
           <p className="font-brand inline-flex items-center gap-3 text-[0.7rem] tracking-[0.3em] text-sky [animation:fade-up_0.7s_both]">
@@ -58,17 +75,26 @@ export function Hero({
             </div>
           )}
         </div>
-        <div className="relative flex justify-center [animation:fade-up_0.9s_0.2s_both]">
-          <CircuitPulse />
-          <div
-            aria-hidden
-            className="absolute h-64 w-64 rounded-full [animation:breathe_4.5s_ease-in-out_infinite]"
-            style={{
-              background:
-                "radial-gradient(circle, hsl(var(--brand-sky)/0.18), transparent 65%)",
-            }}
-          />
-          <Falcon priority className="relative h-56 w-auto sm:h-72" />
+
+        <div className="relative flex min-h-[18rem] items-center justify-center [animation:fade-up_0.9s_0.2s_both]">
+          {isFull ? (
+            // Plate supplies the falcon; just add a breathing glow over it.
+            <div
+              aria-hidden
+              className="h-72 w-72 rounded-full [animation:breathe_5s_ease-in-out_infinite]"
+              style={GLOW}
+            />
+          ) : (
+            <>
+              <CircuitPulse />
+              <div
+                aria-hidden
+                className="absolute h-64 w-64 rounded-full [animation:breathe_4.5s_ease-in-out_infinite]"
+                style={GLOW}
+              />
+              <Falcon priority className="relative h-56 w-auto sm:h-72" />
+            </>
+          )}
         </div>
       </div>
     </section>
