@@ -12,6 +12,11 @@
     "toEnglish": "English",
     "label": "تغيير اللغة"
   },
+  "theme": {
+    "label": "تبديل السمة",
+    "toLight": "التبديل إلى الوضع الفاتح",
+    "toDark": "التبديل إلى الوضع الداكن"
+  },
   "footer": {
     "navigate": "التنقل",
     "principles": "المبادئ",

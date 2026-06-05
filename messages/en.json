@@ -12,6 +12,11 @@
     "toEnglish": "English",
     "label": "Change language"
   },
+  "theme": {
+    "label": "Toggle theme",
+    "toLight": "Switch to light",
+    "toDark": "Switch to dark"
+  },
   "footer": {
     "navigate": "NAVIGATE",
     "principles": "PRINCIPLES",
