@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import { Sora, Michroma, IBM_Plex_Sans_Arabic, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, dir } from "@/i18n/routing";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const sora = Sora({ variable: "--font-sora", subsets: ["latin"], display: "swap" });
-const michroma = Michroma({
-  variable: "--font-michroma",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
   display: "swap",
 });
 const plexArabic = IBM_Plex_Sans_Arabic({
@@ -19,7 +23,6 @@ const plexArabic = IBM_Plex_Sans_Arabic({
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -80,7 +83,7 @@ export default async function LocaleLayout({
       lang={locale}
       dir={dir(locale)}
       suppressHydrationWarning
-      className={`${sora.variable} ${michroma.variable} ${plexArabic.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${plexArabic.variable} h-full antialiased`}
     >
       <body className={`min-h-full flex flex-col bg-background text-foreground ${bodyFont}`}>
         <ThemeProvider>
