@@ -36,7 +36,7 @@ export async function generateMetadata({
       default: "GYR — Intelligent software banks run on.",
       template: "%s · GYR",
     },
-    description: t("heroBody"),
+    description: t("heroSub"),
     icons: {
       icon: [
         { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
