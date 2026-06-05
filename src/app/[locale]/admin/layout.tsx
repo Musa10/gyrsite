@@ -1,6 +1,7 @@
 import { Sidebar } from "@/components/admin/sidebar";
 import { LogoutButton } from "@/components/admin/logout-button";
 import { auth } from "@/auth";
+import { ThemeToggle } from "@/components/site/theme-toggle";
 
 export default async function AdminLayout({
   children,
@@ -26,7 +27,10 @@ export default async function AdminLayout({
           <span className="text-sm text-muted-foreground">
             {session.user.email}
           </span>
-          <LogoutButton />
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <LogoutButton />
+          </div>
         </header>
         <main className="flex-1 p-6">{children}</main>
       </div>
