@@ -162,19 +162,25 @@ matches; `sidebar.tsx`, forms, buttons.
 
 ## 6. Asset needs
 
-From the user:
-1. **Logo as SVG** (preferred) or high-res transparent PNG — for a crisp nav wordmark. Current
-   `public/logo.png` can be the fallback source. No dark-mode logo asset needed (CSS inverts pure
-   mono).
+**Provided by the user (in `public/`):**
+1. `gyr-technology-logo-clean-outlined.svg` — full "Gyr Technology" wordmark + mark, outlined
+   single-fill black paths (`viewBox 0 0 790 190`). Used for the nav wordmark.
+2. `gyr-falcon-alone-clean.svg` — the geometric falcon/arrow mark, single black path
+   (`viewBox 0 0 141 186`). This **is** the brand symbol (the falcon and the arrow are one shape),
+   so no separate falcon needs drafting. Used for the icon-only mark, favicon source, and the
+   optional faint section watermark.
 
-Generated in-repo (no user asset needed):
-2. **Arrow mark** — inline SVG.
-3. **Minimal falcon silhouette** — drafted as SVG for user approval (favicon + optional watermark).
-4. **Favicons + OG image** — regenerated monochrome (`favicon-32/48.png`, `apple-touch-icon.png`,
-   `og.png`).
+Both are pure `fill="#000000"`; switching the fill to `currentColor` makes them inherit
+`text-foreground` and invert automatically between light and dark — no twin PNGs, no dark-mode
+asset. They should be inlined as React SVG components (under `src/components/site/brand/`) rather
+than `<img>`, so `currentColor` and sizing work.
 
-Removed assets: `logo-horizontal*.png`, `backgrounddark/light.png`, `circuitsdark/light.png`, and
-other circuit/teal-era plates.
+**Generated in-repo (no user asset needed):**
+3. **Favicons + OG image** — regenerated monochrome from the falcon mark (`favicon-32/48.png`,
+   `apple-touch-icon.png`, `og.png`).
+
+**Removed assets:** `logo-horizontal*.png`, `backgrounddark/light.png`, `circuitsdark/light.png`,
+and other circuit/teal-era plates. `logo.png` may be kept as a raster fallback or removed.
 
 ## 7. Accessibility
 
