@@ -1,14 +1,17 @@
-import Link from "next/link";
+import { getLocale, getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { getNavPages } from "@/server/public-content";
 import { Logo } from "@/components/site/brand/logo";
 import { LocaleSwitcher } from "@/components/site/locale-switcher";
 
 export async function SiteHeader() {
-  const navPages = await getNavPages();
+  const locale = await getLocale();
+  const t = await getTranslations("nav");
+  const navPages = await getNavPages(locale);
 
   const links = [
-    { href: "/blog", label: "Insights" },
-    { href: "/team", label: "Team" },
+    { href: "/blog", label: t("insights") },
+    { href: "/team", label: t("team") },
     ...navPages.map((p) => ({ href: `/${p.slug}`, label: p.title })),
   ];
 
@@ -36,7 +39,7 @@ export async function SiteHeader() {
             href="/admin"
             className="font-brand rounded-md border border-border/80 px-3 py-1.5 text-[0.7rem] tracking-[0.2em] text-muted-foreground transition-colors hover:border-sky/60 hover:text-foreground"
           >
-            CMS
+            {t("cms")}
           </Link>
         </div>
       </div>
