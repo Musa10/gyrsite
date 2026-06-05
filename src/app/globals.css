@@ -14,95 +14,84 @@
   --color-secondary-foreground: hsl(var(--secondary-foreground));
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-ink-2: hsl(var(--ink-2));
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-success: hsl(var(--success));
+  --color-warning: hsl(var(--warning));
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
+  --color-surface: hsl(var(--surface));
 
-  /* Brand-specific colors for motifs/gradients */
-  --color-teal: hsl(var(--brand-teal));
-  --color-sky: hsl(var(--brand-sky));
-  --color-slate: hsl(var(--brand-slate));
-
-  --font-sans: var(--font-sora);
-  --font-brand: var(--font-michroma);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
   --font-arabic: var(--font-plex-arabic);
-  --font-mono: var(--font-geist-mono);
 
   --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-  --animate-glow: glow 4s ease-in-out infinite;
-  --animate-float: float 7s ease-in-out infinite;
-  --animate-draw: draw 2.2s ease-out both;
-  --animate-drift: drift 30s linear infinite;
 }
 
 /*
- * GYR brand theme — dark-mode-first.
- * Teal #0F766E (175 77% 26%) · Sky Blue #38BDF8 (198 93% 60%) · Slate #334155 (215 25% 27%)
+ * GYR brand theme — Swiss monochrome, LIGHT default.
+ * Neutral cool-grey (zinc) ramp. Color is reserved for functional UI states only.
  */
 :root {
-  color-scheme: dark;
-
-  /* Raw brand tokens for motifs/gradients/accents outside the shadcn scale */
-  --brand-teal: 175 77% 30%;
-  --brand-sky: 198 93% 60%;
-  --brand-slate: 215 25% 27%;
-
-  --background: 210 45% 4%; /* deeper near-black navy — institutional gravitas */
-  --foreground: 210 30% 97%; /* platinum headings/body */
-  --card: 210 34% 7%;
-  --card-foreground: 210 20% 96%;
-  --popover: 215 32% 8%;
-  --popover-foreground: 210 20% 96%;
-  --primary: 175 77% 32%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 215 25% 16%;
-  --secondary-foreground: 210 20% 96%;
-  --muted: 215 25% 13%;
-  --muted-foreground: 210 14% 62%; /* cool steel for secondary text */
-  --accent: 215 25% 16%;
-  --accent-foreground: 198 93% 60%;
-  --destructive: 0 72% 51%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 215 25% 17%;
-  --input: 215 25% 17%;
-  --ring: 198 93% 60%;
-}
-
-/*
- * Light theme — bank-grade. Applied when next-themes sets class="light" on
- * <html>. Values are tuned for AA contrast on a cool near-white canvas; teal
- * stays the primary accent, sky is darkened so it reads on white.
- */
-.light {
   color-scheme: light;
 
-  --brand-teal: 175 72% 32%;
-  --brand-sky: 198 90% 34%; /* deepened from 42% → 4.8:1 on bg; AA for text-sky eyebrows + prose links */
-  --brand-slate: 215 20% 45%;
-
-  --background: 210 40% 98%;
-  --foreground: 210 45% 12%;
+  --background: 0 0% 100%;
+  --foreground: 240 10% 4%;   /* ink  #0A0A0A */
+  --ink-2: 240 5% 26%;        /* secondary text #3F3F46 */
+  --surface: 240 5% 98%;      /* #FAFAFA */
   --card: 0 0% 100%;
-  --card-foreground: 210 45% 12%;
+  --card-foreground: 240 10% 4%;
   --popover: 0 0% 100%;
-  --popover-foreground: 210 45% 12%;
-  --primary: 175 77% 30%;
+  --popover-foreground: 240 10% 4%;
+  --primary: 240 10% 4%;      /* solid-ink buttons */
   --primary-foreground: 0 0% 100%;
-  --secondary: 210 30% 92%;
-  --secondary-foreground: 210 45% 16%;
-  --muted: 210 30% 94%;
-  --muted-foreground: 215 16% 40%;
-  --accent: 210 30% 92%;
-  --accent-foreground: 198 80% 31%; /* deepened from 34% → 5.1:1 on accent; AA */
-  --destructive: 0 72% 48%;
+  --secondary: 240 5% 96%;
+  --secondary-foreground: 240 10% 4%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 46%; /* #71717A */
+  --accent: 240 5% 96%;
+  --accent-foreground: 240 10% 4%;
+  --destructive: 0 72% 45%;
   --destructive-foreground: 0 0% 100%;
-  --border: 214 20% 85%;
-  --input: 214 20% 85%;
-  --ring: 198 85% 45%;
+  --success: 142 71% 33%;
+  --warning: 30 90% 38%;
+  --border: 240 6% 90%;       /* hairline #E4E4E7 */
+  --input: 240 5% 84%;        /* #D4D4D8 */
+  --ring: 240 10% 4%;
+}
+
+/* Dark theme — pure inversion of the same ramp. next-themes adds class="dark". */
+.dark {
+  color-scheme: dark;
+
+  --background: 240 10% 4%;   /* #0A0A0A */
+  --foreground: 0 0% 98%;
+  --ink-2: 240 5% 84%;        /* secondary text #D4D4D8 */
+  --surface: 240 6% 9%;       /* #161618 */
+  --card: 240 6% 9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 6% 9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;        /* white solid buttons */
+  --primary-foreground: 240 10% 4%;
+  --secondary: 240 5% 14%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 5% 14%;
+  --muted-foreground: 240 5% 65%; /* #A1A1AA */
+  --accent: 240 5% 14%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 72% 52%;
+  --destructive-foreground: 0 0% 98%;
+  --success: 142 65% 45%;
+  --warning: 38 92% 50%;
+  --border: 240 4% 16%;       /* #27272A */
+  --input: 240 5% 26%;
+  --ring: 0 0% 98%;
 }
 
 @layer base {
@@ -115,146 +104,66 @@
     font-family: var(--font-sans), system-ui, sans-serif;
   }
   ::selection {
-    background-color: hsl(var(--brand-sky) / 0.25);
+    background-color: hsl(var(--foreground) / 0.12);
     color: hsl(var(--foreground));
   }
-  /* Brand scrollbar */
   * {
     scrollbar-width: thin;
-    scrollbar-color: hsl(var(--brand-teal) / 0.6) transparent;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.5) transparent;
   }
   *::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
   *::-webkit-scrollbar-thumb {
-    background: linear-gradient(
-      hsl(var(--brand-teal)),
-      hsl(var(--brand-sky) / 0.7)
-    );
+    background: hsl(var(--muted-foreground) / 0.45);
     border-radius: 999px;
     border: 2px solid hsl(var(--background));
   }
 }
 
 @layer components {
-  /* Teal -> sky gradient text */
-  .text-gradient {
-    background-image: linear-gradient(
-      100deg,
-      hsl(var(--brand-teal)),
-      hsl(var(--brand-sky))
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  /* Ambient circuit-grid background (brand tech motif) */
+  /* Faint hairline Swiss grid — the only ambient texture. */
   .bg-grid {
     background-image:
-      linear-gradient(hsl(var(--brand-sky) / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--brand-sky) / 0.05) 1px, transparent 1px);
-    background-size: 56px 56px;
-    background-position: center;
+      linear-gradient(hsl(var(--border) / 0.7) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.7) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: center top;
   }
 
-  /* Radial teal/sky aura — calmed for bank-grade restraint */
-  .bg-aura {
-    background:
-      radial-gradient(
-        60% 60% at 80% 15%,
-        hsl(var(--brand-teal) / 0.12),
-        transparent 70%
-      ),
-      radial-gradient(
-        50% 50% at 10% 90%,
-        hsl(var(--brand-sky) / 0.06),
-        transparent 70%
-      );
-  }
-
-  /* Ambient motifs need stronger ink on a light canvas. */
-  .light .bg-grid {
-    background-image:
-      linear-gradient(hsl(var(--brand-slate) / 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--brand-slate) / 0.1) 1px, transparent 1px);
-  }
-  .light .bg-aura {
-    background:
-      radial-gradient(
-        60% 60% at 80% 15%,
-        hsl(var(--brand-teal) / 0.1),
-        transparent 70%
-      ),
-      radial-gradient(
-        50% 50% at 10% 90%,
-        hsl(var(--brand-sky) / 0.08),
-        transparent 70%
-      );
-  }
-
-  /* Decorative brand plates — only the active theme's image downloads, because
-     a CSS background-image is fetched only when its rule matches. Pair with
-     Tailwind `bg-cover` + a position utility on the element. */
-  .plate-hero {
-    background-image: url("/backgrounddark.png");
-  }
-  .light .plate-hero {
-    background-image: url("/backgroundlight.png");
-  }
-  .plate-circuit {
-    background-image: url("/circuitsdark.png");
-  }
-  .light .plate-circuit {
-    background-image: url("/circuitslight.png");
-  }
-
-  /* Hairline brand divider with a node accent */
-  .rule-glow {
+  /* Plain hairline rule with a faded fade at both ends. */
+  .rule {
     height: 1px;
     background: linear-gradient(
       90deg,
       transparent,
-      hsl(var(--brand-teal) / 0.6),
-      hsl(var(--brand-sky) / 0.8),
+      hsl(var(--border)),
       transparent
     );
   }
 
-  /* Glassy bordered surface that lifts on hover */
+  /* Hairline card — flat, lifts subtly on hover (no colored glow). */
   .brand-card {
     position: relative;
     border: 1px solid hsl(var(--border));
-    background: linear-gradient(
-      180deg,
-      hsl(var(--card) / 0.7),
-      hsl(var(--card) / 0.35)
-    );
-    backdrop-filter: blur(8px);
+    background: hsl(var(--card));
     transition:
-      border-color 0.3s ease,
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+      border-color 0.2s ease,
+      transform 0.2s ease;
   }
   .brand-card:hover {
-    border-color: hsl(var(--brand-sky) / 0.5);
-    transform: translateY(-3px);
-    box-shadow:
-      0 0 0 1px hsl(var(--brand-sky) / 0.15),
-      0 18px 40px -20px hsl(var(--brand-teal) / 0.6);
+    border-color: hsl(var(--foreground) / 0.35);
+    transform: translateY(-2px);
   }
 
-  /* Diamond bullet used throughout the brand sheet */
-  .diamond::before {
-    content: "";
+  /* Small square tick used in eyebrows (replaces the glowing diamond). */
+  .brand-tick {
     display: inline-block;
-    width: 0.45rem;
-    height: 0.45rem;
+    width: 0.4rem;
+    height: 0.4rem;
     margin-inline-end: 0.6rem;
-    transform: rotate(45deg);
-    background: hsl(var(--brand-sky));
-    box-shadow: 0 0 8px hsl(var(--brand-sky) / 0.8);
+    background: hsl(var(--foreground));
   }
 }
 
@@ -262,78 +171,11 @@
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-@keyframes glow {
-  0%,
-  100% {
-    opacity: 0.55;
-    filter: drop-shadow(0 0 18px hsl(var(--brand-sky) / 0.35));
-  }
-  50% {
-    opacity: 1;
-    filter: drop-shadow(0 0 34px hsl(var(--brand-sky) / 0.7));
-  }
-}
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-@keyframes draw {
-  from {
-    stroke-dashoffset: var(--draw-len, 1200);
-    opacity: 0.2;
-  }
-  to {
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
-}
-@keyframes drift {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 56px 56px;
-  }
-}
-/* Circuit-pulse motion — traveling trace, blinking nodes, breathing glow */
-@keyframes pulse-trace {
-  from {
-    stroke-dashoffset: var(--trace-len, 600);
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-@keyframes node-blink {
-  0%,
-  100% {
-    opacity: 0.25;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-@keyframes breathe {
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: scale(0.96);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.06);
   }
 }
 
@@ -347,30 +189,30 @@
   }
 }
 
-/* ---------- Dark-tuned prose (Tiptap content) ---------- */
+/* ---------- Monochrome prose (Tiptap content) ---------- */
 .prose {
-  --tw-prose-body: hsl(var(--muted-foreground));
+  --tw-prose-body: hsl(var(--ink-2));
   --tw-prose-headings: hsl(var(--foreground));
   --tw-prose-lead: hsl(var(--muted-foreground));
-  --tw-prose-links: hsl(var(--brand-sky));
+  --tw-prose-links: hsl(var(--foreground));
   --tw-prose-bold: hsl(var(--foreground));
-  --tw-prose-counters: hsl(var(--brand-sky));
-  --tw-prose-bullets: hsl(var(--brand-teal));
+  --tw-prose-counters: hsl(var(--muted-foreground));
+  --tw-prose-bullets: hsl(var(--foreground));
   --tw-prose-hr: hsl(var(--border));
   --tw-prose-quotes: hsl(var(--foreground));
-  --tw-prose-quote-borders: hsl(var(--brand-teal));
+  --tw-prose-quote-borders: hsl(var(--foreground));
   --tw-prose-captions: hsl(var(--muted-foreground));
-  --tw-prose-code: hsl(var(--brand-sky));
+  --tw-prose-code: hsl(var(--foreground));
   --tw-prose-pre-code: hsl(var(--foreground));
-  --tw-prose-pre-bg: hsl(var(--card));
+  --tw-prose-pre-bg: hsl(var(--surface));
   --tw-prose-th-borders: hsl(var(--border));
   --tw-prose-td-borders: hsl(var(--border));
 }
 .prose a {
-  text-decoration-color: hsl(var(--brand-sky) / 0.4);
+  text-decoration-color: hsl(var(--foreground) / 0.4);
   text-underline-offset: 3px;
   transition: text-decoration-color 0.2s ease;
 }
 .prose a:hover {
-  text-decoration-color: hsl(var(--brand-sky));
+  text-decoration-color: hsl(var(--foreground));
 }
