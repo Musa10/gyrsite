@@ -1,9 +1,9 @@
 import Image from "next/image";
 
 /**
- * GYR falcon mark — the official brand emblem (teal line falcon, transparent),
- * extracted from the brand asset sheet and keyed to transparency for use on the
- * dark UI. Intrinsic ratio 278x246; size it with a height utility + w-auto.
+ * GYR falcon emblem — transparent teal mark for the dark UI. Chroma-keyed from
+ * the dark vertical lockup via scripts/make-falcon.mjs. Intrinsic ratio 590x592;
+ * size it with a height utility + w-auto.
  */
 export function Falcon({
   className,
@@ -14,11 +14,11 @@ export function Falcon({
 }) {
   return (
     <Image
-      src="/brand/falcon.png"
+      src="/falcon.png"
       alt=""
       aria-hidden
-      width={278}
-      height={246}
+      width={590}
+      height={592}
       priority={priority}
       className={className}
     />
