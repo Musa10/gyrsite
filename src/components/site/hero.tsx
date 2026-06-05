@@ -1,26 +1,15 @@
 import type { ReactNode } from "react";
-import { Falcon } from "@/components/site/brand/falcon";
-import { CircuitPulse } from "@/components/site/brand/circuit-pulse";
-
-const GLOW = {
-  background:
-    "radial-gradient(circle, hsl(var(--brand-sky)/0.16), transparent 65%)",
-};
+import { FalconMark } from "@/components/site/brand/falcon";
 
 /**
- * Above-the-fold hero.
+ * Above-the-fold hero — Swiss monochrome.
  *
- * `variant="full"` (Home) uses the real background plate (theme-swapped via the
- * `.plate-hero` class) — which already contains the falcon + circuit wing — so
- * we do NOT add a second foreground falcon (that would double the mark). The
- * plate is mirrored on RTL so its falcon sits opposite the text, never under it.
+ * `variant="full"` (Home) shows the faint hairline grid behind the content and a
+ * large, low-opacity falcon mark in the visual cell. `variant="lite"` (interior
+ * pages) drops the grid for a quieter band. The visual cell flips sides on RTL
+ * via the grid order, so the mark never sits under the text.
  *
- * `variant="lite"` (About) has no plate, so it renders the transparent falcon +
- * animated CircuitPulse in the visual cell (which flips sides automatically with
- * the grid under `dir="rtl"`).
- *
- * Content is passed in (title/sub/actions), so callers own localization and
- * locale-aware links.
+ * Content (title/sub/actions) is passed in, so callers own localization.
  */
 export function Hero({
   eyebrow,
@@ -38,27 +27,25 @@ export function Hero({
   const isFull = variant === "full";
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden border-b border-border">
       {isFull && (
-        <div aria-hidden className="absolute inset-0 -z-10">
-          {/* background-image swaps by theme; RTL mirror preserved via transform. */}
-          <div className="plate-hero absolute inset-0 bg-cover bg-right opacity-90 rtl:-scale-x-100" />
-          {/* Darken the text side; keep the falcon side clear. Flip on RTL. */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent rtl:bg-gradient-to-l" />
-        </div>
+        <div
+          aria-hidden
+          className="bg-grid pointer-events-none absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,black,transparent)]"
+        />
       )}
 
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-24 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:py-32">
-        <div className="space-y-8">
-          <p className="font-brand inline-flex items-center gap-3 text-[0.7rem] tracking-[0.3em] text-sky [animation:fade-up_0.7s_both]">
-            <span className="diamond" />
+        <div className="space-y-7">
+          <p className="inline-flex items-center text-[0.72rem] uppercase tracking-[0.16em] text-muted-foreground [animation:fade-up_0.7s_both]">
+            <span className="brand-tick" />
             {eyebrow}
           </p>
-          <h1 className="text-4xl font-light leading-[1.08] tracking-tight text-foreground sm:text-5xl [animation:fade-up_0.7s_0.1s_both]">
+          <h1 className="font-display text-4xl font-semibold leading-[1.04] tracking-[-0.03em] text-foreground sm:text-5xl lg:text-6xl [animation:fade-up_0.7s_0.1s_both]">
             {title}
           </h1>
           {sub && (
-            <p className="max-w-md text-base font-light leading-relaxed text-muted-foreground [animation:fade-up_0.7s_0.3s_both]">
+            <p className="max-w-md text-base leading-relaxed text-muted-foreground [animation:fade-up_0.7s_0.3s_both]">
               {sub}
             </p>
           )}
@@ -70,29 +57,7 @@ export function Hero({
         </div>
 
         <div className="relative flex min-h-[18rem] items-center justify-center [animation:fade-up_0.9s_0.2s_both]">
-          {isFull ? (
-            // Plate supplies the falcon; CircuitPulse animates the wing's
-            // circuitry (no foreground falcon → no doubling). Mirror it on RTL
-            // so the traces fan the same way as the mirrored plate.
-            <>
-              <CircuitPulse className="rtl:-scale-x-100" />
-              <div
-                aria-hidden
-                className="absolute h-72 w-72 rounded-full [animation:breathe_5s_ease-in-out_infinite]"
-                style={GLOW}
-              />
-            </>
-          ) : (
-            <>
-              <CircuitPulse />
-              <div
-                aria-hidden
-                className="absolute h-64 w-64 rounded-full [animation:breathe_4.5s_ease-in-out_infinite]"
-                style={GLOW}
-              />
-              <Falcon priority className="relative h-56 w-auto sm:h-72" />
-            </>
-          )}
+          <FalconMark className="h-64 w-auto text-foreground/[0.06] sm:h-80" />
         </div>
       </div>
     </section>
