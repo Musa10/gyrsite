@@ -28,8 +28,9 @@ export async function SiteFooter() {
           <h4 className="font-brand text-xs tracking-[0.25em] text-sky">{t("navigate")}</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li><Link href="/" className="transition-colors hover:text-foreground">{tn("home")}</Link></li>
+            <li><Link href="/about" className="transition-colors hover:text-foreground">{tn("about")}</Link></li>
             <li><Link href="/blog" className="transition-colors hover:text-foreground">{tn("insights")}</Link></li>
-            <li><Link href="/team" className="transition-colors hover:text-foreground">{tn("team")}</Link></li>
+            <li><Link href="/#contact" className="transition-colors hover:text-foreground">{tn("contact")}</Link></li>
             {navPages.map((p) => (
               <li key={p.slug}>
                 <Link href={`/${p.slug}`} className="transition-colors hover:text-foreground">

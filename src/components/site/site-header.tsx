@@ -10,8 +10,9 @@ export async function SiteHeader() {
   const navPages = await getNavPages(locale);
 
   const links = [
+    { href: "/about", label: t("about") },
     { href: "/blog", label: t("insights") },
-    { href: "/team", label: t("team") },
+    { href: "/#contact", label: t("contact") },
     ...navPages.map((p) => ({ href: `/${p.slug}`, label: p.title })),
   ];
 

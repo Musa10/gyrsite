@@ -1,9 +1,11 @@
 {
   "nav": {
+    "home": "الرئيسية",
+    "about": "من نحن",
     "insights": "رؤى",
+    "contact": "تواصل معنا",
     "team": "الفريق",
-    "cms": "لوحة التحكم",
-    "home": "الرئيسية"
+    "cms": "لوحة التحكم"
   },
   "switcher": {
     "toArabic": "العربية",
@@ -16,10 +18,16 @@
     "smartConnect": "اتصال ذكي",
     "continuousInnovation": "إبتكار مستمر",
     "sustainedGrowth": "تقدم دائم",
-    "taglineArabic": "نبتكر المستقبل. نرتقي بالأداء.",
-    "taglineLatin": "INNOVATING TOMORROW. ELEVATING PERFORMANCE.",
+    "taglineArabic": "برمجيات ذكاء اصطناعي للمؤسسات المالية.",
+    "taglineLatin": "AI SOFTWARE FOR FINANCIAL INSTITUTIONS.",
     "rights": "© {year} GYR. جميع الحقوق محفوظة.",
-    "proud": "تكنولوجيا متقدمة. إماراتية بفخر."
+    "proud": "برمجيات ذكية، مهندسة للثقة."
+  },
+  "contact": {
+    "heading": "جاهز للبناء مع جي واي آر؟",
+    "body": "أخبرنا بما تحتاجه مؤسستك للمضي قدماً.",
+    "placeholder": "البريد الإلكتروني للعمل",
+    "cta": "تواصل معنا"
   },
   "home": {
     "eyebrow": "تكنولوجيا متقدمة · إماراتية بفخر",

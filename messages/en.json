@@ -1,9 +1,11 @@
 {
   "nav": {
+    "home": "Home",
+    "about": "About",
     "insights": "Insights",
+    "contact": "Contact",
     "team": "Team",
-    "cms": "CMS",
-    "home": "Home"
+    "cms": "CMS"
   },
   "switcher": {
     "toArabic": "العربية",
@@ -13,13 +15,19 @@
   "footer": {
     "navigate": "NAVIGATE",
     "principles": "PRINCIPLES",
-    "smartConnect": "Smart Connect",
-    "continuousInnovation": "Continuous Innovation",
-    "sustainedGrowth": "Sustained Growth",
-    "taglineArabic": "نبتكر المستقبل. نرتقي بالأداء.",
-    "taglineLatin": "INNOVATING TOMORROW. ELEVATING PERFORMANCE.",
+    "smartConnect": "Connect",
+    "continuousInnovation": "Innovate",
+    "sustainedGrowth": "Elevate",
+    "taglineArabic": "برمجيات ذكاء اصطناعي للمؤسسات المالية.",
+    "taglineLatin": "AI SOFTWARE FOR FINANCIAL INSTITUTIONS.",
     "rights": "© {year} GYR. All rights reserved.",
-    "proud": "TECHNOLOGY FORWARD. UAE PROUD."
+    "proud": "INTELLIGENT SOFTWARE, ENGINEERED FOR TRUST."
+  },
+  "contact": {
+    "heading": "Ready to build with GYR?",
+    "body": "Tell us what your institution needs to move forward.",
+    "placeholder": "Work email",
+    "cta": "GET IN TOUCH"
   },
   "home": {
     "eyebrow": "TECHNOLOGY FORWARD · UAE PROUD",
