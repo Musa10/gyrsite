@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "insights": "رؤى",
+    "team": "الفريق",
+    "cms": "لوحة التحكم",
+    "home": "الرئيسية"
+  },
+  "switcher": {
+    "toArabic": "العربية",
+    "toEnglish": "English",
+    "label": "تغيير اللغة"
+  },
+  "footer": {
+    "navigate": "التنقل",
+    "principles": "المبادئ",
+    "smartConnect": "اتصال ذكي",
+    "continuousInnovation": "إبتكار مستمر",
+    "sustainedGrowth": "تقدم دائم",
+    "taglineArabic": "نبتكر المستقبل. نرتقي بالأداء.",
+    "taglineLatin": "INNOVATING TOMORROW. ELEVATING PERFORMANCE.",
+    "rights": "© {year} GYR. جميع الحقوق محفوظة.",
+    "proud": "تكنولوجيا متقدمة. إماراتية بفخر."
+  },
+  "home": {
+    "eyebrow": "تكنولوجيا متقدمة · إماراتية بفخر",
+    "heroLine1": "نبتكر المستقبل.",
+    "heroLine2": "نرتقي بالأداء.",
+    "heroFlourish": "Innovating tomorrow. Elevating performance.",
+    "heroBody": "جي واي آر شركة تقنية إماراتية تهندس الأنظمة التي تربط، والابتكارات التي تطوّر، والأداء الذي يرتقي — من دبي إلى العالم.",
+    "ctaInsights": "استكشف الرؤى",
+    "ctaTeam": "تعرّف على الفريق",
+    "values": "الرؤية,الابتكار,الثقة,الدقة,الريادة",
+    "pillarsEyebrow": "كيف نعمل",
+    "pillarsHeading": "ثلاثة مسارات، جناح واحد.",
+    "pillarsBody": "كل تعاون مع جي واي آر يقوم على ثلاثة تيارات متوازية — الاتصال، الابتكار، الارتقاء — متكاملة كالدوائر عبر جناح الصقر.",
+    "pillarSmartTitle": "اتصال ذكي",
+    "pillarSmartDesc": "أنظمة ذكية تربط الأشخاص والبيانات والأجهزة في نسيج واحد متكامل.",
+    "pillarInnovTitle": "إبتكار مستمر",
+    "pillarInnovDesc": "بحث وتطوير دؤوب يحوّل أفكار الغد إلى منتجات يستخدمها الناس اليوم.",
+    "pillarGrowthTitle": "تقدم دائم",
+    "pillarGrowthDesc": "أداء يتراكم — قابل للتوسع، مدروس، ومبني ليدوم.",
+    "insightsEyebrow": "من الفريق",
+    "insightsHeading": "أحدث الرؤى",
+    "insightsAll": "كل الرؤى →",
+    "insightsEmpty": "لا توجد رؤى منشورة بعد — ستظهر هنا مع إطلاقات الفريق.",
+    "closingHeading": "جاهز لبناء المستقبل مع جي واي آر؟",
+    "closingFlourish": "تكنولوجيا متقدمة. إماراتية بفخر.",
+    "closingCta": "تواصل معنا"
+  },
+  "blog": {
+    "heading": "الرؤى",
+    "empty": "لا توجد رؤى منشورة بعد."
+  },
+  "team": {
+    "heading": "الفريق",
+    "empty": "لا يوجد أعضاء فريق منشورون بعد."
+  },
+  "notFound": {
+    "heading": "الصفحة غير موجودة",
+    "body": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+    "home": "العودة إلى الرئيسية"
+  },
+  "admin": {
+    "dashboard": "لوحة المعلومات",
+    "pages": "الصفحات",
+    "posts": "المقالات",
+    "team": "الفريق",
+    "media": "الوسائط",
+    "logout": "تسجيل الخروج",
+    "delete": "حذف",
+    "save": "حفظ",
+    "create": "إنشاء",
+    "edit": "تعديل",
+    "titleEn": "العنوان (إنجليزي)",
+    "titleAr": "العنوان (عربي)",
+    "bodyEn": "المحتوى (إنجليزي)",
+    "bodyAr": "المحتوى (عربي)",
+    "excerptEn": "المقتطف (إنجليزي)",
+    "excerptAr": "المقتطف (عربي)",
+    "roleEn": "المنصب (إنجليزي)",
+    "roleAr": "المنصب (عربي)",
+    "bioEn": "السيرة (إنجليزي)",
+    "bioAr": "السيرة (عربي)"
+  }
+}

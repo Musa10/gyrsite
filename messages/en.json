@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "insights": "Insights",
+    "team": "Team",
+    "cms": "CMS",
+    "home": "Home"
+  },
+  "switcher": {
+    "toArabic": "العربية",
+    "toEnglish": "English",
+    "label": "Change language"
+  },
+  "footer": {
+    "navigate": "NAVIGATE",
+    "principles": "PRINCIPLES",
+    "smartConnect": "Smart Connect",
+    "continuousInnovation": "Continuous Innovation",
+    "sustainedGrowth": "Sustained Growth",
+    "taglineArabic": "نبتكر المستقبل. نرتقي بالأداء.",
+    "taglineLatin": "INNOVATING TOMORROW. ELEVATING PERFORMANCE.",
+    "rights": "© {year} GYR. All rights reserved.",
+    "proud": "TECHNOLOGY FORWARD. UAE PROUD."
+  },
+  "home": {
+    "eyebrow": "TECHNOLOGY FORWARD · UAE PROUD",
+    "heroLine1": "Innovating tomorrow.",
+    "heroLine2": "Elevating performance.",
+    "heroFlourish": "نبتكر المستقبل. نرتقي بالأداء.",
+    "heroBody": "GYR is a UAE technology company engineering the systems that connect, the breakthroughs that innovate, and the performance that elevates — from Dubai to the world.",
+    "ctaInsights": "EXPLORE INSIGHTS",
+    "ctaTeam": "MEET THE TEAM",
+    "values": "Vision,Innovation,Trust,Precision,Leadership",
+    "pillarsEyebrow": "HOW WE WORK",
+    "pillarsHeading": "Three traces, one wing.",
+    "pillarsBody": "Every GYR engagement runs on three parallel currents — connect, innovate, elevate — integrated like circuits across a falcon's wing.",
+    "pillarSmartTitle": "Smart Connect",
+    "pillarSmartDesc": "Intelligent systems that link people, data, and devices into one seamless fabric.",
+    "pillarInnovTitle": "Continuous Innovation",
+    "pillarInnovDesc": "Relentless R&D that turns tomorrow's ideas into the products people use today.",
+    "pillarGrowthTitle": "Sustained Growth",
+    "pillarGrowthDesc": "Performance that compounds — scalable, measured, and built to endure.",
+    "insightsEyebrow": "FROM THE TEAM",
+    "insightsHeading": "Latest insights",
+    "insightsAll": "ALL INSIGHTS →",
+    "insightsEmpty": "No insights published yet — they'll appear here as the team ships.",
+    "closingHeading": "Ready to build the future with GYR?",
+    "closingFlourish": "تكنولوجيا متقدمة. إماراتية بفخر.",
+    "closingCta": "GET IN TOUCH"
+  },
+  "blog": {
+    "heading": "Insights",
+    "empty": "No insights published yet."
+  },
+  "team": {
+    "heading": "Team",
+    "empty": "No team members published yet."
+  },
+  "notFound": {
+    "heading": "Page not found",
+    "body": "The page you're looking for doesn't exist or has moved.",
+    "home": "Back to home"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "pages": "Pages",
+    "posts": "Posts",
+    "team": "Team",
+    "media": "Media",
+    "logout": "Log out",
+    "delete": "Delete",
+    "save": "Save",
+    "create": "Create",
+    "edit": "Edit",
+    "titleEn": "Title (English)",
+    "titleAr": "Title (Arabic)",
+    "bodyEn": "Body (English)",
+    "bodyAr": "Body (Arabic)",
+    "excerptEn": "Excerpt (English)",
+    "excerptAr": "Excerpt (Arabic)",
+    "roleEn": "Role (English)",
+    "roleAr": "Role (Arabic)",
+    "bioEn": "Bio (English)",
+    "bioAr": "Bio (Arabic)"
+  }
+}
