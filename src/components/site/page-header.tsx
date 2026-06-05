@@ -18,7 +18,7 @@ export function PageHeader({
         </p>
       )}
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+        <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
           {title}
         </h1>
         {arabic && (

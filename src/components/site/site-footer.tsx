@@ -19,7 +19,7 @@ export async function SiteFooter() {
           <p dir="rtl" className="font-arabic max-w-xs text-sm text-muted-foreground">
             {t("taglineArabic")}
           </p>
-          <p className="font-display max-w-xs text-xs tracking-[0.15em] text-muted-foreground">
+          <p className="font-display max-w-xs text-xs tracking-[0.16em] text-muted-foreground">
             {t("taglineLatin")}
           </p>
         </div>

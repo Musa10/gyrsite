@@ -12,7 +12,7 @@ export async function ContactCta() {
     <section id="contact" className="mx-auto max-w-6xl px-4 pb-24 pt-12 sm:px-6">
       <div className="brand-card relative overflow-hidden rounded-2xl px-8 py-14 text-center sm:px-16">
         <FalconMark className="mx-auto mb-6 h-14 w-auto text-foreground/10" />
-        <h2 className="mx-auto max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl">
+        <h2 className="font-display mx-auto max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl">
           {t("heading")}
         </h2>
         <p className="mx-auto mt-3 max-w-md text-muted-foreground">{t("body")}</p>
