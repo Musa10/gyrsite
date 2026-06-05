@@ -10,8 +10,8 @@ const GLOW = {
 /**
  * Above-the-fold hero.
  *
- * `variant="full"` (Home) uses the real `backgrounddark.png` plate — which
- * already contains the falcon + circuit wing — as the single emblem source, so
+ * `variant="full"` (Home) uses the real background plate (theme-swapped via the
+ * `.plate-hero` class) — which already contains the falcon + circuit wing — so
  * we do NOT add a second foreground falcon (that would double the mark). The
  * plate is mirrored on RTL so its falcon sits opposite the text, never under it.
  *
