@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { requireUser } from "@/server/session";
 import { prisma } from "@/db/prisma";
 import { listMedia } from "@/server/media";
@@ -11,6 +12,7 @@ export default async function EditTeamMemberPage({
   params: Promise<{ id: string }>;
 }) {
   await requireUser();
+  const t = await getTranslations("admin");
   const { id } = await params;
   const [member, media] = await Promise.all([
     prisma.teamMember.findUnique({ where: { id } }),
@@ -28,7 +30,7 @@ export default async function EditTeamMemberPage({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">Edit team member</h1>
+      <h1 className="text-2xl font-semibold">{t("editMember")}</h1>
       <TeamForm
         action={action}
         media={media}

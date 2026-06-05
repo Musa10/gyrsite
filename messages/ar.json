@@ -86,6 +86,25 @@
     "roleEn": "المنصب (إنجليزي)",
     "roleAr": "المنصب (عربي)",
     "bioEn": "السيرة (إنجليزي)",
-    "bioAr": "السيرة (عربي)"
+    "bioAr": "السيرة (عربي)",
+    "newPost": "مقال جديد",
+    "editPost": "تعديل المقال",
+    "newPage": "صفحة جديدة",
+    "editPage": "تعديل الصفحة",
+    "newMember": "عضو جديد",
+    "editMember": "تعديل العضو",
+    "colTitle": "العنوان",
+    "colSlug": "المسار",
+    "colStatus": "الحالة",
+    "colActions": "الإجراءات",
+    "colName": "الاسم",
+    "colRole": "المنصب",
+    "noPosts": "لا توجد مقالات بعد.",
+    "noPages": "لا توجد صفحات بعد.",
+    "noTeam": "لا يوجد أعضاء فريق بعد.",
+    "noMedia": "لا توجد وسائط بعد.",
+    "statusDraft": "مسودة",
+    "statusPublished": "منشور",
+    "coded": "مبرمجة"
   }
 }

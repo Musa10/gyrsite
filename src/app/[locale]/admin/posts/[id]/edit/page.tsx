@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { requireUser } from "@/server/session";
 import { prisma } from "@/db/prisma";
 import { listMedia } from "@/server/media";
@@ -13,6 +14,7 @@ export default async function EditPostPage({
   params: Promise<{ id: string }>;
 }) {
   await requireUser();
+  const t = await getTranslations("admin");
   const { id } = await params;
   const [post, media] = await Promise.all([
     prisma.post.findUnique({ where: { id } }),
@@ -24,7 +26,7 @@ export default async function EditPostPage({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">Edit post</h1>
+      <h1 className="text-2xl font-semibold">{t("editPost")}</h1>
       <PostForm
         action={action}
         media={media}

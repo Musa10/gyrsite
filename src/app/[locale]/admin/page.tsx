@@ -1,9 +1,11 @@
+import { getTranslations } from "next-intl/server";
 import { requireUser } from "@/server/session";
 import { prisma } from "@/db/prisma";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default async function AdminDashboard() {
   await requireUser();
+  const t = await getTranslations("admin");
 
   const [posts, pages, team, media] = await Promise.all([
     prisma.post.count(),
@@ -13,10 +15,10 @@ export default async function AdminDashboard() {
   ]);
 
   const stats = [
-    { label: "Posts", value: posts },
-    { label: "Pages", value: pages },
-    { label: "Team", value: team },
-    { label: "Media", value: media },
+    { label: t("posts"), value: posts },
+    { label: t("pages"), value: pages },
+    { label: t("team"), value: team },
+    { label: t("media"), value: media },
   ];
 
   return (

@@ -1,16 +1,18 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { requireUser } from "@/server/session";
 import { listMedia } from "@/server/media";
 import { MediaUploader } from "@/components/admin/media-uploader";
 
 export default async function MediaPage() {
   await requireUser();
+  const t = await getTranslations("admin");
   const media = await listMedia();
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Media</h1>
+        <h1 className="text-2xl font-semibold">{t("media")}</h1>
       </div>
       <MediaUploader />
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
@@ -29,7 +31,7 @@ export default async function MediaPage() {
           </figure>
         ))}
         {media.length === 0 && (
-          <p className="text-sm text-muted-foreground">No media yet.</p>
+          <p className="text-sm text-muted-foreground">{t("noMedia")}</p>
         )}
       </div>
     </div>

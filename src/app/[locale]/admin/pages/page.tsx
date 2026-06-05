@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { requireUser } from "@/server/session";
 import { prisma } from "@/db/prisma";
 import { deletePage } from "@/server/pages";
@@ -16,23 +17,24 @@ import {
 
 export default async function PagesPage() {
   await requireUser();
+  const t = await getTranslations("admin");
   const pages = await prisma.page.findMany({ orderBy: { updatedAt: "desc" } });
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Pages</h1>
+        <h1 className="text-2xl font-semibold">{t("pages")}</h1>
         <Button asChild>
-          <Link href="/admin/pages/new">New page</Link>
+          <Link href="/admin/pages/new">{t("newPage")}</Link>
         </Button>
       </div>
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Title</TableHead>
-            <TableHead>Slug</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead>{t("colTitle")}</TableHead>
+            <TableHead>{t("colSlug")}</TableHead>
+            <TableHead>{t("colStatus")}</TableHead>
+            <TableHead className="text-right">{t("colActions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -42,7 +44,7 @@ export default async function PagesPage() {
                 {p.title}
                 {p.customLayout && (
                   <Badge variant="secondary" className="ml-2">
-                    Coded
+                    {t("coded")}
                   </Badge>
                 )}
               </TableCell>
@@ -51,12 +53,14 @@ export default async function PagesPage() {
                 <Badge
                   variant={p.status === "PUBLISHED" ? "default" : "secondary"}
                 >
-                  {p.status}
+                  {p.status === "PUBLISHED"
+                    ? t("statusPublished")
+                    : t("statusDraft")}
                 </Badge>
               </TableCell>
               <TableCell className="flex justify-end gap-2">
                 <Button asChild variant="ghost" size="sm">
-                  <Link href={`/admin/pages/${p.id}/edit`}>Edit</Link>
+                  <Link href={`/admin/pages/${p.id}/edit`}>{t("edit")}</Link>
                 </Button>
                 <DeleteButton action={deletePage} id={p.id} />
               </TableCell>
@@ -65,7 +69,7 @@ export default async function PagesPage() {
           {pages.length === 0 && (
             <TableRow>
               <TableCell colSpan={4} className="text-muted-foreground">
-                No pages yet.
+                {t("noPages")}
               </TableCell>
             </TableRow>
           )}

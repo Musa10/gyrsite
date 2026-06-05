@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { requireUser } from "@/server/session";
 import { prisma } from "@/db/prisma";
 import { deletePost } from "@/server/posts";
@@ -16,22 +17,23 @@ import {
 
 export default async function PostsPage() {
   await requireUser();
+  const t = await getTranslations("admin");
   const posts = await prisma.post.findMany({ orderBy: { updatedAt: "desc" } });
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Posts</h1>
+        <h1 className="text-2xl font-semibold">{t("posts")}</h1>
         <Button asChild>
-          <Link href="/admin/posts/new">New post</Link>
+          <Link href="/admin/posts/new">{t("newPost")}</Link>
         </Button>
       </div>
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Title</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead>{t("colTitle")}</TableHead>
+            <TableHead>{t("colStatus")}</TableHead>
+            <TableHead className="text-right">{t("colActions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -42,12 +44,14 @@ export default async function PostsPage() {
                 <Badge
                   variant={p.status === "PUBLISHED" ? "default" : "secondary"}
                 >
-                  {p.status}
+                  {p.status === "PUBLISHED"
+                    ? t("statusPublished")
+                    : t("statusDraft")}
                 </Badge>
               </TableCell>
               <TableCell className="flex justify-end gap-2">
                 <Button asChild variant="ghost" size="sm">
-                  <Link href={`/admin/posts/${p.id}/edit`}>Edit</Link>
+                  <Link href={`/admin/posts/${p.id}/edit`}>{t("edit")}</Link>
                 </Button>
                 <DeleteButton action={deletePost} id={p.id} />
               </TableCell>
@@ -56,7 +60,7 @@ export default async function PostsPage() {
           {posts.length === 0 && (
             <TableRow>
               <TableCell colSpan={3} className="text-muted-foreground">
-                No posts yet.
+                {t("noPosts")}
               </TableCell>
             </TableRow>
           )}

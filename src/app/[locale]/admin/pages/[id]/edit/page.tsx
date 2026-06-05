@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { requireUser } from "@/server/session";
 import { prisma } from "@/db/prisma";
 import { savePage } from "@/server/pages";
@@ -12,6 +13,7 @@ export default async function EditPage({
   params: Promise<{ id: string }>;
 }) {
   await requireUser();
+  const t = await getTranslations("admin");
   const { id } = await params;
   const page = await prisma.page.findUnique({ where: { id } });
   if (!page) notFound();
@@ -20,7 +22,7 @@ export default async function EditPage({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">Edit page</h1>
+      <h1 className="text-2xl font-semibold">{t("editPage")}</h1>
       <PageForm
         action={action}
         initial={{

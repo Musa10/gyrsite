@@ -86,6 +86,25 @@
     "roleEn": "Role (English)",
     "roleAr": "Role (Arabic)",
     "bioEn": "Bio (English)",
-    "bioAr": "Bio (Arabic)"
+    "bioAr": "Bio (Arabic)",
+    "newPost": "New post",
+    "editPost": "Edit post",
+    "newPage": "New page",
+    "editPage": "Edit page",
+    "newMember": "New member",
+    "editMember": "Edit member",
+    "colTitle": "Title",
+    "colSlug": "Slug",
+    "colStatus": "Status",
+    "colActions": "Actions",
+    "colName": "Name",
+    "colRole": "Role",
+    "noPosts": "No posts yet.",
+    "noPages": "No pages yet.",
+    "noTeam": "No team members yet.",
+    "noMedia": "No media yet.",
+    "statusDraft": "Draft",
+    "statusPublished": "Published",
+    "coded": "Coded"
   }
 }
