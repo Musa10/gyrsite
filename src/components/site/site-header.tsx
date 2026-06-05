@@ -33,7 +33,7 @@ export async function SiteHeader() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-right opacity-[0.12] [mask-image:linear-gradient(to_left,black,transparent_70%)]"
+          className="object-cover object-right opacity-[0.55] mix-blend-screen [mask-image:linear-gradient(to_left,black,transparent_60%)]"
         />
       </div>
 
