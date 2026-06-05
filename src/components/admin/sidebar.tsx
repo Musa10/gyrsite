@@ -1,14 +1,17 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
-const links = [
-  { href: "/admin", label: "Dashboard" },
-  { href: "/admin/posts", label: "Posts" },
-  { href: "/admin/pages", label: "Pages" },
-  { href: "/admin/team", label: "Team" },
-  { href: "/admin/media", label: "Media" },
-];
+export async function Sidebar() {
+  const t = await getTranslations("admin");
 
-export function Sidebar() {
+  const links = [
+    { href: "/admin", label: t("dashboard") },
+    { href: "/admin/posts", label: t("posts") },
+    { href: "/admin/pages", label: t("pages") },
+    { href: "/admin/team", label: t("team") },
+    { href: "/admin/media", label: t("media") },
+  ];
+
   return (
     <nav className="flex flex-col gap-1 p-4">
       {links.map((l) => (
