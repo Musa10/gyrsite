@@ -63,7 +63,7 @@ export default async function BlogIndex() {
                     {p.author.name.toUpperCase()}
                   </p>
                 )}
-                <h2 className="mb-2 text-lg font-semibold transition-colors group-hover:text-sky">
+                <h2 className="mb-2 text-lg font-medium transition-colors group-hover:text-sky">
                   {p.title}
                 </h2>
                 {p.excerpt && (

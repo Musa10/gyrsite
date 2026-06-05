@@ -4,6 +4,8 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getPostBySlug } from "@/server/public-content";
 import { Prose } from "@/components/site/prose";
+import { Falcon } from "@/components/site/brand/falcon";
+import { CircuitDivider } from "@/components/site/brand/circuit-background";
 
 export async function generateMetadata({
   params,
@@ -37,7 +39,7 @@ export default async function PostPage({
         {t("all")}
       </Link>
 
-      <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+      <h1 className="text-4xl font-light tracking-tight sm:text-5xl">
         {post.title}
       </h1>
 
@@ -71,6 +73,11 @@ export default async function PostPage({
 
       <div className="mt-10" dir={locale === "ar" ? "rtl" : "ltr"}>
         <Prose doc={post.body} />
+      </div>
+
+      <CircuitDivider className="mt-16" />
+      <div className="flex justify-center py-10">
+        <Falcon className="h-10 w-auto opacity-50" />
       </div>
     </article>
   );

@@ -72,8 +72,8 @@
   "blog": {
     "heading": "Insights",
     "empty": "No insights published yet.",
-    "eyebrow": "FROM THE TEAM",
-    "lead": "Engineering notes, product thinking, and field reports from the GYR team.",
+    "eyebrow": "INSIGHTS",
+    "lead": "Engineering notes, product thinking, and field reports from GYR.",
     "all": "← ALL INSIGHTS",
     "by": "By"
   },
