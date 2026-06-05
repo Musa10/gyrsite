@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Sora, Michroma, IBM_Plex_Sans_Arabic, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, dir } from "@/i18n/routing";
 
 const sora = Sora({ variable: "--font-sora", subsets: ["latin"], display: "swap" });
@@ -68,6 +68,10 @@ export default async function LocaleLayout({
   }
   setRequestLocale(locale);
 
+  // Pass locale + messages explicitly: next-intl's client-provider auto-inheritance
+  // relies on a middleware-set header, which is absent under Turbopack `next dev`.
+  const messages = await getMessages({ locale });
+
   const bodyFont = locale === "ar" ? "font-arabic" : "";
 
   return (
@@ -77,7 +81,9 @@ export default async function LocaleLayout({
       className={`${sora.variable} ${michroma.variable} ${plexArabic.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className={`min-h-full flex flex-col bg-background text-foreground ${bodyFont}`}>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
