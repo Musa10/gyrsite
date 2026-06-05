@@ -155,7 +155,7 @@
     transform: translateY(-2px);
   }
 
-  /* Small square tick used in eyebrows (replaces the glowing diamond). */
+  /* Small square tick used in eyebrows. */
   .brand-tick {
     display: inline-block;
     width: 0.4rem;

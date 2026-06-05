@@ -1,4 +1,4 @@
-/** Consistent section opener: Michroma eyebrow + title + optional intro. */
+/** Consistent section opener: display-font eyebrow + title + optional intro. */
 export function SectionHeading({
   eyebrow,
   title,
