@@ -81,7 +81,7 @@
   color-scheme: light;
 
   --brand-teal: 175 72% 32%;
-  --brand-sky: 198 90% 42%;
+  --brand-sky: 198 90% 34%; /* deepened from 42% → 4.8:1 on bg; AA for text-sky eyebrows + prose links */
   --brand-slate: 215 20% 45%;
 
   --background: 210 40% 98%;
@@ -97,7 +97,7 @@
   --muted: 210 30% 94%;
   --muted-foreground: 215 16% 40%;
   --accent: 210 30% 92%;
-  --accent-foreground: 198 80% 34%;
+  --accent-foreground: 198 80% 31%; /* deepened from 34% → 5.1:1 on accent; AA */
   --destructive: 0 72% 48%;
   --destructive-foreground: 0 0% 100%;
   --border: 214 20% 85%;
