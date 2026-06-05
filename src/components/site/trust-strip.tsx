@@ -18,7 +18,7 @@ export function TrustStrip({
   return (
     <div className="border-y border-border/60 bg-background/40 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-10 gap-y-4 px-4 py-6 sm:px-6">
-        <span className="font-display text-[0.62rem] tracking-[0.16em] text-muted-foreground/70">
+        <span className="font-display text-[0.62rem] tracking-[0.16em] text-muted-foreground">
           {label}
         </span>
         <div className="flex flex-wrap items-center gap-8 opacity-70">
@@ -36,7 +36,7 @@ export function TrustStrip({
             : Array.from({ length: placeholderCount }).map((_, i) => (
                 <span
                   key={i}
-                  className="font-display rounded border border-border/60 px-3 py-1 text-[0.6rem] tracking-[0.16em] text-muted-foreground/60"
+                  className="font-display rounded border border-border/60 px-3 py-1 text-[0.6rem] tracking-[0.16em] text-muted-foreground"
                 >
                   CONFIDENTIAL
                 </span>

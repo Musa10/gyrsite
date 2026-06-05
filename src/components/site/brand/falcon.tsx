@@ -27,6 +27,3 @@ export function FalconMark({
     </svg>
   );
 }
-
-/** Back-compat alias — older imports used `Falcon`. */
-export const Falcon = FalconMark;

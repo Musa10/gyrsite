@@ -37,7 +37,7 @@ export function Hero({
 
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-24 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:py-32">
         <div className="space-y-7">
-          <p className="inline-flex items-center text-[0.72rem] uppercase tracking-[0.16em] text-muted-foreground [animation:fade-up_0.7s_both]">
+          <p className="font-display inline-flex items-center text-[0.72rem] uppercase tracking-[0.16em] text-muted-foreground [animation:fade-up_0.7s_both]">
             <span className="brand-tick" />
             {eyebrow}
           </p>

@@ -59,8 +59,8 @@ export default async function BlogIndex() {
               )}
               <div className="flex flex-1 flex-col p-6">
                 {p.author && (
-                  <p className="font-display mb-2 text-[0.65rem] tracking-[0.16em] text-muted-foreground">
-                    {p.author.name.toUpperCase()}
+                  <p className={`font-display mb-2 text-[0.65rem] text-muted-foreground${locale === "ar" ? "" : " tracking-[0.16em]"}`}>
+                    {locale === "ar" ? p.author.name : p.author.name.toUpperCase()}
                   </p>
                 )}
                 <h2 className="mb-2 text-lg font-medium text-foreground/80 transition-colors group-hover:text-foreground">
