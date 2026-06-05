@@ -33,7 +33,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "home" });
   return {
     title: {
-      default: "GYR — Innovating Tomorrow. Elevating Performance.",
+      default: "GYR — Intelligent software banks run on.",
       template: "%s · GYR",
     },
     description: t("heroBody"),
@@ -45,9 +45,9 @@ export async function generateMetadata({
       apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
     },
     openGraph: {
-      title: "GYR — Innovating Tomorrow. Elevating Performance.",
-      description: "Technology Forward. UAE Proud.",
-      images: [{ url: "/brand/banner.png", width: 1731, height: 909 }],
+      title: "GYR — Intelligent software banks run on.",
+      description: "AI software for financial institutions.",
+      images: [{ url: "/og.png", width: 1200, height: 630 }],
     },
     alternates: {
       languages: { en: "/en", ar: "/ar" },
