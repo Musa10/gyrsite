@@ -28,7 +28,7 @@ export function LocaleSwitcher() {
       onClick={switchLocale}
       aria-label={t("label")}
       disabled={isPending}
-      className="font-brand rounded-md border border-border/80 px-3 py-1.5 text-[0.7rem] tracking-[0.15em] text-muted-foreground transition-colors hover:border-sky/60 hover:text-foreground disabled:opacity-50"
+      className="font-display rounded-md border border-border/80 px-3 py-1.5 text-[0.7rem] tracking-[0.15em] text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground disabled:opacity-50"
     >
       {label}
     </button>

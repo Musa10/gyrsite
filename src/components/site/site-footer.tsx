@@ -12,20 +12,20 @@ export async function SiteFooter() {
 
   return (
     <footer className="relative mt-24 border-t border-border/60 bg-background">
-      <div className="absolute inset-x-0 top-0 rule-glow" />
+      <div className="absolute inset-x-0 top-0 rule" />
       <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div className="space-y-5">
           <Logo size="md" />
           <p dir="rtl" className="font-arabic max-w-xs text-sm text-muted-foreground">
             {t("taglineArabic")}
           </p>
-          <p className="font-brand max-w-xs text-xs tracking-[0.15em] text-muted-foreground">
+          <p className="font-display max-w-xs text-xs tracking-[0.15em] text-muted-foreground">
             {t("taglineLatin")}
           </p>
         </div>
 
         <div className="space-y-3">
-          <h4 className="font-brand text-xs tracking-[0.25em] text-sky">{t("navigate")}</h4>
+          <h4 className="font-display text-xs tracking-[0.16em] text-muted-foreground">{t("navigate")}</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li><Link href="/" className="transition-colors hover:text-foreground">{tn("home")}</Link></li>
             <li><Link href="/about" className="transition-colors hover:text-foreground">{tn("about")}</Link></li>
@@ -42,11 +42,11 @@ export async function SiteFooter() {
         </div>
 
         <div className="space-y-3">
-          <h4 className="font-brand text-xs tracking-[0.25em] text-sky">{t("principles")}</h4>
+          <h4 className="font-display text-xs tracking-[0.16em] text-muted-foreground">{t("principles")}</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li className="diamond">{t("smartConnect")}</li>
-            <li className="diamond">{t("continuousInnovation")}</li>
-            <li className="diamond">{t("sustainedGrowth")}</li>
+            <li className="flex items-center gap-2"><span className="brand-tick" />{t("smartConnect")}</li>
+            <li className="flex items-center gap-2"><span className="brand-tick" />{t("continuousInnovation")}</li>
+            <li className="flex items-center gap-2"><span className="brand-tick" />{t("sustainedGrowth")}</li>
           </ul>
         </div>
       </div>
@@ -54,7 +54,7 @@ export async function SiteFooter() {
       <div className="border-t border-border/60">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-muted-foreground sm:flex-row sm:px-6">
           <span>{t("rights", { year })}</span>
-          <span className="font-brand tracking-[0.25em] text-sky/80">
+          <span className="font-display tracking-[0.16em] text-muted-foreground">
             {t("proud")}
           </span>
         </div>
