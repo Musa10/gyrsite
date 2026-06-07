@@ -37,10 +37,7 @@ GYR's main marketing site **and** its built-in CMS, in one Next.js app.
 
 - **Prisma 7 driver adapter.** This project uses Prisma 7, where the datasource URL lives in `prisma.config.ts` (not the schema) and `PrismaClient` is constructed with a `@prisma/adapter-pg` adapter over the `pg` driver (see `src/db/prisma.ts`). No separate query-engine binary is downloaded.
 - **Database password required.** The `DATABASE_URL` in `.env` must point at your running Postgres with valid credentials. Once set, run `pnpm prisma migrate dev --name init` (creates the `gyrsite` database + schema) then `pnpm db:seed`.
-- **Vendored `@prisma/client` (temporary).** Due to a constrained network during setup, `@prisma/client@7.8.0` was installed from a locally-downloaded tarball under `vendor/` (gitignored), and `package.json` references it via a `file:` path. When you have reliable network access, normalize it with:
-  ```
-  pnpm remove @prisma/client && pnpm add @prisma/client@7.8.0
-  ```
+- **`@prisma/client` from the registry.** Installed as a normal registry dependency pinned to `7.8.0`. After any `schema.prisma` change, run `pnpm db:generate`.
 
 ## Scripts
 

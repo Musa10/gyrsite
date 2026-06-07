@@ -44,8 +44,6 @@ next-env.d.ts
 /public/uploads/*
 !/public/uploads/.gitkeep
 
-# vendored prisma client tarball (local network workaround — see README)
-/vendor/
-
 # Superpowers visual brainstorm scratch
 .superpowers/
+tmp
