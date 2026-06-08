@@ -79,6 +79,14 @@ export default async function LocaleLayout({
 
   const bodyFont = locale === "ar" ? "font-arabic" : "";
 
+  // Pre-paint theme init: set the .dark class + color-scheme before first paint
+  // so there is no flash. Injected as RAW HTML (not a JSX <script> element) on a
+  // display:contents carrier — React never reconciles a <script> host element,
+  // so React 19's dev-only "script tag while rendering" warning cannot fire. The
+  // inline script still executes during the initial HTML parse.
+  const themeInit =
+    "(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var e=document.documentElement;e.classList.toggle('dark',d);e.style.colorScheme=d?'dark':'light';}catch(e){}})();";
+
   return (
     <html
       lang={locale}
@@ -87,14 +95,9 @@ export default async function LocaleLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} ${plexArabic.variable} h-full antialiased`}
     >
       <body className={`min-h-full flex flex-col bg-background text-foreground ${bodyFont}`}>
-        {/* Pre-paint theme class (no flash). Rendered by this Server Component,
-            so it is part of the server HTML and never client-rendered — which
-            keeps React 19 from warning about scripts inside client components. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var e=document.documentElement;e.classList.toggle('dark',d);e.style.colorScheme=d?'dark':'light';}catch(e){}})();",
-          }}
+        <div
+          style={{ display: "contents" }}
+          dangerouslySetInnerHTML={{ __html: `<script>${themeInit}</script>` }}
         />
         <ThemeProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>
