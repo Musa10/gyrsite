@@ -3,7 +3,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/site/hero";
 import { SectionHeading } from "@/components/site/section-heading";
 import { ContactCta } from "@/components/site/contact-cta";
-import { createMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/site/json-ld";
+import { breadcrumbJsonLd, createMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -29,6 +30,7 @@ export default async function AboutPage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "about" });
   const th = await getTranslations({ locale, namespace: "home" }); // shared pillars
+  const tn = await getTranslations({ locale, namespace: "nav" });
 
   const values = t("values").split(",");
   const pillars = [
@@ -39,6 +41,12 @@ export default async function AboutPage({
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd(locale, [
+          { name: tn("home"), path: "/" },
+          { name: tn("about"), path: "/about" },
+        ])}
+      />
       <Hero
         variant="lite"
         eyebrow={t("heroEyebrow")}

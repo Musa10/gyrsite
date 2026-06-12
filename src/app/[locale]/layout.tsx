@@ -1,11 +1,17 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, dir } from "@/i18n/routing";
 import { ThemeProvider } from "@/components/theme-provider";
-import { absoluteUrl, alternatesFor, siteConfig } from "@/lib/seo";
+import {
+  absoluteUrl,
+  alternatesFor,
+  ogAlternateLocales,
+  ogLocale,
+  siteConfig,
+} from "@/lib/seo";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -30,6 +36,13 @@ const plexArabic = IBM_Plex_Sans_Arabic({
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
 
 export async function generateMetadata({
   params,
@@ -58,14 +71,18 @@ export async function generateMetadata({
       ],
       apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
     },
+    appleWebApp: {
+      title: siteConfig.shortName,
+    },
     openGraph: {
       title,
       description,
       siteName: siteConfig.name,
       type: "website",
-      locale: locale === "ar" ? "ar" : "en_US",
+      locale: ogLocale(locale),
+      alternateLocale: ogAlternateLocales(locale),
       url: absoluteUrl(`/${locale}`),
-      images: [{ url: "/og.png", width: 1200, height: 630 }],
+      images: [{ url: "/og.png", width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",

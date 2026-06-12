@@ -15,8 +15,6 @@ export const siteConfig = {
   ogImage: "/og.png",
 };
 
-type Locale = (typeof siteConfig.locales)[number];
-
 type MetadataInput = {
   locale: string;
   path?: string;
@@ -63,6 +61,15 @@ export function brandedTitle(title: string) {
     : `${title} | ${siteConfig.name}`;
 }
 
+/** Open Graph locale codes (ll_CC form) for our locales. */
+export function ogLocale(locale: string) {
+  return locale === "ar" ? "ar_AE" : "en_US";
+}
+
+export function ogAlternateLocales(locale: string) {
+  return siteConfig.locales.filter((l) => l !== locale).map(ogLocale);
+}
+
 export function createMetadata({
   locale,
   path = "/",
@@ -86,7 +93,8 @@ export function createMetadata({
       description,
       url: canonical,
       siteName: siteConfig.name,
-      locale: locale === "ar" ? "ar" : "en_US",
+      locale: ogLocale(locale),
+      alternateLocale: ogAlternateLocales(locale),
       images: [{ url: imageUrl, width: 1200, height: 630, alt: fullTitle }],
     },
     twitter: {
@@ -117,6 +125,22 @@ export function organizationJsonLd() {
   };
 }
 
+export function breadcrumbJsonLd(
+  locale: string,
+  items: { name: string; path: string }[],
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: absoluteUrl(localizedPath(locale, item.path)),
+    })),
+  };
+}
+
 export function websiteJsonLd(locale: string) {
   return {
     "@context": "https://schema.org",
@@ -132,42 +156,3 @@ export function websiteJsonLd(locale: string) {
   };
 }
 
-export function articleJsonLd({
-  locale,
-  path,
-  title,
-  description,
-  image,
-  datePublished,
-  dateModified,
-  authorName,
-}: {
-  locale: Locale | string;
-  path: string;
-  title: string;
-  description?: string | null;
-  image?: string | null;
-  datePublished?: Date | null;
-  dateModified?: Date | null;
-  authorName?: string | null;
-}) {
-  const url = absoluteUrl(localizedPath(locale, path));
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    mainEntityOfPage: url,
-    headline: title,
-    description: description ?? undefined,
-    image: image ? [absoluteUrl(image)] : [absoluteUrl(siteConfig.ogImage)],
-    datePublished: datePublished?.toISOString(),
-    dateModified: (dateModified ?? datePublished)?.toISOString(),
-    inLanguage: locale,
-    author: authorName
-      ? { "@type": "Person", name: authorName }
-      : { "@id": absoluteUrl("/#organization") },
-    publisher: {
-      "@id": absoluteUrl("/#organization"),
-    },
-  };
-}
