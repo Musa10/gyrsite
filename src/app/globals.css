@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
 
 @theme inline {
   --color-background: hsl(var(--background));
@@ -197,32 +196,4 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
-}
-
-/* ---------- Monochrome prose (Tiptap content) ---------- */
-.prose {
-  --tw-prose-body: hsl(var(--ink-2));
-  --tw-prose-headings: hsl(var(--foreground));
-  --tw-prose-lead: hsl(var(--muted-foreground));
-  --tw-prose-links: hsl(var(--foreground));
-  --tw-prose-bold: hsl(var(--foreground));
-  --tw-prose-counters: hsl(var(--muted-foreground));
-  --tw-prose-bullets: hsl(var(--foreground));
-  --tw-prose-hr: hsl(var(--border));
-  --tw-prose-quotes: hsl(var(--foreground));
-  --tw-prose-quote-borders: hsl(var(--foreground));
-  --tw-prose-captions: hsl(var(--muted-foreground));
-  --tw-prose-code: hsl(var(--foreground));
-  --tw-prose-pre-code: hsl(var(--foreground));
-  --tw-prose-pre-bg: hsl(var(--surface));
-  --tw-prose-th-borders: hsl(var(--border));
-  --tw-prose-td-borders: hsl(var(--border));
-}
-.prose a {
-  text-decoration-color: hsl(var(--foreground) / 0.4);
-  text-underline-offset: 3px;
-  transition: text-decoration-color 0.2s ease;
-}
-.prose a:hover {
-  text-decoration-color: hsl(var(--foreground));
 }

@@ -1,6 +1,5 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { getNavPages } from "@/server/public-content";
 import { Logo } from "@/components/site/brand/logo";
 import { LocaleSwitcher } from "@/components/site/locale-switcher";
 import { ThemeToggle } from "@/components/site/theme-toggle";
@@ -8,14 +7,11 @@ import { ThemeToggle } from "@/components/site/theme-toggle";
 export async function SiteHeader() {
   const locale = await getLocale();
   const t = await getTranslations("nav");
-  const navPages = await getNavPages(locale);
   const isAr = locale === "ar";
 
   const links = [
     { href: "/about", label: t("about") },
-    { href: "/blog", label: t("insights") },
     { href: "/#contact", label: t("contact") },
-    ...navPages.map((p) => ({ href: `/${p.slug}`, label: p.title })),
   ];
 
   // Latin nav uses tracked uppercase labels (Swiss eyebrow style); Arabic keeps
@@ -26,7 +22,7 @@ export async function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo href="/" size="md" />
 
         <nav className="hidden items-center gap-8 md:flex">

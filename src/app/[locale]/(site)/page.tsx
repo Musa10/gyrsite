@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { getPublishedPosts } from "@/server/public-content";
 import { Hero } from "@/components/site/hero";
 import { TrustStrip } from "@/components/site/trust-strip";
 import { SectionHeading } from "@/components/site/section-heading";
 import { ContactCta } from "@/components/site/contact-cta";
-import { FalconMark } from "@/components/site/brand/falcon";
 import { JsonLd } from "@/components/site/json-ld";
 import { createMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
@@ -26,10 +23,14 @@ export async function generateMetadata({
   });
 }
 
-export default async function HomePage() {
-  const locale = await getLocale();
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("home");
-  const posts = (await getPublishedPosts(locale)).slice(0, 3);
   const trustItems = [t("trust1"), t("trust2"), t("trust3"), t("trust4")];
 
   const capabilities = [
@@ -198,62 +199,6 @@ export default async function HomePage() {
             </article>
           ))}
         </div>
-      </section>
-
-      {/* Latest insights */}
-      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
-        <div className="mb-10 flex items-end justify-between">
-          <SectionHeading
-            eyebrow={t("insightsEyebrow")}
-            title={t("insightsHeading")}
-          />
-          <Link
-            href="/blog"
-            className="font-display hidden text-xs tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground sm:block"
-          >
-            {t("insightsAll")}
-          </Link>
-        </div>
-        {posts.length === 0 ? (
-          <div className="brand-card rounded-lg p-12 text-center text-muted-foreground">
-            {t("insightsEmpty")}
-          </div>
-        ) : (
-          <div className="grid gap-6 md:grid-cols-3">
-            {posts.map((p) => (
-              <Link
-                key={p.id}
-                href={`/blog/${p.slug}`}
-                className="brand-card group flex flex-col overflow-hidden rounded-lg"
-              >
-                {p.coverImage ? (
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={p.coverImage.url}
-                      alt={p.coverImage.alt ?? p.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                ) : (
-                  <div className="bg-grid flex aspect-[16/10] items-center justify-center bg-secondary/40">
-                    <FalconMark className="h-10 w-auto text-foreground/40" />
-                  </div>
-                )}
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="mb-2 text-lg font-medium text-foreground/80 transition-colors group-hover:text-foreground">
-                    {p.title}
-                  </h3>
-                  {p.excerpt && (
-                    <p className="line-clamp-3 text-sm text-muted-foreground">
-                      {p.excerpt}
-                    </p>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
       </section>
 
       <ContactCta />

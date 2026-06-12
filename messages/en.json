@@ -2,10 +2,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "insights": "Insights",
-    "contact": "Contact",
-    "team": "Team",
-    "cms": "CMS"
+    "contact": "Contact"
   },
   "switcher": {
     "toArabic": "العربية",
@@ -33,12 +30,7 @@
     "homeTitle": "AI Software for Financial Institutions",
     "homeDescription": "GYR designs and builds secure AI software, data platforms, workflow automation, and enterprise applications for financial institutions and regulated teams.",
     "aboutTitle": "About",
-    "aboutDescription": "Learn how GYR builds production-grade software for financial institutions, regulated workflows, and enterprise teams that need security, clarity, and reliable delivery.",
-    "blogTitle": "Insights",
-    "blogDescription": "Practical writing from GYR on AI products, software engineering, workflow automation, and regulated financial technology.",
-    "teamTitle": "Team",
-    "teamDescription": "Meet the engineers, designers, and product builders behind GYR Technology.",
-    "pageDescription": "Company information and resources from GYR Technology."
+    "aboutDescription": "Learn how GYR builds production-grade software for financial institutions, regulated workflows, and enterprise teams that need security, clarity, and reliable delivery."
   },
   "contact": {
     "heading": "Start a focused conversation with GYR.",
@@ -96,11 +88,7 @@
     "pillar2Title": "Innovate",
     "pillar2Desc": "Use modern AI and software patterns only where they create measurable operational value.",
     "pillar3Title": "Elevate",
-    "pillar3Desc": "Raise reliability, visibility, and speed without sacrificing governance.",
-    "insightsEyebrow": "INSIGHTS",
-    "insightsHeading": "Latest thinking from the field",
-    "insightsAll": "ALL INSIGHTS →",
-    "insightsEmpty": "No insights are published yet."
+    "pillar3Desc": "Raise reliability, visibility, and speed without sacrificing governance."
   },
   "about": {
     "heroEyebrow": "OUR STORY",
@@ -111,65 +99,5 @@
     "valuesEyebrow": "WHAT WE STAND FOR",
     "valuesTitle": "Values",
     "values": "Clarity,Security,Precision,Ownership,Trust"
-  },
-  "blog": {
-    "heading": "Insights",
-    "empty": "No insights are published yet.",
-    "eyebrow": "INSIGHTS",
-    "lead": "Engineering notes, product thinking, and practical writing on software for regulated operations.",
-    "all": "← ALL INSIGHTS",
-    "by": "By"
-  },
-  "team": {
-    "heading": "Team",
-    "empty": "No team members are published yet.",
-    "eyebrow": "THE PEOPLE",
-    "lead": "The engineers, designers, and product builders behind GYR Technology."
-  },
-  "notFound": {
-    "heading": "Page not found",
-    "body": "The page you're looking for doesn't exist or has moved.",
-    "home": "Back to home"
-  },
-  "admin": {
-    "dashboard": "Dashboard",
-    "pages": "Pages",
-    "posts": "Posts",
-    "team": "Team",
-    "media": "Media",
-    "logout": "Log out",
-    "delete": "Delete",
-    "save": "Save",
-    "create": "Create",
-    "edit": "Edit",
-    "titleEn": "Title (English)",
-    "titleAr": "Title (Arabic)",
-    "bodyEn": "Body (English)",
-    "bodyAr": "Body (Arabic)",
-    "excerptEn": "Excerpt (English)",
-    "excerptAr": "Excerpt (Arabic)",
-    "roleEn": "Role (English)",
-    "roleAr": "Role (Arabic)",
-    "bioEn": "Bio (English)",
-    "bioAr": "Bio (Arabic)",
-    "newPost": "New post",
-    "editPost": "Edit post",
-    "newPage": "New page",
-    "editPage": "Edit page",
-    "newMember": "New member",
-    "editMember": "Edit member",
-    "colTitle": "Title",
-    "colSlug": "Slug",
-    "colStatus": "Status",
-    "colActions": "Actions",
-    "colName": "Name",
-    "colRole": "Role",
-    "noPosts": "No posts yet.",
-    "noPages": "No pages yet.",
-    "noTeam": "No team members yet.",
-    "noMedia": "No media yet.",
-    "statusDraft": "Draft",
-    "statusPublished": "Published",
-    "coded": "Coded"
   }
 }
