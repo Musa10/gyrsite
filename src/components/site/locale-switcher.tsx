@@ -30,7 +30,11 @@ export function LocaleSwitcher() {
       disabled={isPending}
       className="font-display rounded-md border border-border/80 px-3 py-1.5 text-[0.7rem] tracking-[0.16em] text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground disabled:opacity-50"
     >
-      {label}
+      {/* The label names the TARGET language in that language (i18n best
+          practice), so it is tagged with the target lang for SEO/AT. */}
+      <span lang={target} dir={target === "ar" ? "rtl" : "ltr"}>
+        {label}
+      </span>
     </button>
   );
 }

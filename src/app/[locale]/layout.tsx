@@ -5,6 +5,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, dir } from "@/i18n/routing";
 import { ThemeProvider } from "@/components/theme-provider";
+import { absoluteUrl, alternatesFor, siteConfig } from "@/lib/seo";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -17,10 +18,12 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
 });
+// 300 is never used by the UI — fewer weights means fewer preloaded font files
+// on every page (the Arabic face ships to both locales from this shared layout).
 const plexArabic = IBM_Plex_Sans_Arabic({
   variable: "--font-plex-arabic",
   subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -34,13 +37,19 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "home" });
+  const t = await getTranslations({ locale, namespace: "seo" });
+  const title = t("defaultTitle");
+  const description = t("defaultDescription");
   return {
+    applicationName: siteConfig.name,
     title: {
-      default: "GYR — Intelligent software banks run on.",
-      template: "%s · GYR",
+      default: title,
+      template: `%s | ${siteConfig.name}`,
     },
-    description: t("heroSub"),
+    description,
+    category: "technology",
+    creator: siteConfig.name,
+    publisher: siteConfig.name,
     icons: {
       icon: [
         { url: "/icon.svg", type: "image/svg+xml" },
@@ -50,12 +59,31 @@ export async function generateMetadata({
       apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
     },
     openGraph: {
-      title: "GYR — Intelligent software banks run on.",
-      description: "AI software for financial institutions.",
+      title,
+      description,
+      siteName: siteConfig.name,
+      type: "website",
+      locale: locale === "ar" ? "ar" : "en_US",
+      url: absoluteUrl(`/${locale}`),
       images: [{ url: "/og.png", width: 1200, height: 630 }],
     },
-    alternates: {
-      languages: { en: "/en", ar: "/ar" },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [absoluteUrl(siteConfig.ogImage)],
+    },
+    alternates: alternatesFor(locale, "/"),
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
   };
 }

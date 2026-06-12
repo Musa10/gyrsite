@@ -1,16 +1,23 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getPublishedTeam } from "@/server/public-content";
 import { PageHeader } from "@/components/site/page-header";
+import { createMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
-}) {
+}): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "team" });
-  return { title: t("heading") };
+  const t = await getTranslations({ locale, namespace: "seo" });
+  return createMetadata({
+    locale,
+    path: "/team",
+    title: t("teamTitle"),
+    description: t("teamDescription"),
+  });
 }
 
 export default async function TeamPage() {
@@ -19,17 +26,13 @@ export default async function TeamPage() {
   const team = await getPublishedTeam(locale);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <PageHeader
-        eyebrow={t("eyebrow")}
-        title={t("heading")}
-        arabic={locale === "en" ? "الفريق" : undefined}
-      >
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <PageHeader eyebrow={t("eyebrow")} title={t("heading")}>
         {t("lead")}
       </PageHeader>
 
       {team.length === 0 ? (
-        <div className="brand-card rounded-xl p-12 text-center text-muted-foreground">
+        <div className="brand-card rounded-lg p-12 text-center text-muted-foreground">
           {t("empty")}
         </div>
       ) : (
@@ -37,7 +40,7 @@ export default async function TeamPage() {
           {team.map((m, i) => (
             <article
               key={m.id}
-              className="brand-card group flex flex-col items-center rounded-xl p-8 text-center"
+              className="brand-card group flex flex-col items-center rounded-lg p-8 text-center"
               style={{ animation: `fade-up 0.5s ${Math.min(i * 0.06, 0.4)}s both` }}
             >
               <div className="relative mb-5">
@@ -61,11 +64,11 @@ export default async function TeamPage() {
               </div>
               <h2 className="text-lg font-semibold">{m.name}</h2>
               <p className="font-display mt-1 text-[0.7rem] tracking-[0.16em] text-muted-foreground">
-                {locale === "ar" ? m.role : m.role.toUpperCase()}
+                {m.role.toUpperCase()}
               </p>
               {m.bio && (
                 <p
-                  dir={locale === "ar" ? "rtl" : "ltr"}
+                  dir="auto"
                   className="mt-3 text-sm leading-relaxed text-muted-foreground"
                 >
                   {m.bio}

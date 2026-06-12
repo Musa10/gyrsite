@@ -12,11 +12,11 @@ export function SectionHeading({
 }) {
   return (
     <div className={`max-w-2xl ${className}`}>
-      <p className="font-display mb-3 flex items-center gap-3 text-[0.7rem] tracking-[0.16em] text-muted-foreground">
+      <p className="font-display mb-3 flex items-center text-[0.7rem] tracking-[0.16em] text-muted-foreground">
         <span className="brand-tick" />
         {eyebrow}
       </p>
-      <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+      <h2 className="font-display text-3xl font-semibold text-foreground sm:text-4xl">
         {title}
       </h2>
       {intro && (

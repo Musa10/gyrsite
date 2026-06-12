@@ -32,7 +32,7 @@ export function Logo({
       <FalconMark className={`${h} w-auto`} title="GYR" />
     ) : (
       <svg
-        viewBox="0 0 790 190"
+        viewBox="14 23 682 140"
         className={`${h} w-auto`}
         fill="currentColor"
         role="img"

@@ -165,6 +165,18 @@
   }
 }
 
+/*
+ * Arabic locale typography. Space Grotesk carries no Arabic glyphs (Arabic
+ * display text would silently fall back to the metric-adjusted Arial stand-in)
+ * and tracked uppercase letter-spacing breaks Arabic letter-joining. Unlayered
+ * on purpose so it outranks the layered Tailwind utilities.
+ */
+[lang="ar"] .font-display,
+.font-display [lang="ar"] {
+  font-family: var(--font-plex-arabic), system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
 /* ---------- Animations ---------- */
 @keyframes fade-up {
   from {

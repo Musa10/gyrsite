@@ -86,12 +86,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const mql = window.matchMedia("(prefers-color-scheme: dark)");
     const onSystemChange = () => {
-      if (theme === "system") apply("system");
+      if (theme !== "system") return;
+      const resolved = resolveTheme("system");
+      setResolvedTheme(resolved);
+      writeClass(resolved);
     };
-    apply(theme);
+    writeClass(resolveTheme(theme));
     mql.addEventListener("change", onSystemChange);
     return () => mql.removeEventListener("change", onSystemChange);
-  }, [theme, apply]);
+  }, [theme]);
 
   // Cross-tab sync.
   useEffect(() => {

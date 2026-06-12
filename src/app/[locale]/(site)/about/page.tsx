@@ -1,18 +1,23 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { getPageBySlug } from "@/server/public-content";
 import { Hero } from "@/components/site/hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { Prose } from "@/components/site/prose";
 import { ContactCta } from "@/components/site/contact-cta";
+import { createMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
-}) {
+}): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "nav" });
-  return { title: t("about") };
+  const t = await getTranslations({ locale, namespace: "seo" });
+  return createMetadata({
+    locale,
+    path: "/about",
+    title: t("aboutTitle"),
+    description: t("aboutDescription"),
+  });
 }
 
 export default async function AboutPage({
@@ -23,13 +28,12 @@ export default async function AboutPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about" });
   const th = await getTranslations({ locale, namespace: "home" }); // shared pillars
-  const page = await getPageBySlug("about", locale); // optional editable narrative
 
   const values = t("values").split(",");
   const pillars = [
-    { ar: "اتصال ذكي", title: th("pillar1Title"), desc: th("pillar1Desc") },
-    { ar: "إبتكار مستمر", title: th("pillar2Title"), desc: th("pillar2Desc") },
-    { ar: "تقدم دائم", title: th("pillar3Title"), desc: th("pillar3Desc") },
+    { title: th("pillar1Title"), desc: th("pillar1Desc") },
+    { title: th("pillar2Title"), desc: th("pillar2Desc") },
+    { title: th("pillar3Title"), desc: th("pillar3Desc") },
   ];
 
   return (
@@ -45,23 +49,14 @@ export default async function AboutPage({
         sub={t("heroSub")}
       />
 
-      <section className="mx-auto max-w-3xl px-4 sm:px-6">
-        <div className="rule my-8" />
-        <div className="py-14">
-          {page?.body ? (
-            <div dir={locale === "ar" ? "rtl" : "ltr"}>
-              <Prose doc={page.body} />
-            </div>
-          ) : (
-            <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
-              <p>{t("missionP1")}</p>
-              <p>{t("missionP2")}</p>
-            </div>
-          )}
+      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
+          <p>{t("missionP1")}</p>
+          <p>{t("missionP2")}</p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
         <SectionHeading
           eyebrow={th("pillarsEyebrow")}
           title={th("pillarsHeading")}
@@ -71,15 +66,11 @@ export default async function AboutPage({
           {pillars.map((p, i) => (
             <article
               key={p.title}
-              className="brand-card rounded-xl p-7"
+              className="brand-card rounded-lg p-7"
               style={{ animation: `fade-up 0.6s ${i * 0.1}s both` }}
             >
-              {locale === "en" && (
-                <p dir="rtl" className="font-arabic mb-1 text-sm text-muted-foreground">
-                  {p.ar}
-                </p>
-              )}
-              <h3 className="mb-2 text-lg font-medium">{p.title}</h3>
+              <span className="brand-tick" aria-hidden />
+              <h3 className="mb-2 mt-4 text-lg font-medium">{p.title}</h3>
               <p className="text-sm leading-relaxed text-muted-foreground">
                 {p.desc}
               </p>
@@ -88,7 +79,7 @@ export default async function AboutPage({
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
         <SectionHeading
           eyebrow={t("valuesEyebrow")}
           title={t("valuesTitle")}
@@ -100,7 +91,7 @@ export default async function AboutPage({
               key={v}
               className="font-display text-[0.7rem] tracking-[0.16em] text-muted-foreground"
             >
-              {locale === "ar" ? v : v.toUpperCase()}
+              {v.trim().toUpperCase()}
             </span>
           ))}
         </div>

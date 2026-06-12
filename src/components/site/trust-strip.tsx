@@ -3,17 +3,18 @@ import Image from "next/image";
 type Logo = { src: string; alt: string };
 
 /**
- * "Trusted in production by" row — the strongest credibility signal for bank
- * buyers. Pass real client logos; with none, renders confidential placeholders.
+ * Compact credibility row. Pass real client logos only when they are approved
+ * for public use; otherwise render concrete operating standards. `label` is
+ * required (no hardcoded fallback) so all copy stays in the locale catalogs.
  */
 export function TrustStrip({
-  label = "TRUSTED IN PRODUCTION BY",
+  label,
   logos = [],
-  placeholderCount = 4,
+  items = [],
 }: {
-  label?: string;
+  label: string;
   logos?: Logo[];
-  placeholderCount?: number;
+  items?: string[];
 }) {
   return (
     <div className="border-y border-border/60 bg-background/40 backdrop-blur-sm">
@@ -33,12 +34,12 @@ export function TrustStrip({
                   className="h-5 w-auto opacity-80"
                 />
               ))
-            : Array.from({ length: placeholderCount }).map((_, i) => (
+            : items.map((item) => (
                 <span
-                  key={i}
-                  className="font-display rounded border border-border/60 px-3 py-1 text-[0.6rem] tracking-[0.16em] text-muted-foreground"
+                  key={item}
+                  className="font-display rounded-md border border-border/60 px-3 py-1 text-[0.6rem] tracking-[0.16em] text-muted-foreground"
                 >
-                  CONFIDENTIAL
+                  {item}
                 </span>
               ))}
         </div>

@@ -35,13 +35,13 @@ export function Hero({
         />
       )}
 
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-24 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:py-32">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-32">
         <div className="space-y-7">
           <p className="font-display inline-flex items-center text-[0.72rem] uppercase tracking-[0.16em] text-muted-foreground [animation:fade-up_0.7s_both]">
             <span className="brand-tick" />
             {eyebrow}
           </p>
-          <h1 className="font-display text-4xl font-semibold leading-[1.04] tracking-[-0.03em] text-foreground sm:text-5xl lg:text-6xl [animation:fade-up_0.7s_0.1s_both]">
+          <h1 className="font-display text-4xl font-semibold leading-[1.04] text-foreground sm:text-5xl lg:text-6xl [animation:fade-up_0.7s_0.1s_both]">
             {title}
           </h1>
           {sub && (
@@ -56,8 +56,10 @@ export function Hero({
           )}
         </div>
 
-        <div className="relative flex min-h-[18rem] items-center justify-center [animation:fade-up_0.9s_0.2s_both]">
-          <FalconMark className="h-64 w-auto text-foreground/[0.06] sm:h-80" />
+        {/* Watermark cell: hidden on small screens — a near-invisible mark is not
+            worth ~18rem of scroll on phones. */}
+        <div className="relative hidden min-h-[18rem] items-center justify-center lg:flex [animation:fade-up_0.9s_0.2s_both]">
+          <FalconMark className="h-56 w-auto text-foreground/[0.06]" />
         </div>
       </div>
     </section>

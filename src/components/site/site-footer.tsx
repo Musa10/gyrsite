@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getNavPages } from "@/server/public-content";
 import { Logo } from "@/components/site/brand/logo";
+import { siteConfig } from "@/lib/seo";
 
 export async function SiteFooter() {
   const locale = await getLocale();
@@ -11,17 +12,26 @@ export async function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-24 border-t border-border/60 bg-background">
+    <footer className="relative mt-16 border-t border-border/60 bg-background sm:mt-24">
       <div className="absolute inset-x-0 top-0 rule" />
       <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div className="space-y-5">
           <Logo size="md" />
-          <p dir="rtl" className="font-arabic max-w-xs text-sm text-muted-foreground">
-            {t("taglineArabic")}
+          <p
+            className={
+              locale === "ar"
+                ? "font-arabic max-w-xs text-sm leading-relaxed text-muted-foreground"
+                : "font-display max-w-xs text-xs leading-relaxed tracking-[0.16em] text-muted-foreground"
+            }
+          >
+            {t("tagline")}
           </p>
-          <p className="font-display max-w-xs text-xs tracking-[0.16em] text-muted-foreground">
-            {t("taglineLatin")}
-          </p>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="inline-flex text-sm text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground"
+          >
+            {siteConfig.email}
+          </a>
         </div>
 
         <div className="space-y-3">
