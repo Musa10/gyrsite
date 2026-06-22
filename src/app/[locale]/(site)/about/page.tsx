@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/site/hero";
-import { SectionHeading } from "@/components/site/section-heading";
+import { SectionLabel } from "@/components/site/instrument/section-label";
+import { FounderProfile } from "@/components/site/founder-profile";
 import { ContactCta } from "@/components/site/contact-cta";
 import { JsonLd } from "@/components/site/json-ld";
-import { breadcrumbJsonLd, createMetadata } from "@/lib/seo";
+import { createMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -28,80 +29,59 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "about" });
-  const th = await getTranslations({ locale, namespace: "home" }); // shared pillars
-  const tn = await getTranslations({ locale, namespace: "nav" });
+  const t = await getTranslations("about");
+  const tn = await getTranslations("nav");
+  const ts = await getTranslations("seo");
 
-  const values = t("values").split(",");
-  const pillars = [
-    { title: th("pillar1Title"), desc: th("pillar1Desc") },
-    { title: th("pillar2Title"), desc: th("pillar2Desc") },
-    { title: th("pillar3Title"), desc: th("pillar3Desc") },
-  ];
+  const values = t("values").split("|");
 
   return (
     <>
       <JsonLd
         data={breadcrumbJsonLd(locale, [
           { name: tn("home"), path: "/" },
-          { name: tn("about"), path: "/about" },
+          { name: ts("aboutTitle"), path: "/about" },
         ])}
       />
+
       <Hero
         variant="lite"
         eyebrow={t("heroEyebrow")}
-        title={t.rich("heroTitle", {
-          accent: (chunks) => (
-            <span className="font-medium text-foreground">{chunks}</span>
-          ),
-        })}
+        title={t("heroTitle")}
         sub={t("heroSub")}
       />
 
+      {/* §01 Who we are */}
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <SectionLabel index="01" className="mb-8">{t("statementLabel")}</SectionLabel>
         <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
-          <p>{t("missionP1")}</p>
-          <p>{t("missionP2")}</p>
+          <p>{t("statementP1")}</p>
+          <p>{t("statementP2")}</p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
-        <SectionHeading
-          eyebrow={th("pillarsEyebrow")}
-          title={th("pillarsHeading")}
-          className="mb-12"
-        />
-        <div className="grid gap-6 md:grid-cols-3">
-          {pillars.map((p, i) => (
-            <article
-              key={p.title}
-              className="brand-card rounded-lg p-7"
-              style={{ animation: `fade-up 0.6s ${i * 0.1}s both` }}
-            >
-              <span className="brand-tick" aria-hidden />
-              <h3 className="mb-2 mt-4 text-lg font-medium">{p.title}</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {p.desc}
-              </p>
-            </article>
-          ))}
+      {/* §02 From the founder */}
+      <section className="border-y border-border bg-surface/40">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+          <SectionLabel index="02" className="mb-10">{t("founderLabel")}</SectionLabel>
+          <FounderProfile
+            bio={[t("founderBio1"), t("founderBio2")]}
+            name={t("founderName")}
+            role={t("founderRole")}
+            linkedinLabel={t("founderLinkedinLabel")}
+            linkedinUrl={t("founderLinkedinUrl")}
+            portraitLabel={t("founderPortrait")}
+            draftLabel={t("founderDraft")}
+          />
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
-        <SectionHeading
-          eyebrow={t("valuesEyebrow")}
-          title={t("valuesTitle")}
-          className="mb-8"
-        />
+      {/* §03 What we stand for */}
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <SectionLabel index="03" className="mb-8">{t("valuesLabel")}</SectionLabel>
         <div className="flex flex-wrap gap-x-8 gap-y-3">
           {values.map((v) => (
-            <span
-              key={v}
-              className="font-display text-[0.7rem] tracking-[0.16em] text-muted-foreground"
-            >
-              {v.trim().toUpperCase()}
-            </span>
+            <span key={v} className="ins-label font-mono">{v}</span>
           ))}
         </div>
       </section>

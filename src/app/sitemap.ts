@@ -5,7 +5,10 @@ type SitemapEntry = MetadataRoute.Sitemap[number];
 
 const staticRoutes = [
   { path: "/", changeFrequency: "monthly", priority: 1 },
+  { path: "/services", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/approach", changeFrequency: "monthly", priority: 0.8 },
   { path: "/about", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/contact", changeFrequency: "monthly", priority: 0.7 },
 ] as const;
 
 function localizedEntries({
