@@ -28,69 +28,72 @@
   --font-sans: var(--font-inter);
   --font-display: var(--font-space-grotesk);
   --font-arabic: var(--font-plex-arabic);
+  --font-mono: var(--font-plex-mono);
 
   --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /*
- * GYR brand theme — Swiss monochrome, LIGHT default.
- * Neutral cool-grey (zinc) ramp. Color is reserved for functional UI states only.
+ * GYR brand theme — "technical instrument", warm monochrome, LIGHT default.
+ * Warm ink-on-paper ramp (hue ~40, very low saturation) — sheds the clinical
+ * cold-zinc chill while staying strictly monochrome. Color is reserved for
+ * functional UI states only.
  */
 :root {
   color-scheme: light;
 
-  --background: 0 0% 100%;
-  --foreground: 240 10% 4%;   /* ink  #0A0A0A */
-  --ink-2: 240 5% 26%;        /* secondary text #3F3F46 */
-  --surface: 240 5% 98%;      /* #FAFAFA */
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 4%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 4%;
-  --primary: 240 10% 4%;      /* solid-ink buttons */
-  --primary-foreground: 0 0% 100%;
-  --secondary: 240 5% 96%;
-  --secondary-foreground: 240 10% 4%;
-  --muted: 240 5% 96%;
-  --muted-foreground: 240 4% 40%; /* #636369 — AA (4.5:1+) on muted surfaces */
-  --accent: 240 5% 96%;
-  --accent-foreground: 240 10% 4%;
-  --destructive: 0 72% 45%;
-  --destructive-foreground: 0 0% 100%;
-  --success: 142 71% 33%;
-  --warning: 30 90% 38%;
-  --border: 240 6% 90%;       /* hairline #E4E4E7 */
-  --input: 240 5% 84%;        /* #D4D4D8 */
-  --ring: 240 10% 4%;
+  --background: 40 24% 96%;   /* warm paper #F6F4EF */
+  --foreground: 45 18% 8%;    /* warm ink   #17150F */
+  --ink-2: 42 8% 38%;         /* secondary text */
+  --surface: 40 22% 92%;
+  --card: 40 24% 97%;
+  --card-foreground: 45 18% 8%;
+  --popover: 40 24% 97%;
+  --popover-foreground: 45 18% 8%;
+  --primary: 45 18% 8%;       /* solid-ink buttons */
+  --primary-foreground: 40 24% 97%;
+  --secondary: 40 18% 92%;
+  --secondary-foreground: 45 18% 8%;
+  --muted: 40 18% 92%;
+  --muted-foreground: 42 7% 38%; /* AA (4.5:1+) on paper + surface */
+  --accent: 40 18% 92%;
+  --accent-foreground: 45 18% 8%;
+  --destructive: 0 65% 45%;
+  --destructive-foreground: 40 24% 97%;
+  --success: 142 60% 32%;
+  --warning: 32 85% 38%;
+  --border: 42 16% 82%;       /* warm hairline #D8D3C8 */
+  --input: 42 14% 76%;
+  --ring: 45 18% 8%;
 }
 
-/* Dark theme — pure inversion of the same ramp. ThemeProvider / init script adds class="dark". */
+/* Dark theme — pure inversion of the same warm ramp. ThemeProvider / init script adds class="dark". */
 .dark {
   color-scheme: dark;
 
-  --background: 240 10% 4%;   /* #0A0A0A */
-  --foreground: 0 0% 98%;
-  --ink-2: 240 5% 84%;        /* secondary text #D4D4D8 */
-  --surface: 240 6% 9%;       /* #161618 */
-  --card: 240 6% 9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 240 6% 9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;        /* white solid buttons */
-  --primary-foreground: 240 10% 4%;
-  --secondary: 240 5% 14%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 240 5% 14%;
-  --muted-foreground: 240 5% 65%; /* #A1A1AA */
-  --accent: 240 5% 14%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 72% 52%;
-  --destructive-foreground: 0 0% 98%;
-  --success: 142 65% 45%;
-  --warning: 38 92% 50%;
-  --border: 240 4% 16%;       /* #27272A */
-  --input: 240 5% 26%;
-  --ring: 0 0% 98%;
+  --background: 40 8% 6%;     /* warm near-black #110F0C */
+  --foreground: 40 18% 95%;
+  --ink-2: 40 10% 82%;        /* secondary text */
+  --surface: 40 7% 10%;
+  --card: 40 7% 10%;
+  --card-foreground: 40 18% 95%;
+  --popover: 40 7% 10%;
+  --popover-foreground: 40 18% 95%;
+  --primary: 40 18% 95%;      /* warm-white solid buttons */
+  --primary-foreground: 40 8% 6%;
+  --secondary: 40 6% 15%;
+  --secondary-foreground: 40 18% 95%;
+  --muted: 40 6% 15%;
+  --muted-foreground: 40 8% 64%;
+  --accent: 40 6% 15%;
+  --accent-foreground: 40 18% 95%;
+  --destructive: 0 65% 52%;
+  --destructive-foreground: 40 18% 95%;
+  --success: 142 55% 45%;
+  --warning: 38 90% 52%;
+  --border: 40 6% 18%;
+  --input: 40 7% 26%;
+  --ring: 40 18% 95%;
 }
 
 @layer base {
@@ -162,16 +165,73 @@
     margin-inline-end: 0.6rem;
     background: hsl(var(--foreground));
   }
+
+  /* ---------- Technical-instrument kit ---------- */
+
+  /* Tracked mono label — section markers (§0X) and annotations. */
+  .ins-label {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.66rem;
+    line-height: 1.4;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Registration crosshair behind a calibrated mark. */
+  .ins-crosshair { position: relative; }
+  .ins-crosshair::before,
+  .ins-crosshair::after {
+    content: "";
+    position: absolute;
+    background: hsl(var(--border));
+  }
+  .ins-crosshair::before { left: 0; right: 0; top: 50%; height: 1px; }
+  .ins-crosshair::after { top: 0; bottom: 0; left: 50%; width: 1px; }
+
+  /* Dimension line with end ticks (logical end side, mirrors in RTL). */
+  .ins-dim {
+    position: relative;
+    border-inline-end: 1px solid hsl(var(--ink-2));
+  }
+  .ins-dim::before,
+  .ins-dim::after {
+    content: "";
+    position: absolute;
+    inset-inline-end: -4px;
+    width: 8px;
+    height: 1px;
+    background: hsl(var(--ink-2));
+  }
+  .ins-dim::before { top: 0; }
+  .ins-dim::after { bottom: 0; }
+
+  /* Faint diagonal hatch — placeholder portrait fill. */
+  .ins-hatch {
+    background-color: hsl(var(--surface));
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 9px,
+      hsl(var(--border)) 9px,
+      hsl(var(--border)) 10px
+    );
+  }
 }
 
 /*
- * Arabic locale typography. Space Grotesk carries no Arabic glyphs (Arabic
- * display text would silently fall back to the metric-adjusted Arial stand-in)
- * and tracked uppercase letter-spacing breaks Arabic letter-joining. Unlayered
- * on purpose so it outranks the layered Tailwind utilities.
+ * Arabic locale typography. Neither Space Grotesk (display) nor IBM Plex Mono
+ * (instrument labels) carry Arabic glyphs — Arabic text would silently fall
+ * back to a metric-adjusted stand-in — and tracked uppercase letter-spacing
+ * breaks Arabic letter-joining. So in Arabic both the display AND mono roles
+ * resolve to IBM Plex Sans Arabic with zero tracking. Unlayered on purpose so
+ * it outranks the layered Tailwind utilities.
  */
 [lang="ar"] .font-display,
-.font-display [lang="ar"] {
+[lang="ar"] .font-mono,
+[lang="ar"] .ins-label,
+.font-display [lang="ar"],
+.font-mono [lang="ar"] {
   font-family: var(--font-plex-arabic), system-ui, sans-serif;
   letter-spacing: 0;
 }
