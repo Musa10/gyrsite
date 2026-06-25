@@ -1,8 +1,9 @@
-import { DraftFlag } from "@/components/site/draft-flag";
+import { PlaceholderFrame } from "@/components/site/kit/placeholder-frame";
 
 /**
- * Home §04 — the founder's signed note. Portrait is a flagged placeholder until
- * an approved photo lands in /public. All copy is passed in by the page.
+ * The founder's signed note (Home + reused on About). Portrait is an
+ * intentional PlaceholderFrame until an approved photo lands. All copy is
+ * passed in by the page. Calm/monochrome — no draft pills, no mono.
  */
 export function FounderNote({
   quote,
@@ -11,7 +12,6 @@ export function FounderNote({
   linkedinLabel,
   linkedinUrl,
   portraitLabel,
-  draftLabel,
 }: {
   quote: string;
   name: string;
@@ -19,26 +19,28 @@ export function FounderNote({
   linkedinLabel: string;
   linkedinUrl: string;
   portraitLabel: string;
-  draftLabel?: string;
 }) {
   return (
-    <div className="grid items-center gap-8 sm:grid-cols-[150px_1fr] sm:gap-10">
-      <div className="ins-hatch flex aspect-[5/6] w-[150px] items-center justify-center border border-border font-mono text-[0.6rem] uppercase tracking-[0.1em] text-muted-foreground">
-        {portraitLabel}
+    <div className="grid gap-10 md:grid-cols-[180px_1fr] md:items-center md:gap-14">
+      <div className="w-[180px]">
+        <PlaceholderFrame label={portraitLabel} />
       </div>
       <div>
-        {draftLabel && <DraftFlag>{draftLabel}</DraftFlag>}
-        <blockquote className="font-display text-xl font-medium leading-snug text-foreground sm:text-2xl">
+        <blockquote className="font-display text-balance text-xl font-light leading-snug tracking-[-0.01em] sm:text-2xl">
           {quote}
         </blockquote>
-        <p className="font-display mt-5 text-xl italic text-foreground">{name}</p>
-        <p className="ins-label font-mono mt-1.5">
-          {role}
-          <span aria-hidden> · </span>
-          <a href={linkedinUrl} className="text-foreground underline-offset-4 hover:underline">
-            {linkedinLabel}
+        <div className="mt-6">
+          <div className="font-display text-base font-medium">{name}</div>
+          <div className="mt-0.5 text-sm text-muted-foreground">{role}</div>
+          <a
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="lift mt-3 inline-block border-b border-border pb-0.5 text-sm text-muted-foreground hover:border-foreground hover:text-foreground"
+          >
+            {linkedinLabel} <span aria-hidden>↗</span>
           </a>
-        </p>
+        </div>
       </div>
     </div>
   );

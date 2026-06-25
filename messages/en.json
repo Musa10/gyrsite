@@ -1,6 +1,7 @@
 {
   "nav": {
     "home": "Home",
+    "services": "Services",
     "automation": "Automation",
     "security": "Security",
     "approach": "Approach",
@@ -65,6 +66,10 @@
     "cap2Title": "Cybersecurity",
     "cap2Body": "Security built into how systems are designed and run — not bolted on. Protecting the automation, the data, and the operations around them.",
     "cap2Items": "Secure architecture & review|Threat detection & response|Identity & access control|Compliance-ready posture",
+    "cap3Title": "Secure Integration",
+    "cap3Body": "Connecting your stack, data, and AI without opening new attack surface — the automation reaches everything it needs to, and nothing it shouldn't.",
+    "cap3Items": "Systems & data integration|Access-scoped connections|Auditable data flow|No new attack surface",
+    "statement": "Most automation is either fast or safe. <accent>We refuse to choose.</accent>",
     "buildLabel": "What we build",
     "build1": "Product strategy & architecture|Turn a high-value operational problem into a scoped system and delivery roadmap.|SCOPE",
     "build2": "AI workflow systems|Automation with explainable outputs, controls, and human review.|AUTOMATE",
