@@ -46,7 +46,7 @@
   --background: 240 6% 99%;   /* near-white #FCFCFD */
   --foreground: 240 6% 10%;   /* near-black #18181B */
   --ink-2: 240 4% 40%;        /* secondary text */
-  --surface: 240 6% 96%;      /* #F4F4F5 */
+  --surface: 240 6% 92%;      /* #E8E8EC — a clearly-visible grey step */
   --card: 240 6% 99%;
   --card-foreground: 240 6% 10%;
   --popover: 240 6% 99%;
@@ -75,7 +75,7 @@
   --background: 240 6% 5%;    /* near-black #0C0C0E */
   --foreground: 240 6% 96%;   /* #F4F4F5 */
   --ink-2: 240 5% 65%;        /* secondary text */
-  --surface: 240 5% 9%;       /* #161619 */
+  --surface: 240 5% 13%;      /* #1E1E21 — a clearly-visible grey step */
   --card: 240 5% 9%;
   --card-foreground: 240 6% 96%;
   --popover: 240 5% 9%;
