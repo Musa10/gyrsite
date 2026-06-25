@@ -6,6 +6,7 @@ import { Eyebrow } from "@/components/site/kit/eyebrow";
 import { CapabilityRow } from "@/components/site/kit/capability-row";
 import { Statement } from "@/components/site/kit/statement";
 import { ProcessSequence } from "@/components/site/kit/process-sequence";
+import { Reveal } from "@/components/site/kit/reveal";
 import { btnPrimary, btnGhost } from "@/components/site/kit/button";
 import { FounderNote } from "@/components/site/founder-note";
 import { ContactCta } from "@/components/site/contact-cta";
@@ -75,43 +76,51 @@ export default async function HomePage({
       />
 
       <Section id="capabilities" className="scroll-mt-24">
-        <Eyebrow>{t("capLabel")}</Eyebrow>
-        <div className="mt-8">
-          {caps.map((c) => (
-            <CapabilityRow
-              key={c.index}
-              index={c.index}
-              title={c.title}
-              body={c.body}
-              items={c.items}
-            />
-          ))}
-        </div>
+        <Reveal>
+          <Eyebrow>{t("capLabel")}</Eyebrow>
+          <div className="mt-8">
+            {caps.map((c) => (
+              <CapabilityRow
+                key={c.index}
+                index={c.index}
+                title={c.title}
+                body={c.body}
+                items={c.items}
+              />
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
       <Section className="border-t border-border">
-        <Statement>{t.rich("statement", { accent })}</Statement>
+        <Reveal>
+          <Statement>{t.rich("statement", { accent })}</Statement>
+        </Reveal>
       </Section>
 
       <Section id="approach" className="scroll-mt-24 border-t border-border">
-        <Eyebrow>{t("approachLabel")}</Eyebrow>
-        <div className="mt-8">
-          <ProcessSequence steps={steps} />
-        </div>
+        <Reveal>
+          <Eyebrow>{t("approachLabel")}</Eyebrow>
+          <div className="mt-8">
+            <ProcessSequence steps={steps} />
+          </div>
+        </Reveal>
       </Section>
 
       <Section id="about" className="scroll-mt-24 border-t border-border">
-        <Eyebrow>{t("founderLabel")}</Eyebrow>
-        <div className="mt-10">
-          <FounderNote
-            quote={tf("founderQuote")}
-            name={tf("founderName")}
-            role={tf("founderRole")}
-            linkedinLabel={tf("founderLinkedinLabel")}
-            linkedinUrl={tf("founderLinkedinUrl")}
-            portraitLabel={tf("founderPortrait")}
-          />
-        </div>
+        <Reveal>
+          <Eyebrow>{t("founderLabel")}</Eyebrow>
+          <div className="mt-10">
+            <FounderNote
+              quote={tf("founderQuote")}
+              name={tf("founderName")}
+              role={tf("founderRole")}
+              linkedinLabel={tf("founderLinkedinLabel")}
+              linkedinUrl={tf("founderLinkedinUrl")}
+              portraitLabel={tf("founderPortrait")}
+            />
+          </div>
+        </Reveal>
       </Section>
 
       <ContactCta />

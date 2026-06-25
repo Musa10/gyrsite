@@ -137,6 +137,10 @@ export default async function LocaleLayout({
           style={{ display: "contents" }}
           dangerouslySetInnerHTML={{ __html: `<script>${themeInit}</script>` }}
         />
+        {/* If JS never runs, scroll-reveal elements must still be visible. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <ThemeProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>
             {children}

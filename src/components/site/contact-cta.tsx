@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { siteConfig } from "@/lib/seo";
 import { Section } from "@/components/site/kit/section";
 import { Statement } from "@/components/site/kit/statement";
+import { Reveal } from "@/components/site/kit/reveal";
 import { btnPrimary, btnGhost } from "@/components/site/kit/button";
 
 /**
@@ -15,15 +16,17 @@ export async function ContactCta() {
 
   return (
     <Section id="contact" className="scroll-mt-24 border-t border-border">
-      <Statement>{t("heading")}</Statement>
-      <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-        <a href={mailto} className={btnPrimary}>
-          {t("cta")}
-        </a>
-        <a href={mailto} className={btnGhost}>
-          {siteConfig.email}
-        </a>
-      </div>
+      <Reveal>
+        <Statement>{t("heading")}</Statement>
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a href={mailto} className={btnPrimary}>
+            {t("cta")}
+          </a>
+          <a href={mailto} className={btnGhost}>
+            {siteConfig.email}
+          </a>
+        </div>
+      </Reveal>
     </Section>
   );
 }

@@ -5,10 +5,10 @@ import { Eyebrow } from "@/components/site/kit/eyebrow";
 /**
  * Hero. `variant="full"` (Home): centered, with the matte falcon as a calm
  * centerpiece above a large light-weight headline. `variant="lite"` (interior
- * pages): no mark, left-aligned, smaller. No grid, no glow, no chrome — the
- * locked calm/elegant language. Emphasis inside `title` is the caller's job
- * via <strong className="font-medium">, never a colour. The falcon is wrapped
- * dir="ltr" so it never mirrors in RTL.
+ * pages): no mark, left-aligned, smaller. No glow, no chrome. Elements settle
+ * in once on load in a gentle stagger (mark-in + fade-up), reduced-motion-safe.
+ * Emphasis inside `title` is the caller's job via <strong className="font-medium">,
+ * never a colour. The falcon is wrapped dir="ltr" so it never mirrors in RTL.
  */
 export function Hero({
   eyebrow,
@@ -27,20 +27,20 @@ export function Hero({
     return (
       <section className="border-b border-border">
         <div className="mx-auto flex max-w-5xl flex-col items-center px-6 py-24 text-center sm:py-32 lg:px-8">
-          <span dir="ltr" aria-hidden className="mb-9 text-foreground">
+          <span dir="ltr" aria-hidden className="mb-9 animate-mark-in text-foreground">
             <FalconMark className="h-16 w-auto" />
           </span>
-          <Eyebrow>{eyebrow}</Eyebrow>
-          <h1 className="font-display mt-5 max-w-3xl text-balance text-4xl font-light leading-[1.05] tracking-[-0.02em] sm:text-5xl lg:text-6xl">
+          <Eyebrow className="animate-fade-up [animation-delay:140ms]">{eyebrow}</Eyebrow>
+          <h1 className="font-display mt-5 max-w-3xl animate-fade-up text-balance text-4xl font-light leading-[1.05] tracking-[-0.02em] [animation-delay:220ms] sm:text-5xl lg:text-6xl">
             {title}
           </h1>
           {sub ? (
-            <p className="mt-6 max-w-xl text-balance text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mt-6 max-w-xl animate-fade-up text-balance text-base leading-relaxed text-muted-foreground [animation-delay:300ms] sm:text-lg">
               {sub}
             </p>
           ) : null}
           {actions ? (
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 animate-fade-up [animation-delay:380ms]">
               {actions}
             </div>
           ) : null}
@@ -52,17 +52,17 @@ export function Hero({
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20 lg:px-8">
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <h1 className="font-display mt-5 max-w-3xl text-balance text-3xl font-light leading-[1.08] tracking-[-0.02em] sm:text-4xl lg:text-5xl">
+        <Eyebrow className="animate-fade-up">{eyebrow}</Eyebrow>
+        <h1 className="font-display mt-5 max-w-3xl animate-fade-up text-balance text-3xl font-light leading-[1.08] tracking-[-0.02em] [animation-delay:120ms] sm:text-4xl lg:text-5xl">
           {title}
         </h1>
         {sub ? (
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+          <p className="mt-5 max-w-2xl animate-fade-up text-base leading-relaxed text-muted-foreground [animation-delay:200ms]">
             {sub}
           </p>
         ) : null}
         {actions ? (
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 animate-fade-up [animation-delay:280ms]">
             {actions}
           </div>
         ) : null}
