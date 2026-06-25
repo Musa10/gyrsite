@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { Hero } from "@/components/site/hero";
 import { Section } from "@/components/site/kit/section";
 import { Eyebrow } from "@/components/site/kit/eyebrow";
@@ -65,17 +64,17 @@ export default async function HomePage({
         sub={t("heroSub")}
         actions={
           <>
-            <Link href="/services" className={btnPrimary}>
+            <a href="#capabilities" className={btnPrimary}>
               {t("ctaBuild")}
-            </Link>
-            <Link href="/about" className={btnGhost}>
+            </a>
+            <a href="#about" className={btnGhost}>
               {t("ctaStory")} <span aria-hidden>→</span>
-            </Link>
+            </a>
           </>
         }
       />
 
-      <Section>
+      <Section id="capabilities" className="scroll-mt-24">
         <Eyebrow>{t("capLabel")}</Eyebrow>
         <div className="mt-8">
           {caps.map((c) => (
@@ -94,20 +93,14 @@ export default async function HomePage({
         <Statement>{t.rich("statement", { accent })}</Statement>
       </Section>
 
-      <Section className="border-t border-border">
+      <Section id="approach" className="scroll-mt-24 border-t border-border">
         <Eyebrow>{t("approachLabel")}</Eyebrow>
         <div className="mt-8">
           <ProcessSequence steps={steps} />
         </div>
-        <Link
-          href="/approach"
-          className="lift mt-10 inline-block border-b border-border pb-0.5 text-sm text-muted-foreground hover:border-foreground hover:text-foreground"
-        >
-          {t("methodLink")} <span aria-hidden>→</span>
-        </Link>
       </Section>
 
-      <Section className="border-t border-border">
+      <Section id="about" className="scroll-mt-24 border-t border-border">
         <Eyebrow>{t("founderLabel")}</Eyebrow>
         <div className="mt-10">
           <FounderNote

@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/site/brand/logo";
 import { siteConfig } from "@/lib/seo";
 
@@ -8,11 +7,11 @@ export async function SiteFooter() {
   const tn = await getTranslations("nav");
   const year = new Date().getFullYear();
 
+  // Single-page site: footer nav scrolls to sections on Home.
   const navLinks = [
-    { href: "/services", label: tn("services") },
-    { href: "/approach", label: tn("approach") },
-    { href: "/about", label: tn("about") },
-    { href: "/contact", label: tn("contact") },
+    { href: "#capabilities", label: tn("capabilities") },
+    { href: "#approach", label: tn("approach") },
+    { href: "#contact", label: tn("contact") },
   ];
 
   return (
@@ -30,9 +29,9 @@ export async function SiteFooter() {
           <ul className="space-y-2.5 text-sm text-muted-foreground">
             {navLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="transition-colors hover:text-foreground">
+                <a href={l.href} className="transition-colors hover:text-foreground">
                   {l.label}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>

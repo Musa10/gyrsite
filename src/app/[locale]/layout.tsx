@@ -130,7 +130,7 @@ export default async function LocaleLayout({
       lang={locale}
       dir={dir(locale)}
       suppressHydrationWarning
-      className={`${inter.variable} ${plexArabic.variable} h-full antialiased`}
+      className={`${inter.variable} ${plexArabic.variable} h-full scroll-smooth antialiased`}
     >
       <body className={`min-h-full flex flex-col bg-background text-foreground ${bodyFont}`}>
         <div

@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/site/brand/logo";
 import { LocaleSwitcher } from "@/components/site/locale-switcher";
 import { ThemeToggle } from "@/components/site/theme-toggle";
@@ -7,11 +6,11 @@ import { ThemeToggle } from "@/components/site/theme-toggle";
 export async function SiteHeader() {
   const t = await getTranslations("nav");
 
+  // Single-page site: nav scrolls to sections on Home rather than routing.
   const links = [
-    { href: "/services", label: t("services") },
-    { href: "/approach", label: t("approach") },
-    { href: "/about", label: t("about") },
-    { href: "/contact", label: t("contact") },
+    { href: "#capabilities", label: t("capabilities") },
+    { href: "#approach", label: t("approach") },
+    { href: "#contact", label: t("contact") },
   ];
 
   return (
@@ -21,13 +20,13 @@ export async function SiteHeader() {
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <Link
+            <a
               key={l.href}
               href={l.href}
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               {l.label}
-            </Link>
+            </a>
           ))}
         </nav>
 

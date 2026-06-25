@@ -16,12 +16,6 @@ export default async function SiteLayout({
 
   return (
     <div className="relative flex min-h-screen flex-col">
-      {/* Ambient grid */}
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 bg-grid opacity-60"
-      />
-
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />
