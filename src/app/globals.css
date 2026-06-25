@@ -124,6 +124,16 @@
 }
 
 @layer components {
+  /* Faint ambient hairline grid — the only background texture. Flips with the
+     theme via --border, and is kept fainter than the section hairlines so it
+     reads as quiet paper texture, not structure. */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
   /* Hairline rule that fades at both ends — the primary section divider. */
   .rule {
     height: 1px;

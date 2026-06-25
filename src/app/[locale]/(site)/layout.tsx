@@ -16,6 +16,13 @@ export default async function SiteLayout({
 
   return (
     <div className="relative flex min-h-screen flex-col">
+      {/* Faint ambient grid — fixed behind content, fades toward the bottom so
+          it sits under the hero and quiets as you scroll. */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-10 bg-grid [mask-image:linear-gradient(to_bottom,black,transparent_85%)]"
+      />
+
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />
