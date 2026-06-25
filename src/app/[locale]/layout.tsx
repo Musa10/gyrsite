@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Inter, IBM_Plex_Sans_Arabic, IBM_Plex_Mono } from "next/font/google";
+import { Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
@@ -13,12 +13,6 @@ import {
   siteConfig,
 } from "@/lib/seo";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  display: "swap",
-});
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -32,24 +26,14 @@ const plexArabic = IBM_Plex_Sans_Arabic({
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
-// Monospace carries the "instrument" voice — section labels, annotations,
-// metadata. Latin-only: Arabic instrument labels fall back to Plex Arabic via
-// the unlayered [lang="ar"] .font-mono rule in globals.css.
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
-
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f6f4ef" },
-    { media: "(prefers-color-scheme: dark)", color: "#110f0c" },
+    { media: "(prefers-color-scheme: light)", color: "#fcfcfd" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c0c0e" },
   ],
 };
 
@@ -146,7 +130,7 @@ export default async function LocaleLayout({
       lang={locale}
       dir={dir(locale)}
       suppressHydrationWarning
-      className={`${spaceGrotesk.variable} ${inter.variable} ${plexArabic.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${plexArabic.variable} h-full antialiased`}
     >
       <body className={`min-h-full flex flex-col bg-background text-foreground ${bodyFont}`}>
         <div

@@ -26,74 +26,74 @@
   --color-surface: hsl(var(--surface));
 
   --font-sans: var(--font-inter);
-  --font-display: var(--font-space-grotesk);
+  --font-display: var(--font-inter);
   --font-arabic: var(--font-plex-arabic);
-  --font-mono: var(--font-plex-mono);
 
   --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /*
- * GYR brand theme — "technical instrument", warm monochrome, LIGHT default.
- * Warm ink-on-paper ramp (hue ~40, very low saturation) — sheds the clinical
- * cold-zinc chill while staying strictly monochrome. Color is reserved for
- * functional UI states only.
+ * GYR brand theme — calm, elegant, neutral MONOCHROME, dual theme.
+ * Faint-cool neutral ramp (HSL hue 240, very low saturation — a zinc-like grey)
+ * spanning near-white to near-black. NO accent hue. Light is the default;
+ * `.dark` is the inversion. The few functional tokens are neutralised to greys
+ * (no forms ship, so they never surface).
  */
 :root {
   color-scheme: light;
 
-  --background: 40 24% 96%;   /* warm paper #F6F4EF */
-  --foreground: 45 18% 8%;    /* warm ink   #17150F */
-  --ink-2: 42 8% 38%;         /* secondary text */
-  --surface: 40 22% 92%;
-  --card: 40 24% 97%;
-  --card-foreground: 45 18% 8%;
-  --popover: 40 24% 97%;
-  --popover-foreground: 45 18% 8%;
-  --primary: 45 18% 8%;       /* solid-ink buttons */
-  --primary-foreground: 40 24% 97%;
-  --secondary: 40 18% 92%;
-  --secondary-foreground: 45 18% 8%;
-  --muted: 40 18% 92%;
-  --muted-foreground: 42 7% 38%; /* AA (4.5:1+) on paper + surface */
-  --accent: 40 18% 92%;
-  --accent-foreground: 45 18% 8%;
-  --destructive: 0 65% 45%;
-  --destructive-foreground: 40 24% 97%;
-  --success: 142 60% 32%;
-  --warning: 32 85% 38%;
-  --border: 42 16% 82%;       /* warm hairline #D8D3C8 */
-  --input: 42 14% 76%;
-  --ring: 45 18% 8%;
+  --background: 240 6% 99%;   /* near-white #FCFCFD */
+  --foreground: 240 6% 10%;   /* near-black #18181B */
+  --ink-2: 240 4% 40%;        /* secondary text */
+  --surface: 240 6% 96%;      /* #F4F4F5 */
+  --card: 240 6% 99%;
+  --card-foreground: 240 6% 10%;
+  --popover: 240 6% 99%;
+  --popover-foreground: 240 6% 10%;
+  --primary: 240 6% 10%;      /* solid-ink buttons */
+  --primary-foreground: 240 6% 99%;
+  --secondary: 240 5% 96%;
+  --secondary-foreground: 240 6% 10%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 40%; /* AA on near-white + surface */
+  --accent: 240 5% 96%;
+  --accent-foreground: 240 6% 10%;
+  --destructive: 0 0% 25%;
+  --destructive-foreground: 0 0% 98%;
+  --success: 0 0% 35%;
+  --warning: 0 0% 45%;
+  --border: 240 6% 90%;       /* hairline #E4E4E7 */
+  --input: 240 6% 86%;
+  --ring: 240 6% 10%;
 }
 
-/* Dark theme — pure inversion of the same warm ramp. ThemeProvider / init script adds class="dark". */
+/* Dark theme — neutral inversion of the same ramp. ThemeProvider / init script adds class="dark". */
 .dark {
   color-scheme: dark;
 
-  --background: 40 8% 6%;     /* warm near-black #110F0C */
-  --foreground: 40 18% 95%;
-  --ink-2: 40 10% 82%;        /* secondary text */
-  --surface: 40 7% 10%;
-  --card: 40 7% 10%;
-  --card-foreground: 40 18% 95%;
-  --popover: 40 7% 10%;
-  --popover-foreground: 40 18% 95%;
-  --primary: 40 18% 95%;      /* warm-white solid buttons */
-  --primary-foreground: 40 8% 6%;
-  --secondary: 40 6% 15%;
-  --secondary-foreground: 40 18% 95%;
-  --muted: 40 6% 15%;
-  --muted-foreground: 40 8% 64%;
-  --accent: 40 6% 15%;
-  --accent-foreground: 40 18% 95%;
-  --destructive: 0 65% 52%;
-  --destructive-foreground: 40 18% 95%;
-  --success: 142 55% 45%;
-  --warning: 38 90% 52%;
-  --border: 40 6% 18%;
-  --input: 40 7% 26%;
-  --ring: 40 18% 95%;
+  --background: 240 6% 5%;    /* near-black #0C0C0E */
+  --foreground: 240 6% 96%;   /* #F4F4F5 */
+  --ink-2: 240 5% 65%;        /* secondary text */
+  --surface: 240 5% 9%;       /* #161619 */
+  --card: 240 5% 9%;
+  --card-foreground: 240 6% 96%;
+  --popover: 240 5% 9%;
+  --popover-foreground: 240 6% 96%;
+  --primary: 240 6% 96%;      /* near-white solid buttons */
+  --primary-foreground: 240 6% 5%;
+  --secondary: 240 4% 14%;
+  --secondary-foreground: 240 6% 96%;
+  --muted: 240 4% 14%;
+  --muted-foreground: 240 5% 64%;
+  --accent: 240 4% 14%;
+  --accent-foreground: 240 6% 96%;
+  --destructive: 0 0% 75%;
+  --destructive-foreground: 0 0% 9%;
+  --success: 0 0% 70%;
+  --warning: 0 0% 65%;
+  --border: 240 4% 16%;       /* #27272A */
+  --input: 240 4% 24%;
+  --ring: 240 6% 96%;
 }
 
 @layer base {
