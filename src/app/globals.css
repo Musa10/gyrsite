@@ -123,16 +123,7 @@
 }
 
 @layer components {
-  /* Faint hairline Swiss grid — the only ambient texture. */
-  .bg-grid {
-    background-image:
-      linear-gradient(hsl(var(--border) / 0.7) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border) / 0.7) 1px, transparent 1px);
-    background-size: 64px 64px;
-    background-position: center top;
-  }
-
-  /* Plain hairline rule that fades at both ends. */
+  /* Hairline rule that fades at both ends — the primary section divider. */
   .rule {
     height: 1px;
     background: linear-gradient(
@@ -143,95 +134,42 @@
     );
   }
 
-  /* Hairline card — flat, lifts subtly on hover (no colored glow). */
-  .brand-card {
-    position: relative;
-    border: 1px solid hsl(var(--border));
-    background: hsl(var(--card));
-    transition:
-      border-color 0.2s ease,
-      transform 0.2s ease;
-  }
-  .brand-card:hover {
-    border-color: hsl(var(--foreground) / 0.35);
-    transform: translateY(-2px);
-  }
-
-  /* Small square tick used in eyebrows. */
-  .brand-tick {
-    display: inline-block;
-    width: 0.4rem;
-    height: 0.4rem;
-    margin-inline-end: 0.6rem;
-    background: hsl(var(--foreground));
-  }
-
-  /* ---------- Technical-instrument kit ---------- */
-
-  /* Tracked mono label — section markers (§0X) and annotations. */
-  .ins-label {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 0.66rem;
+  /* Canonical small label — uppercase, wide tracking, Inter (not mono).
+     Tracking auto-zeroes for Arabic via the unlayered [lang="ar"] rule below. */
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 500;
     line-height: 1.4;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     color: hsl(var(--muted-foreground));
   }
 
-  /* Registration crosshair behind a calibrated mark. */
-  .ins-crosshair { position: relative; }
-  .ins-crosshair::before,
-  .ins-crosshair::after {
-    content: "";
-    position: absolute;
-    background: hsl(var(--border));
+  /* Calm hover — a quiet border/colour warm-up, no transform jump, no glow. */
+  .lift {
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
   }
-  .ins-crosshair::before { left: 0; right: 0; top: 50%; height: 1px; }
-  .ins-crosshair::after { top: 0; bottom: 0; left: 50%; width: 1px; }
 
-  /* Dimension line with end ticks (logical end side, mirrors in RTL). */
-  .ins-dim {
-    position: relative;
-    border-inline-end: 1px solid hsl(var(--ink-2));
-  }
-  .ins-dim::before,
-  .ins-dim::after {
-    content: "";
-    position: absolute;
-    inset-inline-end: -4px;
-    width: 8px;
-    height: 1px;
-    background: hsl(var(--ink-2));
-  }
-  .ins-dim::before { top: 0; }
-  .ins-dim::after { bottom: 0; }
-
-  /* Faint diagonal hatch — placeholder portrait fill. */
-  .ins-hatch {
-    background-color: hsl(var(--surface));
-    background-image: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 9px,
-      hsl(var(--border)) 9px,
-      hsl(var(--border)) 10px
-    );
+  /* Intentional treatment for a pending real asset (e.g. the founder photo).
+     Reads as a designed frame, never an apologetic placeholder. */
+  .placeholder-frame {
+    background: hsl(var(--surface));
+    border: 1px solid hsl(var(--border));
   }
 }
 
 /*
- * Arabic locale typography. Neither Space Grotesk (display) nor IBM Plex Mono
- * (instrument labels) carry Arabic glyphs — Arabic text would silently fall
- * back to a metric-adjusted stand-in — and tracked uppercase letter-spacing
- * breaks Arabic letter-joining. So in Arabic both the display AND mono roles
- * resolve to IBM Plex Sans Arabic with zero tracking. Unlayered on purpose so
- * it outranks the layered Tailwind utilities.
+ * Arabic locale typography. The Latin display role (Inter) and the tracked
+ * uppercase .eyebrow label both break Arabic: Inter lacks the full Arabic set,
+ * and letter-spacing breaks Arabic letter-joining. So in Arabic the display and
+ * eyebrow roles resolve to IBM Plex Sans Arabic with zero tracking. Unlayered
+ * on purpose so it outranks the layered Tailwind utilities.
  */
 [lang="ar"] .font-display,
-[lang="ar"] .font-mono,
-[lang="ar"] .ins-label,
-.font-display [lang="ar"],
-.font-mono [lang="ar"] {
+[lang="ar"] .eyebrow,
+.font-display [lang="ar"] {
   font-family: var(--font-plex-arabic), system-ui, sans-serif;
   letter-spacing: 0;
 }
