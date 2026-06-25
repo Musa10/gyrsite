@@ -75,7 +75,7 @@ export default async function HomePage({
         }
       />
 
-      <Section id="capabilities" divider={false}>
+      <Section id="capabilities" className="scroll-mt-24">
         <Reveal>
           <Eyebrow>{t("capLabel")}</Eyebrow>
           <div className="mt-8">
@@ -92,13 +92,13 @@ export default async function HomePage({
         </Reveal>
       </Section>
 
-      <Section surface>
+      <Section className="border-t border-border">
         <Reveal>
           <Statement>{t.rich("statement", { accent })}</Statement>
         </Reveal>
       </Section>
 
-      <Section id="approach">
+      <Section id="approach" className="scroll-mt-24 border-t border-border">
         <Reveal>
           <Eyebrow>{t("approachLabel")}</Eyebrow>
           <div className="mt-8">
@@ -107,7 +107,7 @@ export default async function HomePage({
         </Reveal>
       </Section>
 
-      <Section id="about" surface>
+      <Section id="about" className="scroll-mt-24 border-t border-border">
         <Reveal>
           <Eyebrow>{t("founderLabel")}</Eyebrow>
           <div className="mt-10">

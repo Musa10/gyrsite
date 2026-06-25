@@ -15,7 +15,7 @@ export async function ContactCta() {
   const mailto = `mailto:${siteConfig.email}?subject=${encodeURIComponent(t("subject"))}`;
 
   return (
-    <Section id="contact">
+    <Section id="contact" className="scroll-mt-24 border-t border-border">
       <Reveal>
         <Statement>{t("heading")}</Statement>
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
