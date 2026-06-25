@@ -15,7 +15,7 @@ export async function SiteFooter() {
   ];
 
   return (
-    <footer className="mt-24 border-t border-border">
+    <footer className="border-t border-border">
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-[1.6fr_1fr_1fr] lg:px-8">
         <div className="space-y-5">
           <Logo size="md" />

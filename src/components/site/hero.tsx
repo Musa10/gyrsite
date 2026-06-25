@@ -31,7 +31,7 @@ export function Hero({
             <FalconMark className="h-16 w-auto" />
           </span>
           <Eyebrow className="animate-fade-up [animation-delay:140ms]">{eyebrow}</Eyebrow>
-          <h1 className="font-display mt-5 max-w-3xl animate-fade-up text-balance text-4xl font-light leading-[1.05] tracking-[-0.02em] [animation-delay:220ms] sm:text-5xl lg:text-6xl">
+          <h1 className="font-display mt-5 max-w-3xl animate-fade-up text-balance text-4xl font-normal leading-[1.05] tracking-[-0.02em] [animation-delay:220ms] sm:text-5xl lg:text-6xl">
             {title}
           </h1>
           {sub ? (
@@ -53,7 +53,7 @@ export function Hero({
     <section className="border-b border-border">
       <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20 lg:px-8">
         <Eyebrow className="animate-fade-up">{eyebrow}</Eyebrow>
-        <h1 className="font-display mt-5 max-w-3xl animate-fade-up text-balance text-3xl font-light leading-[1.08] tracking-[-0.02em] [animation-delay:120ms] sm:text-4xl lg:text-5xl">
+        <h1 className="font-display mt-5 max-w-3xl animate-fade-up text-balance text-3xl font-normal leading-[1.08] tracking-[-0.02em] [animation-delay:120ms] sm:text-4xl lg:text-5xl">
           {title}
         </h1>
         {sub ? (

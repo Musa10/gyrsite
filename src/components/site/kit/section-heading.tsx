@@ -23,7 +23,7 @@ export function SectionHeading({
   return (
     <div className={`flex flex-col gap-4 ${alignCls}`}>
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <h2 className="font-display max-w-2xl text-balance text-3xl font-light leading-[1.1] tracking-[-0.02em] sm:text-4xl">
+      <h2 className="font-display max-w-2xl text-balance text-3xl font-normal leading-[1.1] tracking-[-0.02em] sm:text-4xl">
         {title}
       </h2>
       {sub ? (
